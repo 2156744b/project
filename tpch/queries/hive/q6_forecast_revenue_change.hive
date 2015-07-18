@@ -1,7 +1,7 @@
 DROP TABLE q6_forecast_revenue_change;
 
 -- create the target table
-create table q6_forecast_revenue_change (revenue double);
+create table q6_forecast_revenue_change (revenue double) STORED AS ORC;
 
 -- the query
 insert overwrite table q6_forecast_revenue_change 

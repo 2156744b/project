@@ -1,7 +1,7 @@
 DROP TABLE q13_customer_distribution;
 
 -- create the result table
-create table q13_customer_distribution (c_count int, custdist int);
+create table q13_customer_distribution (c_count int, custdist int) STORED AS ORC;
 
 -- the query
 insert overwrite table q13_customer_distribution

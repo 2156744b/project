@@ -1,7 +1,7 @@
 DROP TABLE q5_local_supplier_volume;
 
 -- create the target table
-create table q5_local_supplier_volume (N_NAME STRING, REVENUE DOUBLE);
+create table q5_local_supplier_volume (N_NAME STRING, REVENUE DOUBLE) STORED AS ORC;
 
 --set mapred.min.split.size=536870912;
 
@@ -23,8 +23,6 @@ from
       ) l1 on l1.l_orderkey = o.o_orderkey and o.o_orderdate >= '1993-01-01' 
               and o.o_orderdate < '1994-01-01'
 ) o1 on c.c_nationkey = o1.s_nationkey and c.c_custkey = o1.o_custkey
-group by 
-	n_name 
-order by r
-	evenue desc;
+group by n_name 
+order by revenue desc;
 
