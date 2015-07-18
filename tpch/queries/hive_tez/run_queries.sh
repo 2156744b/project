@@ -9,10 +9,10 @@ fi
 
 source ../../../executables.conf
 
-RESULTS="../../results/hive"
+RESULTS="../../results/hive_tez"
 mkdir $RESULTS/$1 
 
-$HIVE -e "set hive.execution.engine=mr;"
+$HIVE -e "set hive.execution.engine=tez;"
 
 for query in *.hive; do
 	echo -e "\n\n************************************************"
