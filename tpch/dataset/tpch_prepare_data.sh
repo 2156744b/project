@@ -1,5 +1,4 @@
-HADOOP=/usr/bin/hadoop
-HIVE=/usr/bin/hive
+source ../../executables.conf
 
 $HADOOP fs -rm -r tpch
 
