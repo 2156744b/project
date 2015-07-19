@@ -10,7 +10,7 @@ fi
 source ../../../executables.conf
 
 RESULTS="../../results/hive"
-mkdir $RESULTS/$1 
+mkdir -p $RESULTS/$1 
 
 $HIVE -e "set hive.execution.engine=mr;"
 
