@@ -59,11 +59,11 @@ create table region(R_REGIONKEY INT, R_NAME STRING, R_COMMENT STRING) ROW FORMAT
 
 -- Copy to ORC tables
 
-insert into lineitem select * from lineitem_tmp;
-insert into orders select * from orders_tmp;
-insert into customer select * from customer_tmp;
-insert into nation select * from nation_tmp;
-insert into part select * from part_tmp;
-insert into supplier select * from supplier_tmp;
-insert into partsupp select * from partsupp_tmp;
-insert into region select * from region_tmp;
+insert into table lineitem select * from lineitem_tmp;
+insert into table orders select * from orders_tmp;
+insert into table customer select * from customer_tmp;
+insert into table nation select * from nation_tmp;
+insert into table part select * from part_tmp;
+insert into table supplier select * from supplier_tmp;
+insert into table partsupp select * from partsupp_tmp;
+insert into table region select * from region_tmp;
