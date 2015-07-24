@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE q11_important_stock;
 DROP TABLE q11_part_tmp;
 DROP TABLE q11_sum_tmp;

@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q17_small_quantity_order_revenue;
 DROP TABLE lineitem_tmp;
 

@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE q20_tmp1;
 DROP TABLE q20_tmp2;
 DROP TABLE q20_tmp3;

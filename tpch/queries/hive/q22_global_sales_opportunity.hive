@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q22_customer_tmp;
 DROP TABLE q22_customer_tmp1;
 DROP TABLE q22_orders_tmp;

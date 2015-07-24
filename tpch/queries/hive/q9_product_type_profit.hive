@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q9_product_type_profit;
 
 -- create the result table

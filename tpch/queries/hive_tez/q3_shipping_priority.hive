@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE q3_shipping_priority;
 
 -- create the target table

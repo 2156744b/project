@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q8_national_market_share;
 
 -- create the result table

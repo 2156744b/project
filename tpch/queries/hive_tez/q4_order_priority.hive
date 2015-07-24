@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE q4_order_priority_tmp;
 DROP TABLE q4_order_priority;
 

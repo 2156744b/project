@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q1_pricing_summary_report;
 
 -- create the target table

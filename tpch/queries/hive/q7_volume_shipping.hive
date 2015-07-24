@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q7_volume_shipping;
 
 -- create the target table

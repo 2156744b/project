@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q19_discounted_revenue;
 
 -- create the result table

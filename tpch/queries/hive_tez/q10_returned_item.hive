@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE q10_returned_item;
 
 -- create the result table

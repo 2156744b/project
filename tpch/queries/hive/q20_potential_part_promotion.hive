@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q20_tmp1;
 DROP TABLE q20_tmp2;
 DROP TABLE q20_tmp3;

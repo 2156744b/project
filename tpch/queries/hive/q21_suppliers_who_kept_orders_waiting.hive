@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q21_tmp1;
 DROP TABLE q21_tmp2;
 DROP TABLE q21_suppliers_who_kept_orders_waiting;

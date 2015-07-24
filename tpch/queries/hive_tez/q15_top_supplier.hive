@@ -1,3 +1,4 @@
+set hive.execution.engine=tez;
 DROP TABLE revenue;
 DROP TABLE max_revenue;
 DROP TABLE q15_top_supplier;

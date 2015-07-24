@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q13_customer_distribution;
 
 -- create the result table

@@ -1,3 +1,4 @@
+set hive.execution.engine=mr;
 DROP TABLE q2_minimum_cost_supplier;
 DROP TABLE q2_minimum_cost_supplier_tmp1;
 DROP TABLE q2_minimum_cost_supplier_tmp2;
