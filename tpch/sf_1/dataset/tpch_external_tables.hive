@@ -1,6 +1,6 @@
 drop table lineitem_sf_1;
 drop table orders_sf_1;
-drop_table customer_sf_1;
+drop table customer_sf_1;
 drop table nation_sf_1;
 drop table part_sf_1;
 drop table supplier_sf_1;
