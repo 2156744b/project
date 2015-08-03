@@ -1,5 +1,4 @@
 set hive.execution.engine=mr;
-set io.sort.mb=2047;
 
 DROP TABLE q11_important_stock;
 DROP TABLE q11_part_tmp;

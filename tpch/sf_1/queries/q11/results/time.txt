@@ -1,0 +1,62 @@
+q11.hive_MonAug319:25:21BST2015:Time taken: 2.142 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 0.581 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 0.581 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 0.572 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 0.303 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 0.304 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 54.401 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 26.042 seconds
+q11.hive_MonAug319:25:21BST2015:Time taken: 36.281 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 1.912 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.577 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.549 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.788 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.283 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.29 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 56.475 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 26.755 seconds
+q11_parquet.hive_MonAug319:25:21BST2015:Time taken: 37.916 seconds
+q11.pig_MonAug319:25:21BST2015:2015-08-03 18:34:58,448 [main] INFO  org.apache.pig.Main - Pig script completed in 2 minutes, 56 seconds and 358 milliseconds (176358 ms)
+q11.spark_MonAug319:25:21BST2015:Time taken: 2.836 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:05 INFO CliDriver: Time taken: 2.836 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 0.344 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:05 INFO CliDriver: Time taken: 0.344 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 0.277 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:06 INFO CliDriver: Time taken: 0.277 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 0.389 seconds15/08/03 18:45:06 INFO StatsReportListener: 	24 %	24 %	24 %	24 %	24 %	24 %	24 %	24 %	24 %
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:06 INFO CliDriver: Time taken: 0.389 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 0.252 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:06 INFO CliDriver: Time taken: 0.252 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 0.212 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:06 INFO CliDriver: Time taken: 0.212 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 18.757 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:25 INFO CliDriver: Time taken: 18.757 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 1.358 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:45:27 INFO CliDriver: Time taken: 1.358 seconds
+q11.spark_MonAug319:25:21BST2015:Time taken: 56.217 seconds
+q11.spark_MonAug319:25:21BST2015:15/08/03 18:46:23 INFO CliDriver: Time taken: 56.217 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 1.93 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 0.556 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 0.556 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 0.567 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 0.327 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 0.296 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 24.347 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 4.984 seconds
+q11_tez.hive_MonAug319:25:21BST2015:Time taken: 6.73 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 1.892 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.573 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.573 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.559 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.315 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 0.312 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 29.58 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 4.835 seconds
+q11_tez_parquet.hive_MonAug319:25:21BST2015:Time taken: 5.374 seconds
+
+hive 116.724
+hive parquet 121.416
+hive tez 36.031
+hive tez parquet 39.789
+pig 176
+spark 76.332

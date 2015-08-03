@@ -1,5 +1,5 @@
 -- number of partitions when shuffling data for aggregates and joins
-set spark.sql.shuffle.partitions=250;
+--set spark.sql.shuffle.partitions=1024;
 
 DROP TABLE q11_important_stock_spark;
 DROP TABLE q11_part_tmp_spark;
