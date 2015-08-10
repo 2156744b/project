@@ -23,5 +23,5 @@ done
 for f in *.spark; do
 	result=$RESULTS/${f}_$suffix
         cat $f > $result
-	sudo -u hive $SPARK --driver-memory 6g --executor-memory 512m --num-executors 4 -f $f 2>&1 | tee -a $result
+	sudo -u hive $SPARK --driver-memory 6g --executor-memory 1g --num-executors 4 -f $f 2>&1 | tee -a $result
 done

@@ -1,0 +1,90 @@
+set hive.execution.engine=tez;
+
+DROP TABLE q11_important_stock_par;
+DROP TABLE q11_part_tmp_par;
+
+-- create the target table
+create table q11_important_stock_par(ps_partkey INT, value DOUBLE) STORED AS parquet;
+create table q11_part_tmp_par(ps_partkey int, part_value double) STORED AS parquet;
+
+-- the query
+insert into table q11_part_tmp_par
+select ps_partkey, sum(ps_supplycost * ps_availqty) as part_value
+from nation_par n
+        join supplier_par s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+        join partsupp_par ps on ps.ps_suppkey = s.s_suppkey
+group by ps_partkey;
+
+insert into table q11_important_stock_par
+select ps_partkey, part_value as value
+from (select sum(part_value) as total_value from q11_part_tmp_par) sum_tmp
+        join q11_part_tmp_par
+where part_value > total_value * 0.0001
+order by value desc;
+
+15/08/06 17:31:50 WARN conf.HiveConf: HiveConf of name hive.heapsize does not exist
+15/08/06 17:31:50 WARN conf.HiveConf: HiveConf of name hive.server2.enable.impersonation does not exist
+
+Logging initialized using configuration in file:/etc/hive/conf/hive-log4j.properties
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hive/lib/hive-jdbc-0.14.0.2.2.4.2-2-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+OK
+Time taken: 1.569 seconds
+OK
+Time taken: 0.132 seconds
+OK
+Time taken: 0.503 seconds
+OK
+Time taken: 0.068 seconds
+Query ID = leonidas_20150806173232_9f63440f-a695-4aaf-8f5c-d2dd7d5919bd
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1438628854950_0049)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Reducer 4: 0/1	
+Map 1: -/-	Map 2: 0/1	Map 3: -/-	Reducer 4: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/10	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 2: 0/1	Map 3: 0(+4)/10	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+4)/10	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 2: 0/1	Map 3: 0(+4)/10	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 2: 1/1	Map 3: 0(+5)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+6)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+6)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+6)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 1(+5)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+6)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+6)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 6(+4)/10	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 6(+4)/10	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 7(+3)/10	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8(+2)/10	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 9(+1)/10	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 10/10	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 10/10	Reducer 4: 1/1	
+Loading data to table default.q11_part_tmp_par
+Table default.q11_part_tmp_par stats: [numFiles=1, numRows=30208, totalSize=362834, rawDataSize=60416]
+OK
+Time taken: 30.411 seconds
+Warning: Map Join MAPJOIN[15][bigTable=q11_part_tmp_par] in task 'Map 3' is a cross product
+Query ID = leonidas_20150806173232_1e9e76ed-b0a0-4b5a-a729-6d10c592e5a0
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1438628854950_0049)
+
+Map 1: 0(+1)/1	Map 3: 0/1	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 3: 0(+1)/1	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 1/1	Map 3: 0(+1)/1	Reducer 2: 0(+1)/1	Reducer 4: 0/1	
+Map 1: 1/1	Map 3: 0(+1)/1	Reducer 2: 1/1	Reducer 4: 0/1	
+Map 1: 1/1	Map 3: 1/1	Reducer 2: 1/1	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 3: 1/1	Reducer 2: 1/1	Reducer 4: 1/1	
+Loading data to table default.q11_important_stock_par
+Table default.q11_important_stock_par stats: [numFiles=1, numRows=919, totalSize=11338, rawDataSize=1838]
+OK
+Time taken: 6.603 seconds

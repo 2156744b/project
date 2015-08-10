@@ -1,0 +1,194 @@
+set hive.execution.engine=mr;
+set mapreduce.job.maps=3;
+
+DROP TABLE q11_important_stock_par;
+DROP TABLE q11_part_tmp_par;
+
+-- create the target table
+create table q11_important_stock_par(ps_partkey INT, value DOUBLE) STORED AS parquet;
+create table q11_part_tmp_par(ps_partkey int, part_value double) STORED AS parquet;
+
+-- the query
+insert into table q11_part_tmp_par
+select ps_partkey, sum(ps_supplycost * ps_availqty) as part_value
+from nation_par n
+        join supplier_par s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+        join partsupp_par ps on ps.ps_suppkey = s.s_suppkey
+group by ps_partkey;
+
+insert into table q11_important_stock_par
+select ps_partkey, part_value as value
+from (select sum(part_value) as total_value from q11_part_tmp_par) sum_tmp
+        join q11_part_tmp_par
+where part_value > total_value * 0.0001
+order by value desc;
+
+15/08/09 15:20:44 WARN conf.HiveConf: HiveConf of name hive.heapsize does not exist
+15/08/09 15:20:44 WARN conf.HiveConf: HiveConf of name hive.server2.enable.impersonation does not exist
+
+Logging initialized using configuration in file:/etc/hive/conf/hive-log4j.properties
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hive/lib/hive-jdbc-0.14.0.2.2.4.2-2-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+OK
+Time taken: 1.731 seconds
+OK
+Time taken: 0.12 seconds
+OK
+Time taken: 0.376 seconds
+OK
+Time taken: 0.084 seconds
+Query ID = leonidas_20150809152020_4e67e085-3dc2-4418-9e22-ad506275f741
+Total jobs = 1
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hive/lib/hive-jdbc-0.14.0.2.2.4.2-2-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+15/08/09 15:21:09 WARN conf.HiveConf: HiveConf of name hive.heapsize does not exist
+15/08/09 15:21:09 WARN conf.HiveConf: HiveConf of name hive.server2.enable.impersonation does not exist
+Execution log at: /tmp/leonidas/leonidas_20150809152020_4e67e085-3dc2-4418-9e22-ad506275f741.log
+2015-08-09 03:21:09	Starting to launch local task to process map join;	maximum memory = 260177920
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2015-08-09 03:21:21	Dump the side-table for tag: 1 with group count: 10000 into file: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-20-58_570_8020153084914623407-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile01--.hashtable
+2015-08-09 03:21:21	Uploaded 1 File to: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-20-58_570_8020153084914623407-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile01--.hashtable (15943089 bytes)
+2015-08-09 03:21:21	Dump the side-table for tag: 0 with group count: 1 into file: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-20-58_570_8020153084914623407-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile10--.hashtable
+2015-08-09 03:21:21	Uploaded 1 File to: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-20-58_570_8020153084914623407-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile10--.hashtable (278 bytes)
+2015-08-09 03:21:21	End of local task; Time Taken: 12.033 sec.
+09-Aug-2015 15:21:13 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 25 records.
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 40 ms. row count = 25
+09-Aug-2015 15:21:13 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 80615 records.
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:13 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 124 ms. row count = 80615
+09-Aug-2015 15:21:14 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:14 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 80195 records.
+09-Aug-2015 15:21:14 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:14 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 16 ms. row count = 80195
+09-Aug-2015 15:21:15 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:15 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 80260 records.
+09-Aug-2015 15:21:15 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:15 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 11 ms. row count = 80260
+09-Aug-2015 15:21:16 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:16 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 80265 records.
+09-Aug-2015 15:21:16 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:16 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 6 ms. row count = 80265
+09-Aug-2015 15:21:17 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:17 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 80206 records.
+09-Aug-2015 15:21:17 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:17 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 6 ms. row count = 80206
+09-Aug-2015 15:21:18 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 79706 records.
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 9 ms. row count = 79706
+09-Aug-2015 15:21:18 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 79667 records.
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:18 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 10 ms. row count = 79667
+09-Aug-2015 15:21:19 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 79671 records.
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 9 ms. row count = 79671
+09-Aug-2015 15:21:19 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 79589 records.
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:19 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 9 ms. row count = 79589
+09-Aug-2015 15:21:20 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:21:20 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 79826 records.
+09-Aug-2015 15:21:20 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:21:20 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 5 ms. row count = 79826
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439133121434_0007, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439133121434_0007/
+Kill Command = /usr/hdp/2.2.4.2-2/hadoop/bin/hadoop job  -kill job_1439133121434_0007
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2015-08-09 15:21:35,411 Stage-3 map = 0%,  reduce = 0%
+2015-08-09 15:21:47,351 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 8.51 sec
+2015-08-09 15:21:54,843 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 13.69 sec
+MapReduce Total cumulative CPU time: 13 seconds 690 msec
+Ended Job = job_1439133121434_0007
+Loading data to table default.q11_part_tmp_par
+Table default.q11_part_tmp_par stats: [numFiles=1, numRows=30208, totalSize=362834, rawDataSize=60416]
+MapReduce Jobs Launched: 
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 13.69 sec   HDFS Read: 47542 HDFS Write: 362920 SUCCESS
+Total MapReduce CPU Time Spent: 13 seconds 690 msec
+OK
+Time taken: 58.127 seconds
+Warning: Map Join MAPJOIN[19][bigTable=?] in task 'Stage-3:MAPRED' is a cross product
+Query ID = leonidas_20150809152121_06d40644-3a6a-4453-b170-81c15dd09ba8
+Total jobs = 2
+Launching Job 1 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439133121434_0008, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439133121434_0008/
+Kill Command = /usr/hdp/2.2.4.2-2/hadoop/bin/hadoop job  -kill job_1439133121434_0008
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 1
+2015-08-09 15:22:05,255 Stage-1 map = 0%,  reduce = 0%
+2015-08-09 15:22:13,848 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 4.46 sec
+2015-08-09 15:22:21,334 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.43 sec
+MapReduce Total cumulative CPU time: 6 seconds 430 msec
+Ended Job = job_1439133121434_0008
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hadoop/lib/slf4j-log4j12-1.7.5.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.2.4.2-2/hive/lib/hive-jdbc-0.14.0.2.2.4.2-2-standalone.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+15/08/09 15:22:28 WARN conf.HiveConf: HiveConf of name hive.heapsize does not exist
+15/08/09 15:22:28 WARN conf.HiveConf: HiveConf of name hive.server2.enable.impersonation does not exist
+Execution log at: /tmp/leonidas/leonidas_20150809152121_06d40644-3a6a-4453-b170-81c15dd09ba8.log
+2015-08-09 03:22:28	Starting to launch local task to process map join;	maximum memory = 260177920
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2015-08-09 03:22:31	Dump the side-table for tag: 1 with group count: 1 into file: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-21-56_718_5903814421859750233-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile21--.hashtable
+2015-08-09 03:22:32	Uploaded 1 File to: file:/tmp/leonidas/ca976e4b-b8c6-46f7-b65d-5eb815877fc9/hive_2015-08-09_15-21-56_718_5903814421859750233-1/-local-10004/HashTable-Stage-3/MapJoin-mapfile21--.hashtable (506321 bytes)
+2015-08-09 03:22:32	End of local task; Time Taken: 3.415 sec.
+09-Aug-2015 15:22:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+09-Aug-2015 15:22:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 30208 records.
+09-Aug-2015 15:22:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+09-Aug-2015 15:22:31 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 41 ms. row count = 30208
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 2 out of 2
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439133121434_0009, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439133121434_0009/
+Kill Command = /usr/hdp/2.2.4.2-2/hadoop/bin/hadoop job  -kill job_1439133121434_0009
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2015-08-09 15:22:41,501 Stage-3 map = 0%,  reduce = 0%
+2015-08-09 15:22:51,314 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 5.35 sec
+2015-08-09 15:22:59,896 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 8.35 sec
+MapReduce Total cumulative CPU time: 8 seconds 350 msec
+Ended Job = job_1439133121434_0009
+Loading data to table default.q11_important_stock_par
+Table default.q11_important_stock_par stats: [numFiles=1, numRows=919, totalSize=11338, rawDataSize=1838]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 6.43 sec   HDFS Read: 242207 HDFS Write: 121 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 8.35 sec   HDFS Read: 540 HDFS Write: 11428 SUCCESS
+Total MapReduce CPU Time Spent: 14 seconds 780 msec
+OK
+Time taken: 64.517 seconds
