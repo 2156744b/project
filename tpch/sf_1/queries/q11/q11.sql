@@ -1,5 +1,3 @@
-set hive.execution.engine=mr;
-
 DROP TABLE q11_important_stock;
 
 -- create the target table

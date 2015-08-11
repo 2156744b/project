@@ -1,6 +1,4 @@
-set hive.execution.engine=mr;
-
-DROP TABLE q11_important_stock_par;
+set hive.execution.engine=mr; DROP TABLE q11_important_stock_par;
 
 -- create the target table
 create table q11_important_stock_par(ps_partkey INT, value DOUBLE) STORED AS parquet;
@@ -17,4 +15,3 @@ from (
 ) sum_tmp
 where part_value > total_value * 0.0001
 order by value desc;
-
