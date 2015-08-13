@@ -14,38 +14,38 @@ for fn in *.sql; do
 	content=$(<$fn)	
 	f=${fn%.*}
 
-	$HIVE -f needed_tables.sql
+	$HIVE -f needed_tables.sql.exclude
 	
 	echo "*****************************************"
 	echo "* Now running $f on HIVE"
 	echo "*****************************************"
 
 	params="set hive.execution.engine=mr;"
-	result=$RESULTS/${f}.hive_${suffix}_run$run
+	result=$RESULTS/${f}.hive_${suffix}run$run
 	script="$params $content"
 	echo "$script" > $result
 	$HIVE -e "$script" 2>&1 | tee -a $result 	
 
-	$HIVE -f needed_tables.sql
+	$HIVE -f needed_tables.sql.exclude
 
         echo "*****************************************"
         echo "* Now running $f on HIVE-TEZ"
         echo "*****************************************"
 
         params="set hive.execution.engine=tez;"
-        result=$RESULTS/${f}.hive_tez_${suffix}_run$run
+        result=$RESULTS/${f}.hive_tez_${suffix}run$run
         script="$params $content"
         echo "$script" > $result
         $HIVE -e "$script" 2>&1 | tee -a $result
 
-	$HIVE -f needed_tables.sql
+	$HIVE -f needed_tables.sql.exclude
 
         echo "*****************************************"
         echo "* Now running $f on SPARK"
         echo "*****************************************"
 
         params=""
-        result=$RESULTS/${f}.spark_${suffix}_run$run
+        result=$RESULTS/${f}.spark_${suffix}run$run
         script="$params $content"
         echo "$script" > $result
         sudo -u hive $SPARK --driver-memory 6g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
@@ -58,7 +58,7 @@ for f in *.pig; do
         echo "* Now running $f on PIG"
         echo "*****************************************"
 
-	result=$RESULTS/${f}_${suffix}_run$run
+	result=$RESULTS/${f}_${suffix}run$run
         cat $f > $result
         $PIG -x tez -f $f 2>&1 | tee -a $result
 
