@@ -1,8 +1,8 @@
 rmf /apps/hive/warehouse/q11
 
-partsupp = LOAD '/apps/hive/warehouse/partsupp' USING OrcStorage() as (ps_partkey:long, ps_suppkey:long, ps_availqty:long, ps_supplycost:double, ps_comment:chararray);
-supplier = LOAD '/apps/hive/warehouse/supplier' USING OrcStorage() as (s_suppkey:long, s_name:chararray, s_address:chararray, s_nationkey:int, s_phone:chararray, s_acctbal:double, s_comment:chararray);
-nation = LOAD '/apps/hive/warehouse/nation' USING OrcStorage() as (n_nationkey:int, n_name:chararray, n_regionkey:int, n_comment:chararray);
+partsupp = LOAD '/apps/hive/warehouse/partsupp' USING OrcStorage() as (ps_partkey, ps_suppkey, ps_availqty, ps_supplycost, ps_comment);
+supplier = LOAD '/apps/hive/warehouse/supplier' USING OrcStorage() as (s_suppkey, s_name, s_address, s_nationkey, s_phone, s_acctbal, s_comment);
+nation = LOAD '/apps/hive/warehouse/nation' USING OrcStorage() as (n_nationkey, n_name, n_regionkey, n_comment);
 
 fnation = filter nation by n_name == 'RUSSIA'; 
 
@@ -14,19 +14,18 @@ selj1 = foreach j1 generate s_suppkey;
 
 j2 = join partsupp by ps_suppkey, selj1 by s_suppkey;
 
-selj2 = foreach j2 generate ps_partkey, (ps_supplycost *  ps_availqty) as val;
+selj2 = foreach j2 generate ps_partkey, ((double)ps_supplycost *  (double)ps_availqty) as val:double;
 
-grResult = group selj2 all;
-
-sumResult = foreach grResult generate SUM($1.val) as totalSum;
-
-----------------------------------------------------------------------------------(above inside, below outside)
 
 outerGrResult = group selj2 by ps_partkey;
 
-outerSumResult = foreach outerGrResult generate group, SUM($1.val) as outSum;
+outerSumResult = foreach outerGrResult generate group, SUM($1.val) as outSum:double;
 
-outerHaving = filter outerSumResult by outSum > sumResult.totalSum * 0.0001;
+grResult = group outerSumResult all;
+
+sumResult = foreach grResult generate SUM($1.outSum) * 0.0001 as totalSum:double;
+
+outerHaving = filter outerSumResult by outSum > sumResult.totalSum;
 
 ord = order outerHaving by outSum desc;
-store ord into '/apps/hive/warehouse/q11' USING OrcStorage();
+store ord into '/apps/hive/warehouse/q11' USING PigStorage('|');

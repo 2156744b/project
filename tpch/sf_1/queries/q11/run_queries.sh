@@ -7,38 +7,62 @@ mkdir -p $RESULTS
 
 suffix=$1
 
+for run in `seq 1 5`; do 
+
 for fn in *.sql; do
 
 	content=$(<$fn)	
 	f=${fn%.*}
+
+	$HIVE -f needed_tables.sql
 	
-	#HIVE
+	echo "*****************************************"
+	echo "* Now running $f on HIVE"
+	echo "*****************************************"
+
 	params="set hive.execution.engine=mr;"
-	result=$RESULTS/${f}.hive_$suffix
+	result=$RESULTS/${f}.hive_${suffix}_run$run
 	script="$params $content"
 	echo "$script" > $result
-	$HIVE -e "$script" | tee -a $result 	
+	$HIVE -e "$script" 2>&1 | tee -a $result 	
 
-        #HIVE-TEZ
+	$HIVE -f needed_tables.sql
+
+        echo "*****************************************"
+        echo "* Now running $f on HIVE-TEZ"
+        echo "*****************************************"
+
         params="set hive.execution.engine=tez;"
-        result=$RESULTS/${f}.hive_tez_$suffix
+        result=$RESULTS/${f}.hive_tez_${suffix}_run$run
         script="$params $content"
         echo "$script" > $result
-        $HIVE -e "$script" | tee -a $result
+        $HIVE -e "$script" 2>&1 | tee -a $result
 
-        #SPARK
+	$HIVE -f needed_tables.sql
+
+        echo "*****************************************"
+        echo "* Now running $f on SPARK"
+        echo "*****************************************"
+
         params=""
-        result=$RESULTS/${f}.spark_$suffix
+        result=$RESULTS/${f}.spark_${suffix}_run$run
         script="$params $content"
         echo "$script" > $result
-        $SPARK -e "$script" | tee -a $result
+        sudo -u hive $SPARK --driver-memory 6g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
 
 done
 
 for f in *.pig; do
-	result=$RESULTS/${f}_$suffix
+	
+        echo "*****************************************"
+        echo "* Now running $f on PIG"
+        echo "*****************************************"
+
+	result=$RESULTS/${f}_${suffix}_run$run
         cat $f > $result
         $PIG -x tez -f $f 2>&1 | tee -a $result
+
+done
 
 done
 
