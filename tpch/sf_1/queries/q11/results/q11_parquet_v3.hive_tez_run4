@@ -1,0 +1,56 @@
+set hive.execution.engine=tez; -- the query
+insert into table q11_important_stock_par
+select ps_partkey, part_value as value
+from ( 
+        select ps_partkey, sum(ps_supplycost * ps_availqty) as part_value, sum(sum(ps_supplycost * ps_availqty)) over() as total_value
+        from nation_par n
+        join supplier_par s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+        join partsupp_par ps on ps.ps_suppkey = s.s_suppkey
+        group by ps_partkey
+) sum_tmp
+where part_value > total_value * 0.0001
+order by value desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150813175750_b686ffbc-6bb9-4f06-9bc0-6b98ee36d349
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439404929154_0146)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+3)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+2)/4	Reducer 4: 0/2	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+1)/4	Reducer 4: 0/1	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+1)/4	Reducer 4: 0(+1)/1	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 0(+1)/1	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 0(+1)/1	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 0(+1)/1	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 0(+1)/1	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 1/1	Reducer 6: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 1/1	Reducer 6: 1/1	
+Loading data to table default.q11_important_stock_par
+Table default.q11_important_stock_par stats: [numFiles=1, numRows=919, totalSize=11338, rawDataSize=1838]
+OK
+Time taken: 35.202 seconds
