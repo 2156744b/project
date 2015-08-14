@@ -23,7 +23,7 @@ SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
 
 Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
-Query ID = leonidas_20150813175040_de8e9b36-821d-4806-80a0-5de7ae2f3095
+Query ID = leonidas_20150813231748_4d2e8670-8745-40af-a4b8-7b39aa36ef7c
 Total jobs = 3
 WARNING: Use "yarn jar" to launch YARN applications.
 SLF4J: Class path contains multiple SLF4J bindings.
@@ -31,13 +31,13 @@ SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12
 SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
 SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
-Execution log at: /tmp/leonidas/leonidas_20150813175040_de8e9b36-821d-4806-80a0-5de7ae2f3095.log
-2015-08-13 17:50:50	Starting to launch local task to process map join;	maximum memory = 1046478848
-2015-08-13 17:50:53	Dump the side-table for tag: 1 with group count: 10000 into file: file:/tmp/leonidas/2656ed94-0473-4c04-8916-180906f5a6a6/hive_2015-08-13_17-50-40_682_5735624219372656703-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile01--.hashtable
-2015-08-13 17:50:54	Uploaded 1 File to: file:/tmp/leonidas/2656ed94-0473-4c04-8916-180906f5a6a6/hive_2015-08-13_17-50-40_682_5735624219372656703-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile01--.hashtable (15943089 bytes)
-2015-08-13 17:50:54	Dump the side-table for tag: 0 with group count: 1 into file: file:/tmp/leonidas/2656ed94-0473-4c04-8916-180906f5a6a6/hive_2015-08-13_17-50-40_682_5735624219372656703-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile10--.hashtable
-2015-08-13 17:50:54	Uploaded 1 File to: file:/tmp/leonidas/2656ed94-0473-4c04-8916-180906f5a6a6/hive_2015-08-13_17-50-40_682_5735624219372656703-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile10--.hashtable (278 bytes)
-2015-08-13 17:50:54	End of local task; Time Taken: 3.807 sec.
+Execution log at: /tmp/leonidas/leonidas_20150813231748_4d2e8670-8745-40af-a4b8-7b39aa36ef7c.log
+2015-08-13 23:17:58	Starting to launch local task to process map join;	maximum memory = 1046478848
+2015-08-13 23:18:01	Dump the side-table for tag: 1 with group count: 10000 into file: file:/tmp/leonidas/0c843966-4705-4979-b42b-b32d41143853/hive_2015-08-13_23-17-48_738_237779033022696526-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile01--.hashtable
+2015-08-13 23:18:02	Uploaded 1 File to: file:/tmp/leonidas/0c843966-4705-4979-b42b-b32d41143853/hive_2015-08-13_23-17-48_738_237779033022696526-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile01--.hashtable (15943089 bytes)
+2015-08-13 23:18:02	Dump the side-table for tag: 0 with group count: 1 into file: file:/tmp/leonidas/0c843966-4705-4979-b42b-b32d41143853/hive_2015-08-13_23-17-48_738_237779033022696526-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile10--.hashtable
+2015-08-13 23:18:02	Uploaded 1 File to: file:/tmp/leonidas/0c843966-4705-4979-b42b-b32d41143853/hive_2015-08-13_23-17-48_738_237779033022696526-1/-local-10006/HashTable-Stage-3/MapJoin-mapfile10--.hashtable (278 bytes)
+2015-08-13 23:18:02	End of local task; Time Taken: 4.069 sec.
 Execution completed successfully
 MapredLocal task succeeded
 Launching Job 1 out of 3
@@ -48,14 +48,14 @@ In order to limit the maximum number of reducers:
   set hive.exec.reducers.max=<number>
 In order to set a constant number of reducers:
   set mapreduce.job.reduces=<number>
-Starting Job = job_1439404929154_0133, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0133/
-Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0133
+Starting Job = job_1439404929154_0230, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0230/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0230
 Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
-2015-08-13 17:51:03,850 Stage-3 map = 0%,  reduce = 0%
-2015-08-13 17:51:16,734 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 22.68 sec
-2015-08-13 17:51:24,186 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 28.63 sec
-MapReduce Total cumulative CPU time: 28 seconds 630 msec
-Ended Job = job_1439404929154_0133
+2015-08-13 23:18:13,726 Stage-3 map = 0%,  reduce = 0%
+2015-08-13 23:18:26,535 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 21.55 sec
+2015-08-13 23:18:33,939 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 27.41 sec
+MapReduce Total cumulative CPU time: 27 seconds 410 msec
+Ended Job = job_1439404929154_0230
 Launching Job 2 out of 3
 Number of reduce tasks not specified. Estimated from input data size: 1
 In order to change the average load for a reducer (in bytes):
@@ -64,14 +64,14 @@ In order to limit the maximum number of reducers:
   set hive.exec.reducers.max=<number>
 In order to set a constant number of reducers:
   set mapreduce.job.reduces=<number>
-Starting Job = job_1439404929154_0134, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0134/
-Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0134
+Starting Job = job_1439404929154_0231, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0231/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0231
 Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
-2015-08-13 17:51:37,494 Stage-4 map = 0%,  reduce = 0%
-2015-08-13 17:51:45,917 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 11.47 sec
-2015-08-13 17:51:54,324 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 19.83 sec
-MapReduce Total cumulative CPU time: 19 seconds 830 msec
-Ended Job = job_1439404929154_0134
+2015-08-13 23:18:47,203 Stage-4 map = 0%,  reduce = 0%
+2015-08-13 23:18:56,912 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 12.47 sec
+2015-08-13 23:19:04,292 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 21.04 sec
+MapReduce Total cumulative CPU time: 21 seconds 40 msec
+Ended Job = job_1439404929154_0231
 Launching Job 3 out of 3
 Number of reduce tasks determined at compile time: 1
 In order to change the average load for a reducer (in bytes):
@@ -80,20 +80,20 @@ In order to limit the maximum number of reducers:
   set hive.exec.reducers.max=<number>
 In order to set a constant number of reducers:
   set mapreduce.job.reduces=<number>
-Starting Job = job_1439404929154_0135, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0135/
-Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0135
+Starting Job = job_1439404929154_0232, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439404929154_0232/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439404929154_0232
 Hadoop job information for Stage-5: number of mappers: 1; number of reducers: 1
-2015-08-13 17:52:06,566 Stage-5 map = 0%,  reduce = 0%
-2015-08-13 17:52:17,162 Stage-5 map = 100%,  reduce = 0%, Cumulative CPU 11.21 sec
-2015-08-13 17:52:23,618 Stage-5 map = 100%,  reduce = 100%, Cumulative CPU 14.95 sec
-MapReduce Total cumulative CPU time: 14 seconds 950 msec
-Ended Job = job_1439404929154_0135
+2015-08-13 23:19:16,640 Stage-5 map = 0%,  reduce = 0%
+2015-08-13 23:19:26,120 Stage-5 map = 100%,  reduce = 0%, Cumulative CPU 11.44 sec
+2015-08-13 23:19:33,470 Stage-5 map = 100%,  reduce = 100%, Cumulative CPU 15.34 sec
+MapReduce Total cumulative CPU time: 15 seconds 340 msec
+Ended Job = job_1439404929154_0232
 Loading data to table default.q11_important_stock
 Table default.q11_important_stock stats: [numFiles=1, numRows=919, totalSize=9017, rawDataSize=11028]
 MapReduce Jobs Launched: 
-Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 28.63 sec   HDFS Read: 45052 HDFS Write: 874803 SUCCESS
-Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 19.83 sec   HDFS Read: 882019 HDFS Write: 26720 SUCCESS
-Stage-Stage-5: Map: 1  Reduce: 1   Cumulative CPU: 14.95 sec   HDFS Read: 31505 HDFS Write: 9104 SUCCESS
-Total MapReduce CPU Time Spent: 1 minutes 3 seconds 410 msec
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 27.41 sec   HDFS Read: 45049 HDFS Write: 874803 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 21.04 sec   HDFS Read: 882016 HDFS Write: 26720 SUCCESS
+Stage-Stage-5: Map: 1  Reduce: 1   Cumulative CPU: 15.34 sec   HDFS Read: 31501 HDFS Write: 9104 SUCCESS
+Total MapReduce CPU Time Spent: 1 minutes 3 seconds 790 msec
 OK
-Time taken: 104.45 seconds
+Time taken: 106.236 seconds

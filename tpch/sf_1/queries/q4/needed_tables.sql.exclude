@@ -1,0 +1,11 @@
+DROP TABLE q4_order_priority_tmp;
+DROP TABLE q4_order_priority;
+DROP TABLE q4_order_priority_tmp_par;
+DROP TABLE q4_order_priority_par;
+
+-- create the target table
+CREATE TABLE q4_order_priority_tmp (O_ORDERKEY INT) STORED AS ORC;
+CREATE TABLE q4_order_priority (O_ORDERPRIORITY STRING, ORDER_COUNT INT) STORED AS ORC;
+CREATE TABLE q4_order_priority_tmp_par (O_ORDERKEY INT) STORED AS ORC;
+CREATE TABLE q4_order_priority_par (O_ORDERPRIORITY STRING, ORDER_COUNT INT) STORED AS ORC;
+

@@ -23,14 +23,15 @@ SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
 
 Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
-Query ID = leonidas_20150813175258_e5868456-9535-4194-931b-c41c47efeb51
+Query ID = leonidas_20150813232008_88485a42-4082-46f9-a8a2-531921eb5376
 Total jobs = 1
 Launching Job 1 out of 1
 
 
-Status: Running (Executing on YARN cluster with App id application_1439404929154_0137)
+Status: Running (Executing on YARN cluster with App id application_1439404929154_0234)
 
 Map 1: -/-	Map 2: -/-	Map 3: -/-	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 0/1	Map 2: 0/1	Map 3: 0/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 0(+1)/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
@@ -38,11 +39,11 @@ Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+3)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6
 Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
-Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
-Map 1: 1/1	Map 2: 1/1	Map 3: 1(+3)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 2(+2)/4	Reducer 4: 0/4	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+1)/4	Reducer 4: 0/1	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 0(+1)/1	Reducer 5: 0/2	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 0(+1)/1	Reducer 5: 0/2	Reducer 6: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 0/1	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 0(+1)/1	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 0(+1)/1	Reducer 6: 0/1	
 Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 1/1	Reducer 6: 0/1	
@@ -51,4 +52,4 @@ Map 1: 1/1	Map 2: 1/1	Map 3: 4/4	Reducer 4: 1/1	Reducer 5: 1/1	Reducer 6: 1/1
 Loading data to table default.q11_important_stock
 Table default.q11_important_stock stats: [numFiles=1, numRows=919, totalSize=9018, rawDataSize=11028]
 OK
-Time taken: 34.88 seconds
+Time taken: 35.145 seconds
