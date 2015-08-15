@@ -60,7 +60,7 @@ for f in *.pig; do
 
 	result=$RESULTS/${f}_${suffix}run$run
         cat $f > $result
-        $PIG -x tez -f $f 2>&1 | tee -a $result
+        $PIG -Dpig.additional.jars=/home/leonidas/snappy-0.4.jar -x tez -f $f 2>&1 | tee -a $result
 
 done
 
