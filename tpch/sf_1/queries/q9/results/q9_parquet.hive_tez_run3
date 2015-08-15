@@ -1,0 +1,95 @@
+set hive.execution.engine=tez; insert into table q9_product_type_profit_par
+select 
+  nation, o_year, sum(amount) as sum_profit
+from 
+  (
+select 
+  n_name as nation, 
+  year(o_orderdate) as o_year, 
+  l_extendedprice * (1 - l_discount) -  ps_supplycost * l_quantity as amount
+    from
+      orders_par o join
+      (select l_extendedprice, l_discount, l_quantity, l_orderkey, n_name, ps_supplycost 
+       from part_par p join
+         (select l_extendedprice, l_discount, l_quantity, l_partkey, l_orderkey, 
+                 n_name, ps_supplycost 
+          from partsupp_par ps join
+            (select l_suppkey, l_extendedprice, l_discount, l_quantity, l_partkey, 
+                    l_orderkey, n_name 
+             from
+               (select s_suppkey, n_name 
+                from nation_par n join supplier_par s on n.n_nationkey = s.s_nationkey
+               ) s1 join lineitem_par l on s1.s_suppkey = l.l_suppkey
+            ) l1 on ps.ps_suppkey = l1.l_suppkey and ps.ps_partkey = l1.l_partkey
+         ) l2 on p.p_name like '%burlywood%' and p.p_partkey = l2.l_partkey
+     ) l3 on o.o_orderkey = l3.l_orderkey
+  )profit
+group by 
+	nation, 
+	o_year
+order by 
+	nation, 
+	o_year desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150815184719_71f1184a-3c14-4c46-922d-1921911104cd
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439657298343_0030)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Map 6: -/-	Map 7: -/-	Map 8: -/-	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0/4	Map 7: 0/1	Map 8: 0/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0/4	Map 7: 0/1	Map 8: 0/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0(+1)/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+1)/4	Map 7: 0(+1)/1	Map 8: 0(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0(+1)/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+1)/4	Map 7: 0(+1)/1	Map 8: 0(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+1)/4	Map 7: 0(+1)/1	Map 8: 0(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+2)/4	Map 7: 0(+1)/1	Map 8: 0(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 1(+1)/4	Map 7: 1/1	Map 8: 2(+1)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 1(+2)/4	Map 7: 1/1	Map 8: 2(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 2(+1)/4	Map 7: 1/1	Map 8: 2(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 2(+2)/4	Map 7: 1/1	Map 8: 2(+2)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 3(+1)/4	Map 7: 1/1	Map 8: 2(+3)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 4(+1)/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+4)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 1(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+4)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+5)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4(+4)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 6(+2)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 7(+1)/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 1/1	Reducer 5: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 4/4	Map 7: 1/1	Map 8: 5/5	Reducer 4: 1/1	Reducer 5: 1/1	
+Loading data to table default.q9_product_type_profit_par
+Table default.q9_product_type_profit_par stats: [numFiles=1, numRows=175, totalSize=2376, rawDataSize=525]
+OK
+Time taken: 63.81 seconds
