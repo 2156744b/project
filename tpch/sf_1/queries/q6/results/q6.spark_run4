@@ -1,0 +1,291 @@
+ -- the query
+insert into table q6_forecast_revenue_change 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24;
+15/08/15 14:59:16 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/15 14:59:16 INFO metastore: Connected to metastore.
+15/08/15 14:59:17 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+15/08/15 14:59:17 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:17 INFO SparkContext: Running Spark version 1.4.1
+15/08/15 14:59:17 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:17 INFO SecurityManager: Changing view acls to: hive
+15/08/15 14:59:17 INFO SecurityManager: Changing modify acls to: hive
+15/08/15 14:59:17 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(hive); users with modify permissions: Set(hive)
+15/08/15 14:59:18 INFO Slf4jLogger: Slf4jLogger started
+15/08/15 14:59:18 INFO Remoting: Starting remoting
+15/08/15 14:59:18 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@192.168.122.56:42061]
+15/08/15 14:59:18 INFO Utils: Successfully started service 'sparkDriver' on port 42061.
+15/08/15 14:59:18 INFO SparkEnv: Registering MapOutputTracker
+15/08/15 14:59:18 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:18 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:18 INFO SparkEnv: Registering BlockManagerMaster
+15/08/15 14:59:18 INFO DiskBlockManager: Created local directory at /tmp/spark-d3a68e9f-cf64-4ac2-8f2f-02554ce9ba60/blockmgr-f871fcd3-61d4-40e2-8654-64213688bf92
+15/08/15 14:59:18 INFO MemoryStore: MemoryStore started with capacity 3.1 GB
+15/08/15 14:59:18 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:18 INFO HttpFileServer: HTTP File server directory is /tmp/spark-d3a68e9f-cf64-4ac2-8f2f-02554ce9ba60/httpd-aaaa3c88-b229-4943-bb24-e681f8522fd2
+15/08/15 14:59:18 INFO HttpServer: Starting HTTP Server
+15/08/15 14:59:18 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/15 14:59:18 INFO AbstractConnector: Started SocketConnector@0.0.0.0:41654
+15/08/15 14:59:18 INFO Utils: Successfully started service 'HTTP file server' on port 41654.
+15/08/15 14:59:19 INFO SparkEnv: Registering OutputCommitCoordinator
+15/08/15 14:59:19 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/15 14:59:19 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+15/08/15 14:59:19 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/08/15 14:59:19 INFO SparkUI: Started SparkUI at http://192.168.122.56:4040
+15/08/15 14:59:19 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:19 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:19 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:19 INFO Executor: Starting executor ID driver on host localhost
+15/08/15 14:59:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35503.
+15/08/15 14:59:19 INFO NettyBlockTransferService: Server created on 35503
+15/08/15 14:59:19 INFO BlockManagerMaster: Trying to register BlockManager
+15/08/15 14:59:19 INFO BlockManagerMasterEndpoint: Registering block manager localhost:35503 with 3.1 GB RAM, BlockManagerId(driver, localhost, 35503)
+15/08/15 14:59:19 INFO BlockManagerMaster: Registered BlockManager
+15/08/15 14:59:19 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/15 14:59:19 INFO HiveContext: Initializing execution hive, version 0.13.1
+15/08/15 14:59:19 INFO HiveContext: Initializing HiveMetastoreConnection version 0.13.1 using Spark classes.
+15/08/15 14:59:20 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/08/15 14:59:20 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/15 14:59:20 INFO metastore: Connected to metastore.
+15/08/15 14:59:21 WARN DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+15/08/15 14:59:21 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+SET spark.sql.hive.version=0.13.1
+SET spark.sql.hive.version=0.13.1
+15/08/15 14:59:21 INFO ParseDriver: Parsing command: -- the query
+insert into table q6_forecast_revenue_change 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24
+15/08/15 14:59:22 INFO ParseDriver: Parse Completed
+15/08/15 14:59:23 INFO MemoryStore: ensureFreeSpace(466944) called with curMem=0, maxMem=3333968363
+15/08/15 14:59:23 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 456.0 KB, free 3.1 GB)
+15/08/15 14:59:23 INFO MemoryStore: ensureFreeSpace(39566) called with curMem=466944, maxMem=3333968363
+15/08/15 14:59:23 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 38.6 KB, free 3.1 GB)
+15/08/15 14:59:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:35503 (size: 38.6 KB, free: 3.1 GB)
+15/08/15 14:59:23 INFO SparkContext: Created broadcast 0 from processCmd at CliDriver.java:423
+15/08/15 14:59:24 INFO Exchange: Using SparkSqlSerializer2.
+15/08/15 14:59:24 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+15/08/15 14:59:24 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+15/08/15 14:59:24 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+15/08/15 14:59:24 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+15/08/15 14:59:24 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+15/08/15 14:59:24 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/15 14:59:24 INFO PerfLogger: <PERFLOG method=OrcGetSplits from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/15 14:59:24 INFO deprecation: mapred.input.dir is deprecated. Instead, use mapreduce.input.fileinputformat.inputdir
+15/08/15 14:59:24 INFO OrcInputFormat: FooterCacheHitRatio: 0/8
+15/08/15 14:59:24 INFO PerfLogger: </PERFLOG method=OrcGetSplits start=1439650764838 end=1439650764943 duration=105 from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/15 14:59:24 INFO DAGScheduler: Registering RDD 6 (processCmd at CliDriver.java:423)
+15/08/15 14:59:24 INFO DAGScheduler: Got job 0 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/15 14:59:24 INFO DAGScheduler: Final stage: ResultStage 1(processCmd at CliDriver.java:423)
+15/08/15 14:59:24 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+15/08/15 14:59:24 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+15/08/15 14:59:24 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[6] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/15 14:59:25 INFO MemoryStore: ensureFreeSpace(15360) called with curMem=506510, maxMem=3333968363
+15/08/15 14:59:25 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 15.0 KB, free 3.1 GB)
+15/08/15 14:59:25 INFO MemoryStore: ensureFreeSpace(7392) called with curMem=521870, maxMem=3333968363
+15/08/15 14:59:25 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 7.2 KB, free 3.1 GB)
+15/08/15 14:59:25 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:35503 (size: 7.2 KB, free: 3.1 GB)
+15/08/15 14:59:25 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:874
+15/08/15 14:59:25 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[6] at processCmd at CliDriver.java:423)
+15/08/15 14:59:25 INFO TaskSchedulerImpl: Adding task set 0.0 with 8 tasks
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, ANY, 1454 bytes)
+15/08/15 14:59:25 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+15/08/15 14:59:25 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+15/08/15 14:59:25 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+15/08/15 14:59:25 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+15/08/15 14:59:25 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+15/08/15 14:59:25 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+15/08/15 14:59:25 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+15/08/15 14:59:25 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0:0+27868681
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0:0+27876947
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0:0+28120109
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0:0+27869355
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0:0+27868435
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0:0+27948531
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0:0+27870383
+15/08/15 14:59:25 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0:0+27874343
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27869355}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27870383}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27948531}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27868681}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 28120109}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27868435}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27874343}
+15/08/15 14:59:25 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 0, length: 27876947}
+15/08/15 14:59:27 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 7.0 in stage 0.0 (TID 7). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1925 bytes result sent to driver
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 2150 ms on localhost (1/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 2160 ms on localhost (2/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 2158 ms on localhost (3/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 2156 ms on localhost (4/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 2170 ms on localhost (5/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2195 ms on localhost (6/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 2167 ms on localhost (7/8)
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 2170 ms on localhost (8/8)
+15/08/15 14:59:27 INFO DAGScheduler: ShuffleMapStage 0 (processCmd at CliDriver.java:423) finished in 2.213 s
+15/08/15 14:59:27 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/08/15 14:59:27 INFO DAGScheduler: looking for newly runnable stages
+15/08/15 14:59:27 INFO DAGScheduler: running: Set()
+15/08/15 14:59:27 INFO DAGScheduler: waiting: Set(ResultStage 1)
+15/08/15 14:59:27 INFO DAGScheduler: failed: Set()
+15/08/15 14:59:27 INFO DAGScheduler: Missing parents for ResultStage 1: List()
+15/08/15 14:59:27 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[9] at processCmd at CliDriver.java:423), which is now runnable
+15/08/15 14:59:27 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@2468d4cb
+15/08/15 14:59:27 INFO StatsReportListener: task runtime:(count: 8, mean: 2165.750000, stdev: 12.891373, max: 2195.000000, min: 2150.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	2.2 s	2.2 s	2.2 s	2.2 s	2.2 s	2.2 s	2.2 s	2.2 s	2.2 s
+15/08/15 14:59:27 INFO StatsReportListener: shuffle bytes written:(count: 8, mean: 31.000000, stdev: 0.000000, max: 31.000000, min: 31.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B
+15/08/15 14:59:27 INFO StatsReportListener: task result size:(count: 8, mean: 1925.000000, stdev: 0.000000, max: 1925.000000, min: 1925.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B
+15/08/15 14:59:27 INFO StatsReportListener: executor (non-fetch) time pct: (count: 8, mean: 93.625425, stdev: 0.540950, max: 94.372093, min: 92.391800)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	92 %	92 %	92 %	94 %	94 %	94 %	94 %	94 %	94 %
+15/08/15 14:59:27 INFO StatsReportListener: other time pct: (count: 8, mean: 6.374575, stdev: 0.540950, max: 7.608200, min: 5.627907)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	 6 %	 6 %	 6 %	 6 %	 6 %	 6 %	 8 %	 8 %	 8 %
+15/08/15 14:59:27 INFO MemoryStore: ensureFreeSpace(145744) called with curMem=529262, maxMem=3333968363
+15/08/15 14:59:27 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 142.3 KB, free 3.1 GB)
+15/08/15 14:59:27 INFO MemoryStore: ensureFreeSpace(48004) called with curMem=675006, maxMem=3333968363
+15/08/15 14:59:27 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 46.9 KB, free 3.1 GB)
+15/08/15 14:59:27 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on localhost:35503 (size: 46.9 KB, free: 3.1 GB)
+15/08/15 14:59:27 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:874
+15/08/15 14:59:27 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[9] at processCmd at CliDriver.java:423)
+15/08/15 14:59:27 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+15/08/15 14:59:27 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 8, localhost, PROCESS_LOCAL, 1165 bytes)
+15/08/15 14:59:27 INFO Executor: Running task 0.0 in stage 1.0 (TID 8)
+15/08/15 14:59:27 INFO ShuffleBlockFetcherIterator: Getting 8 non-empty blocks out of 8 blocks
+15/08/15 14:59:27 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 6 ms
+15/08/15 14:59:27 INFO FileOutputCommitter: Saved output of task 'attempt_201508151459_0001_m_000000_0' to hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-15_14-59-23_903_2446030551592501198-1/-ext-10000/_temporary/0/task_201508151459_0001_m_000000
+15/08/15 14:59:27 INFO SparkHadoopMapRedUtil: attempt_201508151459_0001_m_000000_0: Committed
+15/08/15 14:59:27 INFO Executor: Finished task 0.0 in stage 1.0 (TID 8). 843 bytes result sent to driver
+15/08/15 14:59:27 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 8) in 416 ms on localhost (1/1)
+15/08/15 14:59:27 INFO DAGScheduler: ResultStage 1 (processCmd at CliDriver.java:423) finished in 0.417 s
+15/08/15 14:59:27 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+15/08/15 14:59:27 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@17c46d44
+15/08/15 14:59:27 INFO StatsReportListener: task runtime:(count: 1, mean: 416.000000, stdev: 0.000000, max: 416.000000, min: 416.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	416.0 ms	416.0 ms	416.0 ms	416.0 ms	416.0 ms	416.0 ms	416.0 ms	416.0 ms	416.0 ms
+15/08/15 14:59:27 INFO StatsReportListener: fetch wait time:(count: 1, mean: 1.000000, stdev: 0.000000, max: 1.000000, min: 1.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms
+15/08/15 14:59:27 INFO StatsReportListener: remote bytes read:(count: 1, mean: 0.000000, stdev: 0.000000, max: 0.000000, min: 0.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B
+15/08/15 14:59:27 INFO DAGScheduler: Job 0 finished: processCmd at CliDriver.java:423, took 3.212198 s
+15/08/15 14:59:27 INFO StatsReportListener: task result size:(count: 1, mean: 843.000000, stdev: 0.000000, max: 843.000000, min: 843.000000)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B
+15/08/15 14:59:27 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 67.307692, stdev: 0.000000, max: 67.307692, min: 67.307692)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	67 %	67 %	67 %	67 %	67 %	67 %	67 %	67 %	67 %
+15/08/15 14:59:27 INFO StatsReportListener: fetch wait time pct: (count: 1, mean: 0.240385, stdev: 0.000000, max: 0.240385, min: 0.240385)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %
+15/08/15 14:59:27 INFO StatsReportListener: other time pct: (count: 1, mean: 32.451923, stdev: 0.000000, max: 32.451923, min: 32.451923)
+15/08/15 14:59:27 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:27 INFO StatsReportListener: 	32 %	32 %	32 %	32 %	32 %	32 %	32 %	32 %	32 %
+15/08/15 14:59:28 INFO Hive: Renaming src:hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-15_14-59-23_903_2446030551592501198-1/-ext-10000/_SUCCESS;dest: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change/_SUCCESS;Status:true
+15/08/15 14:59:28 INFO Hive: Renaming src:hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-15_14-59-23_903_2446030551592501198-1/-ext-10000/part-00000;dest: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change/part-00000;Status:true
+15/08/15 14:59:28 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/15 14:59:28 INFO DAGScheduler: Got job 1 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/15 14:59:28 INFO DAGScheduler: Final stage: ResultStage 2(processCmd at CliDriver.java:423)
+15/08/15 14:59:28 INFO DAGScheduler: Parents of final stage: List()
+15/08/15 14:59:28 INFO DAGScheduler: Missing parents: List()
+15/08/15 14:59:28 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[11] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/15 14:59:28 INFO MemoryStore: ensureFreeSpace(2848) called with curMem=723010, maxMem=3333968363
+15/08/15 14:59:28 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 2.8 KB, free 3.1 GB)
+15/08/15 14:59:28 INFO MemoryStore: ensureFreeSpace(1714) called with curMem=725858, maxMem=3333968363
+15/08/15 14:59:28 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 1714.0 B, free 3.1 GB)
+15/08/15 14:59:28 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on localhost:35503 (size: 1714.0 B, free: 3.1 GB)
+15/08/15 14:59:28 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:874
+15/08/15 14:59:28 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[11] at processCmd at CliDriver.java:423)
+15/08/15 14:59:28 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks
+15/08/15 14:59:28 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 9, localhost, PROCESS_LOCAL, 1316 bytes)
+15/08/15 14:59:28 INFO Executor: Running task 0.0 in stage 2.0 (TID 9)
+15/08/15 14:59:28 INFO Executor: Finished task 0.0 in stage 2.0 (TID 9). 606 bytes result sent to driver
+15/08/15 14:59:28 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 9) in 38 ms on localhost (1/1)
+15/08/15 14:59:28 INFO DAGScheduler: ResultStage 2 (processCmd at CliDriver.java:423) finished in 0.039 s
+15/08/15 14:59:28 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+15/08/15 14:59:28 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@1dc94510
+15/08/15 14:59:28 INFO DAGScheduler: Job 1 finished: processCmd at CliDriver.java:423, took 0.059526 s
+15/08/15 14:59:28 INFO StatsReportListener: task runtime:(count: 1, mean: 38.000000, stdev: 0.000000, max: 38.000000, min: 38.000000)
+15/08/15 14:59:28 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:28 INFO StatsReportListener: 	38.0 ms	38.0 ms	38.0 ms	38.0 ms	38.0 ms	38.0 ms	38.0 ms	38.0 ms	38.0 ms
+15/08/15 14:59:28 INFO StatsReportListener: task result size:(count: 1, mean: 606.000000, stdev: 0.000000, max: 606.000000, min: 606.000000)
+15/08/15 14:59:28 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:28 INFO StatsReportListener: 	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B
+15/08/15 14:59:28 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 2.631579, stdev: 0.000000, max: 2.631579, min: 2.631579)
+15/08/15 14:59:28 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:28 INFO StatsReportListener: 	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %
+15/08/15 14:59:28 INFO StatsReportListener: other time pct: (count: 1, mean: 97.368421, stdev: 0.000000, max: 97.368421, min: 97.368421)
+15/08/15 14:59:28 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/15 14:59:28 INFO StatsReportListener: 	97 %	97 %	97 %	97 %	97 %	97 %	97 %	97 %	97 %
+Time taken: 6.728 seconds
+15/08/15 14:59:28 INFO CliDriver: Time taken: 6.728 seconds
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/08/15 14:59:28 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/08/15 14:59:28 INFO SparkUI: Stopped Spark web UI at http://192.168.122.56:4040
+15/08/15 14:59:28 INFO DAGScheduler: Stopping DAGScheduler
+15/08/15 14:59:28 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+15/08/15 14:59:28 INFO Utils: path = /tmp/spark-d3a68e9f-cf64-4ac2-8f2f-02554ce9ba60/blockmgr-f871fcd3-61d4-40e2-8654-64213688bf92, already present as root for deletion.
+15/08/15 14:59:28 INFO MemoryStore: MemoryStore cleared
+15/08/15 14:59:28 INFO BlockManager: BlockManager stopped
+15/08/15 14:59:28 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/08/15 14:59:28 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+15/08/15 14:59:28 INFO SparkContext: Successfully stopped SparkContext
+15/08/15 14:59:28 INFO Utils: Shutdown hook called
+15/08/15 14:59:28 INFO Utils: Deleting directory /tmp/spark-d3a68e9f-cf64-4ac2-8f2f-02554ce9ba60
+15/08/15 14:59:28 INFO Utils: Deleting directory /tmp/spark-23de7dd9-43f6-4276-9291-905b36bb241a
+15/08/15 14:59:28 INFO Utils: Deleting directory /tmp/spark-a7fddffa-2818-4b68-a36a-890ebe087c82
+15/08/15 14:59:28 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/08/15 14:59:28 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+15/08/15 14:59:28 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.

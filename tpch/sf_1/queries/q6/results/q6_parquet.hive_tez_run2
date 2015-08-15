@@ -1,0 +1,55 @@
+set hive.execution.engine=tez; -- the query
+insert into table q6_forecast_revenue_change_par 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem_par
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150815154246_12356f88-9fbf-4b52-be5b-e4238d9c099a
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439404929154_0477)
+
+Map 1: -/-	Reducer 2: 0/1	
+Map 1: 0/8	Reducer 2: 0/1	
+Map 1: 0/8	Reducer 2: 0/1	
+Map 1: 0(+1)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+5)/8	Reducer 2: 0/1	
+Map 1: 0(+4)/8	Reducer 2: 0/1	
+Map 1: 2(+4)/8	Reducer 2: 0/1	
+Map 1: 2(+5)/8	Reducer 2: 0/1	
+Map 1: 3(+4)/8	Reducer 2: 0/1	
+Map 1: 5(+3)/8	Reducer 2: 0/1	
+Map 1: 5(+3)/8	Reducer 2: 0(+1)/1	
+Map 1: 5(+3)/8	Reducer 2: 0(+1)/1	
+Map 1: 5(+3)/8	Reducer 2: 0(+1)/1	
+Map 1: 6(+2)/8	Reducer 2: 0(+1)/1	
+Map 1: 7(+1)/8	Reducer 2: 0(+1)/1	
+Map 1: 8/8	Reducer 2: 0(+1)/1	
+Map 1: 8/8	Reducer 2: 1/1	
+Loading data to table default.q6_forecast_revenue_change_par
+Table default.q6_forecast_revenue_change_par stats: [numFiles=1, numRows=1, totalSize=195, rawDataSize=1]
+OK
+Time taken: 37.879 seconds

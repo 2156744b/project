@@ -1,0 +1,7 @@
+DROP TABLE q6_forecast_revenue_change;
+DROP TABLE q6_forecast_revenue_change_par;
+
+-- create the target table
+create table q6_forecast_revenue_change (revenue double) STORED AS ORC;
+create table q6_forecast_revenue_change_par (revenue double) STORED AS parquet;
+
