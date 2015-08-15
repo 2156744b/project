@@ -1,0 +1,100 @@
+set hive.execution.engine=mr; -- the query
+insert into table q13_customer_distribution
+select 
+  c_count, count(*) as custdist
+from 
+  (select 
+     c_custkey, count(o_orderkey) as c_count
+   from 
+     customer c left outer join orders o 
+     on 
+       c.c_custkey = o.o_custkey and not o.o_comment like '%special%deposits%'
+   group by c_custkey
+   ) c_orders
+group by c_count
+order by custdist desc, c_count desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150815195740_100171a2-b967-4e00-90a1-7762aca97140
+Total jobs = 3
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150815195740_100171a2-b967-4e00-90a1-7762aca97140.log
+2015-08-15 19:57:48	Starting to launch local task to process map join;	maximum memory = 1046478848
+2015-08-15 19:57:59	Dump the side-table for tag: 1 with group count: 99996 into file: file:/tmp/leonidas/b4befcd0-fafb-476e-81b1-61bc60db21d9/hive_2015-08-15_19-57-40_386_2125605256079071815-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile01--.hashtable
+2015-08-15 19:58:00	Uploaded 1 File to: file:/tmp/leonidas/b4befcd0-fafb-476e-81b1-61bc60db21d9/hive_2015-08-15_19-57-40_386_2125605256079071815-1/-local-10005/HashTable-Stage-2/MapJoin-mapfile01--.hashtable (15067404 bytes)
+2015-08-15 19:58:00	End of local task; Time Taken: 12.148 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439657298343_0115, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439657298343_0115/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439657298343_0115
+Hadoop job information for Stage-2: number of mappers: 1; number of reducers: 1
+2015-08-15 19:58:12,364 Stage-2 map = 0%,  reduce = 0%
+2015-08-15 19:58:26,185 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 29.62 sec
+2015-08-15 19:58:33,641 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 35.72 sec
+MapReduce Total cumulative CPU time: 35 seconds 720 msec
+Ended Job = job_1439657298343_0115
+Launching Job 2 out of 3
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439657298343_0116, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439657298343_0116/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439657298343_0116
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2015-08-15 19:58:47,189 Stage-3 map = 0%,  reduce = 0%
+2015-08-15 19:58:56,668 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 10.57 sec
+2015-08-15 19:59:02,978 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 13.83 sec
+MapReduce Total cumulative CPU time: 13 seconds 830 msec
+Ended Job = job_1439657298343_0116
+Launching Job 3 out of 3
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439657298343_0117, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439657298343_0117/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439657298343_0117
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+2015-08-15 19:59:15,322 Stage-4 map = 0%,  reduce = 0%
+2015-08-15 19:59:24,811 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 10.78 sec
+2015-08-15 19:59:32,203 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 16.35 sec
+MapReduce Total cumulative CPU time: 16 seconds 350 msec
+Ended Job = job_1439657298343_0117
+Loading data to table default.q13_customer_distribution
+Table default.q13_customer_distribution stats: [numFiles=1, numRows=42, totalSize=431, rawDataSize=336]
+MapReduce Jobs Launched: 
+Stage-Stage-2: Map: 1  Reduce: 1   Cumulative CPU: 35.72 sec   HDFS Read: 47906 HDFS Write: 955 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 13.83 sec   HDFS Read: 5145 HDFS Write: 955 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 16.35 sec   HDFS Read: 6165 HDFS Write: 521 SUCCESS
+Total MapReduce CPU Time Spent: 1 minutes 5 seconds 900 msec
+OK
+Time taken: 113.358 seconds

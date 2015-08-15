@@ -1,0 +1,59 @@
+set hive.execution.engine=tez; -- the query
+insert into table q13_customer_distribution_par
+select 
+  c_count, count(*) as custdist
+from 
+  (select 
+     c_custkey, count(o_orderkey) as c_count
+   from 
+     customer_par c left outer join orders_par o 
+     on 
+       c.c_custkey = o.o_custkey and not o.o_comment like '%special%deposits%'
+   group by c_custkey
+   ) c_orders
+group by c_count
+order by custdist desc, c_count desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150815193525_71e8db6e-fb29-4aed-aef0-e6780de38d00
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439657298343_0077)
+
+Map 1: -/-	Map 5: -/-	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 0/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 0/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 0(+4)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 0(+5)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 0(+5)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0/1	Map 5: 1(+4)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 1(+4)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 2(+3)/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 5/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 5/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 5/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 0(+1)/1	Map 5: 5/5	Reducer 2: 0/2	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 0/1	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 0(+1)/1	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 0(+1)/1	Reducer 3: 0/2	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 1/1	Reducer 3: 0/1	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 1/1	Reducer 3: 0(+1)/1	Reducer 4: 0/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 1/1	Reducer 3: 1/1	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 5: 5/5	Reducer 2: 1/1	Reducer 3: 1/1	Reducer 4: 1/1	
+Loading data to table default.q13_customer_distribution_par
+Table default.q13_customer_distribution_par stats: [numFiles=1, numRows=42, totalSize=621, rawDataSize=84]
+OK
+Time taken: 33.386 seconds
