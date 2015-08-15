@@ -1,0 +1,54 @@
+set hive.execution.engine=tez; INSERT INTO TABLE q4_order_priority 
+select o_orderpriority, count(distinct l_orderkey) as order_count 
+from orders o join lineitem l on o.o_orderkey = l.l_orderkey and o.o_orderdate >= '1994-10-01' and o.o_orderdate < '1995-01-01' and l.l_commitdate < l.l_receiptdate 
+group by o_orderpriority 
+order by o_orderpriority;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150814212151_21d2a44f-2430-4a7c-9980-23d58a14e5a9
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439404929154_0425)
+
+Map 1: -/-	Map 2: -/-	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 0/4	Map 2: 0/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 0/4	Map 2: 0/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 0(+4)/4	Map 2: 0(+1)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 0(+4)/4	Map 2: 0(+1)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 1(+3)/4	Map 2: 0(+1)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 3(+0)/4	Map 2: 0(+2)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 0(+5)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 0(+5)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 0(+5)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 0(+5)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 1(+4)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 1(+5)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 4(+3)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 5(+3)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 5(+3)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 6(+2)/8	Reducer 3: 0/28	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 6(+2)/8	Reducer 3: 0(+3)/4	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 0(+4)/4	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 1(+3)/4	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 2(+2)/4	Reducer 4: 0/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 2(+2)/4	Reducer 4: 0(+1)/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 3(+1)/4	Reducer 4: 0(+1)/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 4/4	Reducer 4: 0(+1)/1	
+Map 1: 4/4	Map 2: 8/8	Reducer 3: 4/4	Reducer 4: 1/1	
+Loading data to table default.q4_order_priority
+Table default.q4_order_priority stats: [numFiles=1, numRows=5, totalSize=414, rawDataSize=480]
+OK
+Time taken: 40.024 seconds

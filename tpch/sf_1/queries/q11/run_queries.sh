@@ -66,4 +66,4 @@ done
 
 done
 
-/bin/bash ./evaluate_queries.sh
+/bin/bash ./evaluate_results.sh
