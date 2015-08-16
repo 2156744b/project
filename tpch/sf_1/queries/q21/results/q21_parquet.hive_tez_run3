@@ -1,0 +1,179 @@
+set hive.execution.engine=tez; -- the query
+insert into table q21_tmp1_par
+select
+  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+from
+  lineitem_par
+group by l_orderkey;
+
+insert into table q21_tmp2_par
+select
+  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+from
+  lineitem_par
+where
+  l_receiptdate > l_commitdate
+group by l_orderkey;
+
+insert into table q21_suppliers_who_kept_orders_waiting_par
+select
+  s_name, count(1) as numwait
+from
+  (select s_name from
+(select s_name, t2.l_orderkey, l_suppkey, count_suppkey, max_suppkey 
+ from q21_tmp2_par t2 right outer join
+      (select s_name, l_orderkey, l_suppkey from
+         (select s_name, t1.l_orderkey, l_suppkey, count_suppkey, max_suppkey
+          from
+            q21_tmp1_par t1 join
+            (select s_name, l_orderkey, l_suppkey
+             from 
+               orders_par o join
+               (select s_name, l_orderkey, l_suppkey
+                from
+                  nation_par n join supplier_par s
+                  on
+                    s.s_nationkey = n.n_nationkey
+                    and n.n_name = 'CHINA'
+                  join lineitem_par l
+                  on
+                    s.s_suppkey = l.l_suppkey
+                where
+                  l.l_receiptdate > l.l_commitdate
+                ) l1 on o.o_orderkey = l1.l_orderkey and o.o_orderstatus = 'F'
+             ) l2 on l2.l_orderkey = t1.l_orderkey
+          ) a
+          where
+           (count_suppkey > 1) or ((count_suppkey=1) and (l_suppkey <> max_suppkey))
+       ) l3 on l3.l_orderkey = t2.l_orderkey
+    ) b
+    where
+     (count_suppkey is null) or ((count_suppkey=1) and (l_suppkey = max_suppkey))
+  )c
+group by s_name
+order by numwait desc, s_name
+limit 100;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150816133115_a9e2d37a-7c11-4771-9948-56226c027bbb
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439657298343_0316)
+
+Map 1: -/-	Reducer 2: 0/4	
+Map 1: 0/8	Reducer 2: 0/4	
+Map 1: 0/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+5)/8	Reducer 2: 0/4	
+Map 1: 0(+4)/8	Reducer 2: 0/4	
+Map 1: 2(+4)/8	Reducer 2: 0/4	
+Map 1: 2(+5)/8	Reducer 2: 0/4	
+Map 1: 3(+4)/8	Reducer 2: 0/4	
+Map 1: 4(+4)/8	Reducer 2: 0/4	
+Map 1: 5(+3)/8	Reducer 2: 0/2	
+Map 1: 5(+3)/8	Reducer 2: 0(+2)/2	
+Map 1: 5(+3)/8	Reducer 2: 0(+2)/2	
+Map 1: 5(+3)/8	Reducer 2: 0(+2)/2	
+Map 1: 5(+3)/8	Reducer 2: 0(+2)/2	
+Map 1: 6(+2)/8	Reducer 2: 0(+2)/2	
+Map 1: 7(+1)/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 1(+1)/2	
+Map 1: 8/8	Reducer 2: 2/2	
+Loading data to table default.q21_tmp1_par
+Table default.q21_tmp1_par stats: [numFiles=2, numRows=1500000, totalSize=9275160, rawDataSize=4500000]
+OK
+Time taken: 53.378 seconds
+Query ID = leonidas_20150816133208_62c31fd7-d61f-443b-b672-ed629fc53e7e
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439657298343_0316)
+
+Map 1: 0(+3)/8	Reducer 2: 0/2	
+Map 1: 0(+3)/8	Reducer 2: 0/2	
+Map 1: 0(+5)/8	Reducer 2: 0/2	
+Map 1: 0(+5)/8	Reducer 2: 0/2	
+Map 1: 0(+5)/8	Reducer 2: 0/2	
+Map 1: 1(+4)/8	Reducer 2: 0/2	
+Map 1: 2(+4)/8	Reducer 2: 0/2	
+Map 1: 2(+5)/8	Reducer 2: 0/2	
+Map 1: 3(+5)/8	Reducer 2: 0/2	
+Map 1: 3(+5)/8	Reducer 2: 0/2	
+Map 1: 4(+4)/8	Reducer 2: 0/2	
+Map 1: 5(+3)/8	Reducer 2: 0/2	
+Map 1: 6(+2)/8	Reducer 2: 0(+2)/2	
+Map 1: 7(+1)/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 0(+2)/2	
+Map 1: 8/8	Reducer 2: 1(+1)/2	
+Map 1: 8/8	Reducer 2: 2/2	
+Loading data to table default.q21_tmp2_par
+Table default.q21_tmp2_par stats: [numFiles=2, numRows=1375365, totalSize=8511283, rawDataSize=4126095]
+OK
+Time taken: 28.287 seconds
+Query ID = leonidas_20150816133237_febe5fb0-54b4-45f2-93bd-b4dd4b717e01
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439657298343_0316)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Map 6: -/-	Map 7: 0/1	Map 8: 0/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+2)/5	Map 7: 0/1	Map 8: 0/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 0(+3)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0/1	Map 2: 0/1	Map 3: 0/8	Map 6: 1(+3)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 0(+1)/1	Map 2: 0/1	Map 3: 0/8	Map 6: 3(+1)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0/1	Map 3: 0/8	Map 6: 4(+0)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0/8	Map 6: 4(+1)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+1)/8	Map 6: 4(+1)/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+1)/8	Map 6: 5/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 0(+1)/1	Map 3: 0(+2)/8	Map 6: 5/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+3)/8	Map 6: 5/5	Map 7: 0(+1)/1	Map 8: 0(+1)/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+3)/8	Map 6: 5/5	Map 7: 0(+1)/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/8	Map 6: 5/5	Map 7: 0(+1)/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+4)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 0(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 1(+4)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 1(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+4)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 2(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 3(+5)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 4(+4)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 5(+3)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0/2	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 6(+2)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 7(+1)/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 0(+1)/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 1/1	Reducer 5: 0/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 1/1	Reducer 5: 0(+1)/1	
+Map 1: 1/1	Map 2: 1/1	Map 3: 8/8	Map 6: 5/5	Map 7: 1/1	Map 8: 1/1	Reducer 4: 1/1	Reducer 5: 1/1	
+Loading data to table default.q21_suppliers_who_kept_orders_waiting_par
+Table default.q21_suppliers_who_kept_orders_waiting_par stats: [numFiles=1, numRows=100, totalSize=2612, rawDataSize=200]
+OK
+Time taken: 30.571 seconds

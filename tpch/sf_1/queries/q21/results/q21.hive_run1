@@ -1,0 +1,176 @@
+set hive.execution.engine=mr; -- the query
+insert into table q21_tmp1
+select
+  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+from
+  lineitem
+group by l_orderkey;
+
+insert into table q21_tmp2
+select
+  l_orderkey, count(distinct l_suppkey), max(l_suppkey) as max_suppkey
+from
+  lineitem
+where
+  l_receiptdate > l_commitdate
+group by l_orderkey;
+
+insert into table q21_suppliers_who_kept_orders_waiting
+select
+  s_name, count(1) as numwait
+from
+  (select s_name from
+(select s_name, t2.l_orderkey, l_suppkey, count_suppkey, max_suppkey 
+ from q21_tmp2 t2 right outer join
+      (select s_name, l_orderkey, l_suppkey from
+         (select s_name, t1.l_orderkey, l_suppkey, count_suppkey, max_suppkey
+          from
+            q21_tmp1 t1 join
+            (select s_name, l_orderkey, l_suppkey
+             from 
+               orders o join
+               (select s_name, l_orderkey, l_suppkey
+                from
+                  nation n join supplier s
+                  on
+                    s.s_nationkey = n.n_nationkey
+                    and n.n_name = 'CHINA'
+                  join lineitem l
+                  on
+                    s.s_suppkey = l.l_suppkey
+                where
+                  l.l_receiptdate > l.l_commitdate
+                ) l1 on o.o_orderkey = l1.l_orderkey and o.o_orderstatus = 'F'
+             ) l2 on l2.l_orderkey = t1.l_orderkey
+          ) a
+          where
+           (count_suppkey > 1) or ((count_suppkey=1) and (l_suppkey <> max_suppkey))
+       ) l3 on l3.l_orderkey = t2.l_orderkey
+    ) b
+    where
+     (count_suppkey is null) or ((count_suppkey=1) and (l_suppkey = max_suppkey))
+  )c
+group by s_name
+order by numwait desc, s_name
+limit 100;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150816130130_7499274e-c5d1-447a-98b7-1ff08270d2ab
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439657298343_0290, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439657298343_0290/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439657298343_0290
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 4
+2015-08-16 13:01:42,736 Stage-1 map = 0%,  reduce = 0%
+2015-08-16 13:01:56,504 Stage-1 map = 8%,  reduce = 0%, Cumulative CPU 17.42 sec
+2015-08-16 13:01:59,676 Stage-1 map = 33%,  reduce = 0%, Cumulative CPU 20.83 sec
+2015-08-16 13:02:02,841 Stage-1 map = 58%,  reduce = 0%, Cumulative CPU 24.31 sec
+2015-08-16 13:02:04,931 Stage-1 map = 67%,  reduce = 0%, Cumulative CPU 27.79 sec
+2015-08-16 13:02:17,634 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 40.87 sec
+2015-08-16 13:02:30,215 Stage-1 map = 100%,  reduce = 24%, Cumulative CPU 53.35 sec
+2015-08-16 13:02:31,283 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 68.19 sec
+2015-08-16 13:02:40,749 Stage-1 map = 100%,  reduce = 74%, Cumulative CPU 81.02 sec
+2015-08-16 13:02:41,799 Stage-1 map = 100%,  reduce = 98%, Cumulative CPU 95.01 sec
+2015-08-16 13:02:42,841 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 96.63 sec
+MapReduce Total cumulative CPU time: 1 minutes 36 seconds 630 msec
+Ended Job = job_1439657298343_0290
+Loading data to table default.q21_tmp1
+Table default.q21_tmp1 stats: [numFiles=4, numRows=1500000, totalSize=3917535, rawDataSize=18000000]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 4   Cumulative CPU: 96.63 sec   HDFS Read: 18727991 HDFS Write: 3917859 SUCCESS
+Total MapReduce CPU Time Spent: 1 minutes 36 seconds 630 msec
+OK
+Time taken: 73.984 seconds
+Query ID = leonidas_20150816130244_335b27c0-e3e6-48ae-abac-6488a8cd8299
+Total jobs = 1
+Launching Job 1 out of 1
+Number of reduce tasks not specified. Estimated from input data size: 4
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1439657298343_0291, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1439657298343_0291/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1439657298343_0291
+Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 4
+2015-08-16 13:02:55,820 Stage-1 map = 0%,  reduce = 0%
+2015-08-16 13:03:08,604 Stage-1 map = 17%,  reduce = 0%, Cumulative CPU 11.6 sec
+2015-08-16 13:03:11,772 Stage-1 map = 42%,  reduce = 0%, Cumulative CPU 15.06 sec
+2015-08-16 13:03:14,936 Stage-1 map = 67%,  reduce = 0%, Cumulative CPU 18.83 sec
+2015-08-16 13:03:21,205 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 26.13 sec
+2015-08-16 13:03:32,746 Stage-1 map = 100%,  reduce = 25%, Cumulative CPU 40.3 sec
+2015-08-16 13:03:33,787 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 53.28 sec
+2015-08-16 13:03:44,271 Stage-1 map = 100%,  reduce = 75%, Cumulative CPU 66.97 sec
+2015-08-16 13:03:45,313 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 80.94 sec
+MapReduce Total cumulative CPU time: 1 minutes 20 seconds 940 msec
+Ended Job = job_1439657298343_0291
+Loading data to table default.q21_tmp2
+Table default.q21_tmp2 stats: [numFiles=4, numRows=1375365, totalSize=3893435, rawDataSize=16504380]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 1  Reduce: 4   Cumulative CPU: 80.94 sec   HDFS Read: 42965019 HDFS Write: 3893759 SUCCESS
+Total MapReduce CPU Time Spent: 1 minutes 20 seconds 940 msec
+OK
+Time taken: 62.345 seconds
+Query ID = leonidas_20150816130346_bbd390f1-cd7c-46b3-b54c-c74f316925eb
+Total jobs = 2
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150816130346_bbd390f1-cd7c-46b3-b54c-c74f316925eb.log
+2015-08-16 13:03:52	Starting to launch local task to process map join;	maximum memory = 1046478848
+2015-08-16 13:03:54	Processing rows:	200000	Hashtable size:	199999	Memory usage:	37722152	percentage:	0.036
+2015-08-16 13:03:55	Processing rows:	300000	Hashtable size:	299999	Memory usage:	40820256	percentage:	0.039
+2015-08-16 13:03:55	Processing rows:	400000	Hashtable size:	399999	Memory usage:	53970824	percentage:	0.052
+2015-08-16 13:03:55	Processing rows:	500000	Hashtable size:	499999	Memory usage:	67759504	percentage:	0.065
+2015-08-16 13:03:55	Processing rows:	600000	Hashtable size:	599999	Memory usage:	66798168	percentage:	0.064
+2015-08-16 13:03:56	Processing rows:	700000	Hashtable size:	699999	Memory usage:	80955232	percentage:	0.077
+2015-08-16 13:03:57	Processing rows:	200000	Hashtable size:	199999	Memory usage:	130714608	percentage:	0.125
+2015-08-16 13:03:57	Processing rows:	300000	Hashtable size:	299999	Memory usage:	154334616	percentage:	0.147
+2015-08-16 13:03:58	Processing rows:	400000	Hashtable size:	399999	Memory usage:	180956912	percentage:	0.173
+2015-08-16 13:03:58	Processing rows:	500000	Hashtable size:	499999	Memory usage:	207511800	percentage:	0.198
+2015-08-16 13:03:58	Processing rows:	600000	Hashtable size:	599999	Memory usage:	231037048	percentage:	0.221
+2015-08-16 13:03:58	Processing rows:	700000	Hashtable size:	699999	Memory usage:	256962104	percentage:	0.246
+2015-08-16 13:03:59	Processing rows:	800000	Hashtable size:	799999	Memory usage:	284280472	percentage:	0.272
+2015-08-16 13:04:00	Processing rows:	900000	Hashtable size:	899999	Memory usage:	308494328	percentage:	0.295
+2015-08-16 13:04:00	Processing rows:	1000000	Hashtable size:	999999	Memory usage:	332461400	percentage:	0.318
+2015-08-16 13:04:00	Processing rows:	1100000	Hashtable size:	1099999	Memory usage:	360480192	percentage:	0.344
+2015-08-16 13:04:00	Processing rows:	1200000	Hashtable size:	1199999	Memory usage:	385395248	percentage:	0.368
+2015-08-16 13:04:00	Processing rows:	1300000	Hashtable size:	1299999	Memory usage:	411956424	percentage:	0.394
+2015-08-16 13:04:02	Processing rows:	200000	Hashtable size:	199999	Memory usage:	479004240	percentage:	0.458
+2015-08-16 13:04:02	Processing rows:	300000	Hashtable size:	299999	Memory usage:	501917528	percentage:	0.48
+2015-08-16 13:04:03	Processing rows:	400000	Hashtable size:	399999	Memory usage:	533197808	percentage:	0.51
+2015-08-16 13:04:03	Processing rows:	500000	Hashtable size:	499999	Memory usage:	555931936	percentage:	0.531
+2015-08-16 13:04:03	Processing rows:	600000	Hashtable size:	599999	Memory usage:	587058416	percentage:	0.561
+Execution failed with exit status: 3
+Obtaining error information
+
+Task failed!
+Task ID:
+  Stage-19
+
+Logs:
+
+/tmp/leonidas/hive.log
+FAILED: Execution Error, return code 3 from org.apache.hadoop.hive.ql.exec.mr.MapredLocalTask
