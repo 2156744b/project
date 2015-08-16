@@ -1,0 +1,10 @@
+DROP TABLE q17_small_quantity_order_revenue;
+DROP TABLE lineitem_tmp;
+DROP TABLE q17_small_quantity_order_revenue_par;
+DROP TABLE lineitem_tmp_par;
+
+create table q17_small_quantity_order_revenue (avg_yearly double) STORED AS ORC;
+create table lineitem_tmp (t_partkey int, t_avg_quantity double) STORED AS ORC;
+create table q17_small_quantity_order_revenue_par (avg_yearly double) STORED AS parquet;
+create table lineitem_tmp_par (t_partkey int, t_avg_quantity double) STORED AS parquet;
+
