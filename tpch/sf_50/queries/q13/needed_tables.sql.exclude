@@ -1,0 +1,6 @@
+DROP TABLE q13_customer_distribution;
+DROP TABLE q13_customer_distribution_par;
+
+create table q13_customer_distribution (c_count int, custdist int) STORED AS ORC;
+create table q13_customer_distribution_par (c_count int, custdist int) STORED AS parquet;
+

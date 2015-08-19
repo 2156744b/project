@@ -1,0 +1,14 @@
+DROP TABLE q21_tmp1;
+DROP TABLE q21_tmp2;
+DROP TABLE q21_suppliers_who_kept_orders_waiting;
+DROP TABLE q21_tmp1_par;
+DROP TABLE q21_tmp2_par;
+DROP TABLE q21_suppliers_who_kept_orders_waiting_par;
+
+create table q21_tmp1(l_orderkey int, count_suppkey int, max_suppkey int) STORED AS ORC;
+create table q21_tmp2(l_orderkey int, count_suppkey int, max_suppkey int) STORED AS ORC;
+create table q21_suppliers_who_kept_orders_waiting(s_name string, numwait int) STORED AS ORC;
+create table q21_tmp1_par(l_orderkey int, count_suppkey int, max_suppkey int) STORED AS parquet;
+create table q21_tmp2_par(l_orderkey int, count_suppkey int, max_suppkey int) STORED AS parquet;
+create table q21_suppliers_who_kept_orders_waiting_par(s_name string, numwait int) STORED AS parquet;
+

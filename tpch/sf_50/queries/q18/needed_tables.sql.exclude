@@ -1,0 +1,10 @@
+DROP TABLE q18_tmp;
+DROP TABLE q18_large_volume_customer;
+DROP TABLE q18_tmp_par;
+DROP TABLE q18_large_volume_customer_par;
+
+create table q18_tmp(l_orderkey int, t_sum_quantity double) STORED AS ORC;
+create table q18_large_volume_customer(c_name string, c_custkey int, o_orderkey int, o_orderdate string, o_totalprice double, sum_quantity double) STORED AS ORC;
+create table q18_tmp_par(l_orderkey int, t_sum_quantity double) STORED AS parquet;
+create table q18_large_volume_customer_par(c_name string, c_custkey int, o_orderkey int, o_orderdate string, o_totalprice double, sum_quantity double) STORED AS parquet;
+

@@ -1,0 +1,6 @@
+DROP TABLE q9_product_type_profit;
+DROP TABLE q9_product_type_profit_par;
+
+create table q9_product_type_profit (nation string, o_year string, sum_profit double) STORED AS ORC;
+create table q9_product_type_profit_par (nation string, o_year string, sum_profit double) STORED AS parquet;
+
