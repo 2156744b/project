@@ -1,0 +1,965 @@
+ -- the query
+insert into table q6_forecast_revenue_change_par 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem_par
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24;
+15/08/18 16:59:20 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/18 16:59:20 INFO metastore: Connected to metastore.
+15/08/18 16:59:21 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+15/08/18 16:59:21 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:21 INFO SparkContext: Running Spark version 1.4.1
+15/08/18 16:59:21 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:21 INFO SecurityManager: Changing view acls to: hive
+15/08/18 16:59:21 INFO SecurityManager: Changing modify acls to: hive
+15/08/18 16:59:21 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(hive); users with modify permissions: Set(hive)
+15/08/18 16:59:22 INFO Slf4jLogger: Slf4jLogger started
+15/08/18 16:59:22 INFO Remoting: Starting remoting
+15/08/18 16:59:22 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@192.168.122.56:38439]
+15/08/18 16:59:22 INFO Utils: Successfully started service 'sparkDriver' on port 38439.
+15/08/18 16:59:22 INFO SparkEnv: Registering MapOutputTracker
+15/08/18 16:59:22 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:22 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:22 INFO SparkEnv: Registering BlockManagerMaster
+15/08/18 16:59:22 INFO DiskBlockManager: Created local directory at /tmp/spark-48bff77d-5803-4d54-9ba1-c900fde6d4b8/blockmgr-a8f1f381-acf7-4979-a9a9-1eec1389954c
+15/08/18 16:59:22 INFO MemoryStore: MemoryStore started with capacity 20.7 GB
+15/08/18 16:59:22 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:22 INFO HttpFileServer: HTTP File server directory is /tmp/spark-48bff77d-5803-4d54-9ba1-c900fde6d4b8/httpd-25b85784-9195-426a-98bc-48475630c1b4
+15/08/18 16:59:22 INFO HttpServer: Starting HTTP Server
+15/08/18 16:59:22 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/18 16:59:22 INFO AbstractConnector: Started SocketConnector@0.0.0.0:33253
+15/08/18 16:59:22 INFO Utils: Successfully started service 'HTTP file server' on port 33253.
+15/08/18 16:59:22 INFO SparkEnv: Registering OutputCommitCoordinator
+15/08/18 16:59:23 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/18 16:59:23 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+15/08/18 16:59:23 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/08/18 16:59:23 INFO SparkUI: Started SparkUI at http://192.168.122.56:4040
+15/08/18 16:59:23 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:23 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:23 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:23 INFO Executor: Starting executor ID driver on host localhost
+15/08/18 16:59:23 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35670.
+15/08/18 16:59:23 INFO NettyBlockTransferService: Server created on 35670
+15/08/18 16:59:23 INFO BlockManagerMaster: Trying to register BlockManager
+15/08/18 16:59:23 INFO BlockManagerMasterEndpoint: Registering block manager localhost:35670 with 20.7 GB RAM, BlockManagerId(driver, localhost, 35670)
+15/08/18 16:59:23 INFO BlockManagerMaster: Registered BlockManager
+15/08/18 16:59:23 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/18 16:59:23 INFO HiveContext: Initializing execution hive, version 0.13.1
+15/08/18 16:59:24 INFO HiveContext: Initializing HiveMetastoreConnection version 0.13.1 using Spark classes.
+15/08/18 16:59:25 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/08/18 16:59:25 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/18 16:59:25 INFO metastore: Connected to metastore.
+15/08/18 16:59:26 WARN DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+15/08/18 16:59:26 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+SET spark.sql.hive.version=0.13.1
+SET spark.sql.hive.version=0.13.1
+15/08/18 16:59:26 INFO ParseDriver: Parsing command: -- the query
+insert into table q6_forecast_revenue_change_par 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem_par
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24
+15/08/18 16:59:26 INFO ParseDriver: Parse Completed
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+15/08/18 16:59:29 INFO MemoryStore: ensureFreeSpace(326528) called with curMem=0, maxMem=22226833244
+15/08/18 16:59:29 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 318.9 KB, free 20.7 GB)
+15/08/18 16:59:29 INFO MemoryStore: ensureFreeSpace(22794) called with curMem=326528, maxMem=22226833244
+15/08/18 16:59:29 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 22.3 KB, free 20.7 GB)
+15/08/18 16:59:29 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:35670 (size: 22.3 KB, free: 20.7 GB)
+15/08/18 16:59:29 INFO SparkContext: Created broadcast 0 from processCmd at CliDriver.java:423
+15/08/18 16:59:30 INFO Exchange: Using SparkSqlSerializer2.
+15/08/18 16:59:30 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+15/08/18 16:59:30 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+15/08/18 16:59:30 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+15/08/18 16:59:30 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+15/08/18 16:59:30 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+15/08/18 16:59:30 INFO ParquetRelation2: Using default output committer for Parquet: parquet.hadoop.ParquetOutputCommitter
+15/08/18 16:59:30 INFO DefaultWriterContainer: Using output committer class parquet.hadoop.ParquetOutputCommitter for appending.
+15/08/18 16:59:30 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/18 16:59:30 INFO deprecation: mapred.max.split.size is deprecated. Instead, use mapreduce.input.fileinputformat.split.maxsize
+15/08/18 16:59:30 INFO deprecation: mapred.min.split.size is deprecated. Instead, use mapreduce.input.fileinputformat.split.minsize
+15/08/18 16:59:30 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1$$anon$2: Using Task Side Metadata Split Strategy
+15/08/18 16:59:30 INFO DAGScheduler: Registering RDD 5 (processCmd at CliDriver.java:423)
+15/08/18 16:59:30 INFO DAGScheduler: Got job 0 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/18 16:59:30 INFO DAGScheduler: Final stage: ResultStage 1(processCmd at CliDriver.java:423)
+15/08/18 16:59:30 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+15/08/18 16:59:30 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+15/08/18 16:59:30 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[5] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/18 16:59:30 INFO MemoryStore: ensureFreeSpace(10528) called with curMem=349322, maxMem=22226833244
+15/08/18 16:59:30 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 10.3 KB, free 20.7 GB)
+15/08/18 16:59:30 INFO MemoryStore: ensureFreeSpace(5112) called with curMem=359850, maxMem=22226833244
+15/08/18 16:59:30 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 5.0 KB, free 20.7 GB)
+15/08/18 16:59:30 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:35670 (size: 5.0 KB, free: 20.7 GB)
+15/08/18 16:59:30 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:874
+15/08/18 16:59:30 INFO DAGScheduler: Submitting 42 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[5] at processCmd at CliDriver.java:423)
+15/08/18 16:59:30 INFO TaskSchedulerImpl: Adding task set 0.0 with 42 tasks
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, ANY, 1788 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, ANY, 1804 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, ANY, 1788 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, ANY, 1801 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, ANY, 1790 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, ANY, 1799 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, ANY, 1789 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, ANY, 1803 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, localhost, ANY, 1789 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, localhost, ANY, 1801 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, localhost, ANY, 1790 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, localhost, ANY, 1804 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, localhost, ANY, 1790 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, localhost, ANY, 1802 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, localhost, ANY, 1789 bytes)
+15/08/18 16:59:30 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, localhost, ANY, 1805 bytes)
+15/08/18 16:59:30 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+15/08/18 16:59:30 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+15/08/18 16:59:30 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+15/08/18 16:59:30 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+15/08/18 16:59:30 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+15/08/18 16:59:31 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+15/08/18 16:59:31 INFO Executor: Running task 11.0 in stage 0.0 (TID 11)
+15/08/18 16:59:31 INFO Executor: Running task 9.0 in stage 0.0 (TID 9)
+15/08/18 16:59:31 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+15/08/18 16:59:31 INFO Executor: Running task 10.0 in stage 0.0 (TID 10)
+15/08/18 16:59:31 INFO Executor: Running task 12.0 in stage 0.0 (TID 12)
+15/08/18 16:59:31 INFO Executor: Running task 8.0 in stage 0.0 (TID 8)
+15/08/18 16:59:31 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+15/08/18 16:59:31 INFO Executor: Running task 13.0 in stage 0.0 (TID 13)
+15/08/18 16:59:31 INFO Executor: Running task 14.0 in stage 0.0 (TID 14)
+15/08/18 16:59:31 INFO Executor: Running task 15.0 in stage 0.0 (TID 15)
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000019_0 start: 134217728 end: 259041448 length: 124823720 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000009_0 start: 134217728 end: 261345819 length: 127128091 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000012_0 start: 134217728 end: 261455108 length: 127237380 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000017_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000012_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000017_0 start: 134217728 end: 259582094 length: 125364366 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000007_0 start: 134217728 end: 260634474 length: 126416746 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000000_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000006_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000006_0 start: 134217728 end: 261222208 length: 127004480 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000005_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000009_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000000_0 start: 134217728 end: 263813674 length: 129595946 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000019_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000007_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000005_0 start: 134217728 end: 261232021 length: 127014293 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:31 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+18-Aug-2015 16:59:28 INFO: parquet.hadoop.ParquetFileReader: Initiating action with parallelism: 5
+18-Aug-2015 16:59:28 INFO: parquet.hadoop.ParquetFileReader: Initiating action with parallelism: 5
+18-Aug-2015 16:59:28 INFO: parquet.hadoop.ParquetFileReader: reading another 21 footers
+18-Aug-2015 16:59:28 INFO: parquet.hadoop.ParquetFileReader: Initiating action with parallelism: 5
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3679401 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3682115 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3681078 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3745356 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3624934 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501243 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3627085 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3681017 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501464 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3502956 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501021 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501185 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3682159 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3502980 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:31 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 443 ms. row count = 3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 461 ms. row count = 3501411
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 467 ms. row count = 3501021
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 491 ms. row count = 3500982
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 492 ms. row count = 15/08/18 16:59:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:32 INFO CodecPool: Got brand-new decompressor [.snappy]
+15/08/18 16:59:37 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 1925 bytes result sent to driver
+15/08/18 16:59:37 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, localhost, ANY, 1789 bytes)
+15/08/18 16:59:37 INFO Executor: Running task 16.0 in stage 0.0 (TID 16)
+15/08/18 16:59:37 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000002_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:37 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 6271 ms on localhost (1/42)
+15/08/18 16:59:37 INFO Executor: Finished task 13.0 in stage 0.0 (TID 13). 1925 bytes result sent to driver
+15/08/18 16:59:37 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, localhost, ANY, 1805 bytes)
+15/08/18 16:59:37 INFO Executor: Running task 17.0 in stage 0.0 (TID 17)
+15/08/18 16:59:37 INFO TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 6753 ms on localhost (2/42)
+15/08/18 16:59:37 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000002_0 start: 134217728 end: 260952516 length: 126734788 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO Executor: Finished task 10.0 in stage 0.0 (TID 10). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO Executor: Finished task 12.0 in stage 0.0 (TID 12). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, localhost, ANY, 1789 bytes)
+15/08/18 16:59:38 INFO Executor: Finished task 11.0 in stage 0.0 (TID 11). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO Executor: Running task 18.0 in stage 0.0 (TID 18)
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, localhost, ANY, 1799 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 19.0 in stage 0.0 (TID 19)
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, localhost, ANY, 1791 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 20.0 in stage 0.0 (TID 20)
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 7168 ms on localhost (3/42)
+15/08/18 16:59:38 INFO Executor: Finished task 9.0 in stage 0.0 (TID 9). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 7169 ms on localhost (4/42)
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, localhost, ANY, 1802 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 21.0 in stage 0.0 (TID 21)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000010_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000014_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 7192 ms on localhost (5/42)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000010_0 start: 134217728 end: 261450018 length: 127232290 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 7204 ms on localhost (6/42)
+15/08/18 16:59:38 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22, localhost, ANY, 1790 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 22.0 in stage 0.0 (TID 22)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000014_0 start: 134217728 end: 259342390 length: 125124662 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000018_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23, localhost, ANY, 1801 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 23.0 in stage 0.0 (TID 23)
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 7403 ms on localhost (7/42)
+3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 495 ms. row count = 3501479
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 498 ms. row count = 3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 501 ms. row count = 3501464
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 524 ms. row count = 3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 531 ms. row count = 3501243
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 533 ms. row count = 3502956
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 533 ms. row count = 3503359
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 537 ms. row count = 3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 541 ms. row count = 3501185
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 573 ms. row count = 3500100
+18-Aug-2015 16:59:32 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 594 ms. row count = 3502980
+18-Aug-2015 16:59:35 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500982 records from 4 columns in 3479 ms: 1006.3185 rec/ms, 4025.274 cell/ms
+18-Aug-2015 16:59:35 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 12% reading (491 ms) and 87% processing (3479 ms)
+18-Aug-2015 16:59:35 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500982. reading next block
+18-Aug-2015 16:59:35 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 10 ms. row count = 180096
+18-Aug-2015 16:59:37 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 4727 ms: 740.4485 rec/ms, 2961.794 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (443 ms) and 91% processing (4727 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 40 ms. row count = 124834
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 314 ms. row count = 3500100
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 5298 ms: 660.6455 rec/ms, 2642.582 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 9% reading (537 ms) and 90% processing (5298 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 11 ms. row count = 182015
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3501479 records from 4 columns in 5303 ms: 660.28265 rec/ms, 2641.1306 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (495 ms) and 91% processing (5303 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3501479. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 11 ms. row count = 125606
+18-Aug-2015 16:59:37 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3682264 records.
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3501411 records from 4 columns in 5424 ms: 645.5404 rec/ms, 2582.1616 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 7% reading (461 ms) and 92% processing (5424 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3501411. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 5444 ms: 642.928 rec/ms, 2571.712 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (492 ms) and 91% processing (5444 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 23 ms. row count = 243945
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 19 ms. row count = 180917
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 5487 ms: 637.8896 rec/ms, 2551.5583 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (498 ms) and 91% processing (5487 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 26 ms. row count = 182059
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3503359 records from 4 columns in 5542 ms: 632.14703 rec/ms, 2528.5881 cell/ms
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (533 ms) and 91% processing (5542 ms)
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3503359. reading next block
+18-Aug-2015 16:59:37 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 22 ms. row count = 176042
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 223 ms. row count = 3503229
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501196 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3681131 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:515/08/18 16:59:38 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 7426 ms on localhost (8/42)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000018_0 start: 134217728 end: 259749577 length: 125531849 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO Executor: Finished task 14.0 in stage 0.0 (TID 14). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24, localhost, ANY, 1789 bytes)
+15/08/18 16:59:38 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25, localhost, ANY, 1802 bytes)
+15/08/18 16:59:38 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 7566 ms on localhost (9/42)
+15/08/18 16:59:38 INFO Executor: Running task 24.0 in stage 0.0 (TID 24)
+15/08/18 16:59:38 INFO Executor: Running task 25.0 in stage 0.0 (TID 25)
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26, localhost, ANY, 1789 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 26.0 in stage 0.0 (TID 26)
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 7624 ms on localhost (10/42)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000003_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 7649 ms on localhost (11/42)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000003_0 start: 134217728 end: 261315713 length: 127097985 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000004_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27, localhost, ANY, 1804 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 27.0 in stage 0.0 (TID 27)
+15/08/18 16:59:38 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 7847 ms on localhost (12/42)
+15/08/18 16:59:38 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000004_0 start: 134217728 end: 261344504 length: 127126776 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:38 INFO Executor: Finished task 15.0 in stage 0.0 (TID 15). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO Executor: Finished task 7.0 in stage 0.0 (TID 7). 1925 bytes result sent to driver
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28, localhost, ANY, 1788 bytes)
+15/08/18 16:59:38 INFO Executor: Running task 28.0 in stage 0.0 (TID 28)
+15/08/18 16:59:38 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29, localhost, ANY, 1801 bytes)
+15/08/18 16:59:39 INFO Executor: Running task 29.0 in stage 0.0 (TID 29)
+15/08/18 16:59:39 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 8106 ms on localhost (13/42)
+15/08/18 16:59:39 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000001_0 start: 134217728 end: 262104727 length: 127886999 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:39 INFO TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 8106 ms on localhost (14/42)
+15/08/18 16:59:39 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000001_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:39 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1925 bytes result sent to driver
+15/08/18 16:59:39 INFO TaskSetManager: Starting task 30.0 in stage 0.0 (TID 30, localhost, ANY, 1788 bytes)
+15/08/18 16:59:39 INFO Executor: Running task 30.0 in stage 0.0 (TID 30)
+15/08/18 16:59:39 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 8589 ms on localhost (15/42)
+15/08/18 16:59:39 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000008_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:39 INFO Executor: Finished task 8.0 in stage 0.0 (TID 8). 1925 bytes result sent to driver
+15/08/18 16:59:39 INFO TaskSetManager: Starting task 31.0 in stage 0.0 (TID 31, localhost, ANY, 1801 bytes)
+15/08/18 16:59:39 INFO Executor: Running task 31.0 in stage 0.0 (TID 31)
+15/08/18 16:59:39 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 8697 ms on localhost (16/42)
+15/08/18 16:59:39 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000008_0 start: 134217728 end: 261770787 length: 127553059 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:43 INFO Executor: Finished task 20.0 in stage 0.0 (TID 20). 1925 bytes result sent to driver
+15/08/18 16:59:43 INFO TaskSetManager: Starting task 32.0 in stage 0.0 (TID 32, localhost, ANY, 1790 bytes)
+15/08/18 16:59:43 INFO Executor: Running task 32.0 in stage 0.0 (TID 32)
+15/08/18 16:59:43 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000015_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:43 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 5747 ms on localhost (17/42)
+15/08/18 16:59:44 INFO Executor: Finished task 28.0 in stage 0.0 (TID 28). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 33.0 in stage 0.0 (TID 33, localhost, ANY, 1802 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 33.0 in stage 0.0 (TID 33)
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 28.0 in stage 0.0 (TID 28) in 5354 ms on localhost (18/42)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000015_0 start: 134217728 end: 259142117 length: 124924389 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+9:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3628179 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3627656 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 403 ms. row count = 3500100
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3680862 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501227 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3501365 records.
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 607 ms. row count = 3501196
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 519 ms. row count = 3500100
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 487 ms. row count = 3500100
+18-Aug-2015 16:59:38 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 579 ms. row count = 3501216
+18-Aug-2015 16:59:38 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 461 ms. row count = 3500100
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3681135 records.
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:39 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:39 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3702448 records.
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 397 ms. row count = 3500100
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500709 records.
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 406 ms. row count = 3501365
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 240 ms. row count = 3500100
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 656 ms. row count = 3501227
+18-Aug-2015 16:59:39 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 294 ms. row count = 3500709
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 549 ms. row count = 3500100
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:39 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3682348 records.
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 251 ms. row count = 3500100
+18-Aug-2015 16:59:39 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 215 ms. row count = 3501276
+18-Aug-2015 16:59:43 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:43 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3503109 records.
+18-Aug-2015 16:59:43 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 209 ms. row count = 3503109
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 5291 ms: 661.51953 rec/ms, 2646.0781 cell/ms
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (461 ms) and 91% processing (5291 ms)
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 5 ms. row count = 127556
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3624567 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and proces15/08/18 16:59:44 INFO Executor: Finished task 18.0 in stage 0.0 (TID 18). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 34.0 in stage 0.0 (TID 34, localhost, ANY, 1790 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 34.0 in stage 0.0 (TID 34)
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 6392 ms on localhost (19/42)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000020_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:44 INFO Executor: Finished task 23.0 in stage 0.0 (TID 23). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 35.0 in stage 0.0 (TID 35, localhost, ANY, 1802 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 35.0 in stage 0.0 (TID 35)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000020_0 start: 134217728 end: 240365901 length: 106148173 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 23.0 in stage 0.0 (TID 23) in 6301 ms on localhost (20/42)
+15/08/18 16:59:44 INFO Executor: Finished task 24.0 in stage 0.0 (TID 24). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 36.0 in stage 0.0 (TID 36, localhost, ANY, 1790 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 36.0 in stage 0.0 (TID 36)
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 6238 ms on localhost (21/42)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000011_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:44 INFO Executor: Finished task 16.0 in stage 0.0 (TID 16). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 37.0 in stage 0.0 (TID 37, localhost, ANY, 1802 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 37.0 in stage 0.0 (TID 37)
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 7651 ms on localhost (22/42)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000011_0 start: 134217728 end: 261356638 length: 127138910 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:44 INFO Executor: Finished task 31.0 in stage 0.0 (TID 31). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 38.0 in stage 0.0 (TID 38, localhost, ANY, 1790 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 38.0 in stage 0.0 (TID 38)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000013_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 31.0 in stage 0.0 (TID 31) in 5251 ms on localhost (23/42)
+15/08/18 16:59:44 INFO Executor: Finished task 26.0 in stage 0.0 (TID 26). 1925 bytes result sent to driver
+15/08/18 16:59:44 INFO TaskSetManager: Starting task 39.0 in stage 0.0 (TID 39, localhost, ANY, 1802 bytes)
+15/08/18 16:59:44 INFO Executor: Running task 39.0 in stage 0.0 (TID 39)
+15/08/18 16:59:44 INFO TaskSetManager: Finished task 26.0 in stage 0.0 (TID 26) in 6320 ms on localhost (24/42)
+15/08/18 16:59:44 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000013_0 start: 134217728 end: 261043605 length: 126825877 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:45 INFO Executor: Finished task 22.0 in stage 0.0 (TID 22). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Starting task 40.0 in stage 0.0 (TID 40, localhost, ANY, 1791 bytes)
+15/08/18 16:59:45 INFO Executor: Running task 40.0 in stage 0.0 (TID 40)
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 6863 ms on localhost (25/42)
+15/08/18 16:59:45 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000016_0 start: 0 end: 134217728 length: 134217728 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:45 INFO Executor: Finished task 19.0 in stage 0.0 (TID 19). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Starting task 41.0 in stage 0.0 (TID 41, localhost, ANY, 1802 bytes)
+15/08/18 16:59:45 INFO Executor: Running task 41.0 in stage 0.0 (TID 41)
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 7142 ms on localhost (26/42)
+15/08/18 16:59:45 INFO Executor: Finished task 21.0 in stage 0.0 (TID 21). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO ParquetRelation2$$anonfun$buildScan$1$$anon$1: Input split: ParquetInputSplit{part: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem_par/000016_0 start: 134217728 end: 259746030 length: 125528302 hosts: [] requestedSchema: message root {
+  optional double l_extendedprice;
+  optional double l_discount;
+  optional binary l_shipdate (UTF8);
+  optional double l_quantity;
+}
+ readSupportMetadata: {org.apache.spark.sql.parquet.row.metadata={"type":"struct","fields":[{"name":"l_orderkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_partkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_suppkey","type":"integer","nullable":true,"metadata":{}},{"name":"l_linenumber","type":"integer","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}},{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_tax","type":"double","nullable":true,"metadata":{}},{"name":"l_returnflag","type":"string","nullable":true,"metadata":{}},{"name":"l_linestatus","type":"string","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_commitdate","type":"string","nullable":true,"metadata":{}},{"name":"l_receiptdate","type":"string","nullable":true,"metadata":{}},{"name":"l_shipinstruct","type":"string","nullable":true,"metadata":{}},{"name":"l_shipmode","type":"string","nullable":true,"metadata":{}},{"name":"l_comment","type":"string","nullable":true,"metadata":{}}]}, org.apache.spark.sql.parquet.row.requested_schema={"type":"struct","fields":[{"name":"l_extendedprice","type":"double","nullable":true,"metadata":{}},{"name":"l_discount","type":"double","nullable":true,"metadata":{}},{"name":"l_shipdate","type":"string","nullable":true,"metadata":{}},{"name":"l_quantity","type":"double","nullable":true,"metadata":{}}]}}}
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 7126 ms on localhost (27/42)
+15/08/18 16:59:45 INFO Executor: Finished task 17.0 in stage 0.0 (TID 17). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 7654 ms on localhost (28/42)
+15/08/18 16:59:45 INFO Executor: Finished task 27.0 in stage 0.0 (TID 27). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 27.0 in stage 0.0 (TID 27) in 6813 ms on localhost (29/42)
+sed 3501276 records from 4 columns in 3829 ms: 914.41003 rec/ms, 3657.6401 cell/ms
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 5% reading (215 ms) and 94% processing (3829 ms)
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3501276. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 13 ms. row count = 181072
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3095483 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 281 ms. row count = 3500836
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3682251 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 137 ms. row count = 3095483
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 268 ms. row count = 3500100
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 181 ms. row count = 3500100
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 134 ms. row count = 3502748
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3677657 records.
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 121 ms. row count = 3500100
+18-Aug-2015 16:59:44 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 108 ms. row count = 3500100
+18-Aug-2015 16:59:45 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3500100 records.
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3501216 records from 4 columns in 6097 ms: 574.25226 rec/ms, 2297.009 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (579 ms) and 91% processing (6097 ms)
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3501216. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 7 ms. row count = 179915
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 6157 ms: 568.4749 rec/ms, 2273.8997 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 7% reading (519 ms) and 92% processing (6157 ms)
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 4 ms. row count = 128079
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 86 ms. row count = 3500100
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3503229 records from 4 columns in 7073 ms: 495.29605 rec/ms, 1981.1842 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 3% reading (223 ms) and 96% processing (7073 ms)
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3503229. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 6 ms. row count = 179035
+18-Aug-2015 16:59:45 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 3627774 records.
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 5747 ms: 609.0308 rec/ms, 2436.1233 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 8% reading (549 ms) and 91% processing (5747 ms)
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 8 ms. row count = 181035
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 100 ms. row count = 3500100
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 6116 ms: 572.2858 rec/ms, 2289.1433 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 6% reading (397 ms) and 93% processing (6116 ms)
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: at row 3500100. reading next block
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 15 ms. row count = 180762
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 3500100 records from 4 columns in 6092 ms: 574.5404 rec/ms, 2298.1616 cell/ms
+18-Aug-2015 16:59:45 INFO: parquet.hadoop.InternalParquetRecordReader: time sp15/08/18 16:59:45 INFO Executor: Finished task 30.0 in stage 0.0 (TID 30). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 30.0 in stage 0.0 (TID 30) in 6081 ms on localhost (30/42)
+15/08/18 16:59:45 INFO Executor: Finished task 25.0 in stage 0.0 (TID 25). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 25.0 in stage 0.0 (TID 25) in 7185 ms on localhost (31/42)
+15/08/18 16:59:45 INFO Executor: Finished task 29.0 in stage 0.0 (TID 29). 1925 bytes result sent to driver
+15/08/18 16:59:45 INFO TaskSetManager: Finished task 29.0 in stage 0.0 (TID 29) in 6680 ms on localhost (32/42)
+15/08/18 16:59:46 INFO Executor: Finished task 35.0 in stage 0.0 (TID 35). 1925 bytes result sent to driver
+15/08/18 16:59:46 INFO TaskSetManager: Finished task 35.0 in stage 0.0 (TID 35) in 2432 ms on localhost (33/42)
+15/08/18 16:59:47 INFO Executor: Finished task 32.0 in stage 0.0 (TID 32). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 32.0 in stage 0.0 (TID 32) in 3445 ms on localhost (34/42)
+15/08/18 16:59:47 INFO Executor: Finished task 36.0 in stage 0.0 (TID 36). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 36.0 in stage 0.0 (TID 36) in 2750 ms on localhost (35/42)
+15/08/18 16:59:47 INFO Executor: Finished task 34.0 in stage 0.0 (TID 34). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 34.0 in stage 0.0 (TID 34) in 2984 ms on localhost (36/42)
+15/08/18 16:59:47 INFO Executor: Finished task 37.0 in stage 0.0 (TID 37). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 37.0 in stage 0.0 (TID 37) in 2779 ms on localhost (37/42)
+15/08/18 16:59:47 INFO Executor: Finished task 40.0 in stage 0.0 (TID 40). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 40.0 in stage 0.0 (TID 40) in 2486 ms on localhost (38/42)
+15/08/18 16:59:47 INFO Executor: Finished task 33.0 in stage 0.0 (TID 33). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 33.0 in stage 0.0 (TID 33) in 3250 ms on localhost (39/42)
+15/08/18 16:59:47 INFO Executor: Finished task 38.0 in stage 0.0 (TID 38). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 38.0 in stage 0.0 (TID 38) in 2780 ms on localhost (40/42)
+15/08/18 16:59:47 INFO Executor: Finished task 39.0 in stage 0.0 (TID 39). 1925 bytes result sent to driver
+15/08/18 16:59:47 INFO TaskSetManager: Finished task 39.0 in stage 0.0 (TID 39) in 2888 ms on localhost (41/42)
+15/08/18 16:59:48 INFO Executor: Finished task 41.0 in stage 0.0 (TID 41). 1925 bytes result sent to driver
+15/08/18 16:59:48 INFO TaskSetManager: Finished task 41.0 in stage 0.0 (TID 41) in 3115 ms on localhost (42/42)
+15/08/18 16:59:48 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/08/18 16:59:48 INFO DAGScheduler: ShuffleMapStage 0 (processCmd at CliDriver.java:423) finished in 17.469 s
+15/08/18 16:59:48 INFO DAGScheduler: looking for newly runnable stages
+15/08/18 16:59:48 INFO DAGScheduler: running: Set()
+15/08/18 16:59:48 INFO DAGScheduler: waiting: Set(ResultStage 1)
+15/08/18 16:59:48 INFO DAGScheduler: failed: Set()
+15/08/18 16:59:48 INFO DAGScheduler: Missing parents for ResultStage 1: List()
+15/08/18 16:59:48 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@4e727e8d
+15/08/18 16:59:48 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[8] at processCmd at CliDriver.java:423), which is now runnable
+15/08/18 16:59:48 INFO StatsReportListener: task runtime:(count: 42, mean: 6058.976190, stdev: 1917.974421, max: 8697.000000, min: 2432.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	2.4 s	2.8 s	2.8 s	5.3 s	6.8 s	7.4 s	7.8 s	8.1 s	8.7 s
+15/08/18 16:59:48 INFO StatsReportListener: shuffle bytes written:(count: 42, mean: 31.000000, stdev: 0.000000, max: 31.000000, min: 31.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B
+15/08/18 16:59:48 INFO StatsReportListener: task result size:(count: 42, mean: 1925.000000, stdev: 0.000000, max: 1925.000000, min: 1925.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B
+15/08/18 16:59:48 INFO StatsReportListener: executor (non-fetch) time pct: (count: 42, mean: 96.021058, stdev: 3.211981, max: 99.117894, min: 88.550470)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	89 %	91 %	92 %	93 %	98 %	99 %	99 %	99 %	99 %
+15/08/18 16:59:48 INFO StatsReportListener: other time pct: (count: 42, mean: 3.978942, stdev: 3.211981, max: 11.449530, min: 0.882106)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	 1 %	 1 %	 1 %	 1 %	 2 %	 7 %	 8 %	 9 %	11 %
+15/08/18 16:59:48 INFO MemoryStore: ensureFreeSpace(80296) called with curMem=364962, maxMem=22226833244
+15/08/18 16:59:48 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 78.4 KB, free 20.7 GB)
+15/08/18 16:59:48 INFO MemoryStore: ensureFreeSpace(30683) called with curMem=445258, maxMem=22226833244
+15/08/18 16:59:48 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 30.0 KB, free 20.7 GB)
+15/08/18 16:59:48 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on localhost:35670 (size: 30.0 KB, free: 20.7 GB)
+15/08/18 16:59:48 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:874
+15/08/18 16:59:48 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[8] at processCmd at CliDriver.java:423)
+15/08/18 16:59:48 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+15/08/18 16:59:48 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 42, localhost, PROCESS_LOCAL, 1165 bytes)
+15/08/18 16:59:48 INFO Executor: Running task 0.0 in stage 1.0 (TID 42)
+15/08/18 16:59:48 INFO ShuffleBlockFetcherIterator: Getting 42 non-empty blocks out of 42 blocks
+15/08/18 16:59:48 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 6 ms
+15/08/18 16:59:48 INFO DefaultWriterContainer: Using output committer class parquet.hadoop.ParquetOutputCommitter for appending.
+15/08/18 16:59:48 INFO ZlibFactory: Successfully loaded & initialized native-zlib library
+15/08/18 16:59:48 INFO CodecPool: Got brand-new compressor [.gz]
+15/08/18 16:59:48 INFO InternalParquetRecordWriter: Flushing mem columnStore to file. allocated memory: 29,150,423
+15/08/18 16:59:48 INFO ColumnChunkPageWriteStore: written 75B for [revenue] DOUBLE: 1 values, 14B raw, 34B comp, 1 pages, encodings: [PLAIN, BIT_PACKED, RLE]
+15/08/18 16:59:48 INFO FileOutputCommitter: Saved output of task 'attempt_201508181659_0001_m_000000_0' to hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change_par/_temporary/0/task_201508181659_0001_m_000000
+15/08/18 16:59:48 INFO SparkHadoopMapRedUtil: attempt_201508181659_0001_m_000000_0: Committed
+15/08/18 16:59:48 INFO Executor: Finished task 0.0 in stage 1.0 (TID 42). 843 bytes result sent to driver
+15/08/18 16:59:48 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 42) in 448 ms on localhost (1/1)
+15/08/18 16:59:48 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+15/08/18 16:59:48 INFO DAGScheduler: ResultStage 1 (processCmd at CliDriver.java:423) finished in 0.448 s
+15/08/18 16:59:48 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@13c6fa98
+15/08/18 16:59:48 INFO StatsReportListener: task runtime:(count: 1, mean: 448.000000, stdev: 0.000000, max: 448.000000, min: 448.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	448.0 ms	448.0 ms	448.0 ms	448.0 ms	448.0 ms	448.0 ms	448.0 ms	448.0 ms	448.0 ms
+15/08/18 16:59:48 INFO StatsReportListener: fetch wait time:(count: 1, mean: 1.000000, stdev: 0.000000, max: 1.000000, min: 1.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms	1.0 ms
+15/08/18 16:59:48 INFO StatsReportListener: remote bytes read:(count: 1, mean: 0.000000, stdev: 0.000000, max: 0.000000, min: 0.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B
+15/08/18 16:59:48 INFO StatsReportListener: task result size:(count: 1, mean: 843.000000, stdev: 0.000000, max: 843.000000, min: 843.000000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B
+15/08/18 16:59:48 INFO DAGScheduler: Job 0 finished: processCmd at CliDriver.java:423, took 18.395050 s
+15/08/18 16:59:48 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 71.875000, stdev: 0.000000, max: 71.875000, min: 71.875000)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	72 %	72 %	72 %	72 %	72 %	72 %	72 %	72 %	72 %
+15/08/18 16:59:48 INFO StatsReportListener: fetch wait time pct: (count: 1, mean: 0.223214, stdev: 0.000000, max: 0.223214, min: 0.223214)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %
+15/08/18 16:59:48 INFO StatsReportListener: other time pct: (count: 1, mean: 27.901786, stdev: 0.000000, max: 27.901786, min: 27.901786)
+15/08/18 16:59:48 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:48 INFO StatsReportListener: 	28 %	28 %	28 %	28 %	28 %	28 %	28 %	28 %	28 %
+15/08/18 16:59:48 INFO ParquetFileReader: Initiating action with parallelism: 5
+15/08/18 16:59:48 INFO DefaultWriterContainer: Job job_201508181659_0000 committed.
+15/08/18 16:59:48 INFO ParquetFileReader: Initiating action with parallelism: 5
+15/08/18 16:59:48 INFO ParquetFileReader: reading summary file: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change_par/_common_metadata
+15/08/18 16:59:49 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/18 16:59:49 INFO DAGScheduler: Got job 1 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/18 16:59:49 INFO DAGScheduler: Final stage: ResultStage 2(processCmd at CliDriver.java:423)
+15/08/18 16:59:49 INFO DAGScheduler: Parents of final stage: List()
+15/08/18 16:59:49 INFO DAGScheduler: Missing parents: List()
+15/08/18 16:59:49 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[10] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/18 16:59:49 INFO MemoryStore: ensureFreeSpace(2864) called with curMem=475941, maxMem=22226833244
+15/08/18 16:59:49 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 2.8 KB, free 20.7 GB)
+15/08/18 16:59:49 INFO MemoryStore: ensureFreeSpace(1717) called with curMem=478805, maxMem=22226833244
+15/08/18 16:59:49 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 1717.0 B, free 20.7 GB)
+15/08/18 16:59:49 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on localhost:35670 (size: 1717.0 B, free: 20.7 GB)
+15/08/18 16:59:49 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:874
+15/08/18 16:59:49 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[10] at processCmd at CliDriver.java:423)
+15/08/18 16:59:49 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks
+15/08/18 16:59:49 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 43, localhost, PROCESS_LOCAL, 1316 bytes)
+15/08/18 16:59:49 INFO Executor: Running task 0.0 in stage 2.0 (TID 43)
+15/08/18 16:59:49 INFO Executor: Finished task 0.0 in stage 2.0 (TID 43). 606 bytes result sent to driver
+15/08/18 16:59:49 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 43) in 41 ms on localhost (1/1)
+15/08/18 16:59:49 INFO DAGScheduler: ResultStage 2 (processCmd at CliDriver.java:423) finished in 0.041 s
+15/08/18 16:59:49 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+15/08/18 16:59:49 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@2647dae6
+15/08/18 16:59:49 INFO DAGScheduler: Job 1 finished: processCmd at CliDriver.java:423, took 0.063410 s
+15/08/18 16:59:49 INFO StatsReportListener: task runtime:(count: 1, mean: 41.000000, stdev: 0.000000, max: 41.000000, min: 41.000000)
+15/08/18 16:59:49 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:49 INFO StatsReportListener: 	41.0 ms	41.0 ms	41.0 ms	41.0 ms	41.0 ms	41.0 ms	41.0 ms	41.0 ms	41.0 ms
+15/08/18 16:59:49 INFO StatsReportListener: task result size:(count: 1, mean: 606.000000, stdev: 0.000000, max: 606.000000, min: 606.000000)
+15/08/18 16:59:49 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:49 INFO StatsReportListener: 	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B
+15/08/18 16:59:49 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 2.439024, stdev: 0.000000, max: 2.439024, min: 2.439024)
+15/08/18 16:59:49 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:49 INFO StatsReportListener: 	 2 %	 2 %	 2 %	 2 %	 2 %	 2 %	 2 %	 2 %	 2 %
+15/08/18 16:59:49 INFO StatsReportListener: other time pct: (count: 1, mean: 97.560976, stdev: 0.000000, max: 97.560976, min: 97.560976)
+15/08/18 16:59:49 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/18 16:59:49 INFO StatsReportListener: 	98 %	98 %	98 %	98 %	98 %	98 %	98 %	98 %	98 %
+Time taken: 22.821 seconds
+15/08/18 16:59:49 INFO CliDriver: Time taken: 22.821 seconds
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/08/18 16:59:49 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/08/18 16:59:49 INFO SparkUI: Stopped Spark web UI at http://192.168.122.56:4040
+15/08/18 16:59:49 INFO DAGScheduler: Stopping DAGScheduler
+15/08/18 16:59:49 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+15/08/18 16:59:49 INFO Utils: path = /tmp/spark-48bff77d-5803-4d54-9ba1-c900fde6d4b8/blockmgr-a8f1f381-acf7-4979-a9a9-1eec1389954c, already present as root for deletion.
+15/08/18 16:59:49 INFO MemoryStore: MemoryStore cleared
+15/08/18 16:59:49 INFO BlockManager: BlockManager stopped
+15/08/18 16:59:49 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/08/18 16:59:49 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+15/08/18 16:59:49 INFO SparkContext: Successfully stopped SparkContext
+15/08/18 16:59:49 INFO Utils: Shutdown hook called
+15/08/18 16:59:49 INFO Utils: Deleting directory /tmp/spark-06c94646-92ef-4f6d-b18b-3f13654bf9d3
+15/08/18 16:59:49 INFO Utils: Deleting directory /tmp/spark-48bff77d-5803-4d54-9ba1-c900fde6d4b8
+15/08/18 16:59:49 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/08/18 16:59:49 INFO Utils: Deleting directory /tmp/spark-738e4012-6e3f-4b86-ba9f-45fcb8e24b90
+15/08/18 16:59:49 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+15/08/18 16:59:49 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.

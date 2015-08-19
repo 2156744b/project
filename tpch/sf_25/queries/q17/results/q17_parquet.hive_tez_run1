@@ -1,0 +1,264 @@
+set hive.execution.engine=tez; -- the query
+insert into table lineitem_tmp_par
+select 
+  l_partkey as t_partkey, 0.2 * avg(l_quantity) as t_avg_quantity
+from 
+  lineitem_par
+group by l_partkey;
+
+insert into table q17_small_quantity_order_revenue_par
+select
+  sum(l_extendedprice) / 7.0 as avg_yearly
+from
+  (select l_quantity, l_extendedprice, t_avg_quantity from
+   lineitem_tmp_par t join
+     (select
+        l_quantity, l_partkey, l_extendedprice
+      from
+        part_par p join lineitem_par l
+        on
+          p.p_partkey = l.l_partkey
+          and p.p_brand = 'Brand#54'
+          and p.p_container = 'SM BAG'
+      ) l1 on l1.l_partkey = t.t_partkey
+   ) a
+where l_quantity < t_avg_quantity;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150818024323_1387a6f5-8612-4573-aab5-6c79e6d39825
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439860728005_0044)
+
+Map 1: -/-	Reducer 2: 0/72	
+Map 1: 0/9	Reducer 2: 0/72	
+Map 1: 0/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 1(+4)/9	Reducer 2: 0/72	
+Map 1: 1(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+4)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 3(+4)/9	Reducer 2: 0/72	
+Map 1: 3(+5)/9	Reducer 2: 0/72	
+Map 1: 4(+4)/9	Reducer 2: 0/72	
+Map 1: 4(+3)/9	Reducer 2: 0/72	
+Map 1: 5(+3)/9	Reducer 2: 0/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/72	
+Map 1: 6(+3)/9	Reducer 2: 0(+1)/72	
+Map 1: 6(+3)/9	Reducer 2: 0(+2)/72	
+Map 1: 6(+3)/9	Reducer 2: 0(+2)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/72	
+Map 1: 8(+1)/9	Reducer 2: 0(+4)/72	
+Map 1: 8(+1)/9	Reducer 2: 0(+4)/72	
+Map 1: 8(+1)/9	Reducer 2: 0(+4)/72	
+Map 1: 9/9	Reducer 2: 0(+4)/72	
+Map 1: 9/9	Reducer 2: 0(+5)/72	
+Map 1: 9/9	Reducer 2: 0(+5)/72	
+Map 1: 9/9	Reducer 2: 0(+5)/72	
+Map 1: 9/9	Reducer 2: 1(+4)/72	
+Map 1: 9/9	Reducer 2: 4(+4)/72	
+Map 1: 9/9	Reducer 2: 5(+4)/72	
+Map 1: 9/9	Reducer 2: 5(+5)/72	
+Map 1: 9/9	Reducer 2: 5(+5)/72	
+Map 1: 9/9	Reducer 2: 7(+4)/72	
+Map 1: 9/9	Reducer 2: 10(+3)/72	
+Map 1: 9/9	Reducer 2: 10(+5)/72	
+Map 1: 9/9	Reducer 2: 10(+5)/72	
+Map 1: 9/9	Reducer 2: 12(+5)/72	
+Map 1: 9/9	Reducer 2: 13(+5)/72	
+Map 1: 9/9	Reducer 2: 15(+4)/72	
+Map 1: 9/9	Reducer 2: 15(+5)/72	
+Map 1: 9/9	Reducer 2: 17(+4)/72	
+Map 1: 9/9	Reducer 2: 18(+4)/72	
+Map 1: 9/9	Reducer 2: 18(+5)/72	
+Map 1: 9/9	Reducer 2: 19(+5)/72	
+Map 1: 9/9	Reducer 2: 20(+5)/72	
+Map 1: 9/9	Reducer 2: 21(+4)/72	
+Map 1: 9/9	Reducer 2: 22(+5)/72	
+Map 1: 9/9	Reducer 2: 23(+4)/72	
+Map 1: 9/9	Reducer 2: 23(+5)/72	
+Map 1: 9/9	Reducer 2: 24(+4)/72	
+Map 1: 9/9	Reducer 2: 25(+5)/72	
+Map 1: 9/9	Reducer 2: 25(+4)/72	
+Map 1: 9/9	Reducer 2: 28(+5)/72	
+Map 1: 9/9	Reducer 2: 29(+4)/72	
+Map 1: 9/9	Reducer 2: 29(+5)/72	
+Map 1: 9/9	Reducer 2: 30(+4)/72	
+Map 1: 9/9	Reducer 2: 30(+5)/72	
+Map 1: 9/9	Reducer 2: 32(+3)/72	
+Map 1: 9/9	Reducer 2: 32(+5)/72	
+Map 1: 9/9	Reducer 2: 33(+4)/72	
+Map 1: 9/9	Reducer 2: 33(+5)/72	
+Map 1: 9/9	Reducer 2: 34(+5)/72	
+Map 1: 9/9	Reducer 2: 35(+4)/72	
+Map 1: 9/9	Reducer 2: 35(+5)/72	
+Map 1: 9/9	Reducer 2: 37(+5)/72	
+Map 1: 9/9	Reducer 2: 38(+4)/72	
+Map 1: 9/9	Reducer 2: 39(+4)/72	
+Map 1: 9/9	Reducer 2: 39(+5)/72	
+Map 1: 9/9	Reducer 2: 40(+5)/72	
+Map 1: 9/9	Reducer 2: 42(+5)/72	
+Map 1: 9/9	Reducer 2: 43(+4)/72	
+Map 1: 9/9	Reducer 2: 43(+5)/72	
+Map 1: 9/9	Reducer 2: 44(+5)/72	
+Map 1: 9/9	Reducer 2: 45(+4)/72	
+Map 1: 9/9	Reducer 2: 45(+5)/72	
+Map 1: 9/9	Reducer 2: 46(+5)/72	
+Map 1: 9/9	Reducer 2: 47(+5)/72	
+Map 1: 9/9	Reducer 2: 49(+4)/72	
+Map 1: 9/9	Reducer 2: 49(+5)/72	
+Map 1: 9/9	Reducer 2: 50(+5)/72	
+Map 1: 9/9	Reducer 2: 51(+4)/72	
+Map 1: 9/9	Reducer 2: 51(+5)/72	
+Map 1: 9/9	Reducer 2: 52(+4)/72	
+Map 1: 9/9	Reducer 2: 52(+5)/72	
+Map 1: 9/9	Reducer 2: 53(+5)/72	
+Map 1: 9/9	Reducer 2: 54(+4)/72	
+Map 1: 9/9	Reducer 2: 54(+5)/72	
+Map 1: 9/9	Reducer 2: 55(+5)/72	
+Map 1: 9/9	Reducer 2: 56(+5)/72	
+Map 1: 9/9	Reducer 2: 57(+4)/72	
+Map 1: 9/9	Reducer 2: 57(+5)/72	
+Map 1: 9/9	Reducer 2: 58(+5)/72	
+Map 1: 9/9	Reducer 2: 59(+5)/72	
+Map 1: 9/9	Reducer 2: 60(+4)/72	
+Map 1: 9/9	Reducer 2: 61(+5)/72	
+Map 1: 9/9	Reducer 2: 62(+4)/72	
+Map 1: 9/9	Reducer 2: 62(+5)/72	
+Map 1: 9/9	Reducer 2: 63(+5)/72	
+Map 1: 9/9	Reducer 2: 64(+5)/72	
+Map 1: 9/9	Reducer 2: 65(+4)/72	
+Map 1: 9/9	Reducer 2: 65(+5)/72	
+Map 1: 9/9	Reducer 2: 66(+5)/72	
+Map 1: 9/9	Reducer 2: 67(+4)/72	
+Map 1: 9/9	Reducer 2: 67(+5)/72	
+Map 1: 9/9	Reducer 2: 68(+4)/72	
+Map 1: 9/9	Reducer 2: 69(+3)/72	
+Map 1: 9/9	Reducer 2: 70(+2)/72	
+Map 1: 9/9	Reducer 2: 71(+1)/72	
+Map 1: 9/9	Reducer 2: 72/72	
+Loading data to table default.lineitem_tmp_par
+Table default.lineitem_tmp_par stats: [numFiles=72, numRows=5000000, totalSize=32322155, rawDataSize=10000000]
+OK
+Time taken: 249.219 seconds
+Query ID = leonidas_20150818024732_9055a51e-3a39-4661-a31b-40cd34d7a641
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439860728005_0044)
+
+Map 1: -/-	Map 2: -/-	Map 4: -/-	Reducer 3: 0/1	
+Map 1: 0(+1)/8	Map 2: 0/9	Map 4: 0(+1)/3	Reducer 3: 0/1	
+Map 1: 0(+3)/8	Map 2: 0/9	Map 4: 0(+2)/3	Reducer 3: 0/1	
+Map 1: 2(+1)/8	Map 2: 0/9	Map 4: 0(+2)/3	Reducer 3: 0/1	
+Map 1: 3(+3)/8	Map 2: 0/9	Map 4: 0(+2)/3	Reducer 3: 0/1	
+Map 1: 5(+1)/8	Map 2: 0/9	Map 4: 0(+2)/3	Reducer 3: 0/1	
+Map 1: 6(+2)/8	Map 2: 0/9	Map 4: 0(+2)/3	Reducer 3: 0/1	
+Map 1: 7(+1)/8	Map 2: 0/9	Map 4: 0(+3)/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+2)/9	Map 4: 1(+2)/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+3)/9	Map 4: 1(+2)/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+3)/9	Map 4: 2(+1)/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+4)/9	Map 4: 2(+1)/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 1(+4)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 1(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 2(+4)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 2(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 2(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 3(+4)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 3(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 4(+4)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 4(+5)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 7(+2)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 8(+1)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 8(+1)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 8(+1)/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 9/9	Map 4: 3/3	Reducer 3: 0(+1)/1	
+Map 1: 8/8	Map 2: 9/9	Map 4: 3/3	Reducer 3: 1/1	
+Loading data to table default.q17_small_quantity_order_revenue_par
+Table default.q17_small_quantity_order_revenue_par stats: [numFiles=1, numRows=1, totalSize=201, rawDataSize=1]
+OK
+Time taken: 78.75 seconds

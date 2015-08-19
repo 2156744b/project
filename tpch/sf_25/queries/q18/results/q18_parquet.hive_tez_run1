@@ -1,0 +1,720 @@
+set hive.execution.engine=tez; -- the query
+insert into table q18_tmp_par
+select 
+  l_orderkey, sum(l_quantity) as t_sum_quantity
+from 
+  lineitem_par
+group by l_orderkey;
+
+insert into table q18_large_volume_customer_par
+select 
+  c_name,c_custkey,o_orderkey,o_orderdate,o_totalprice,sum(l_quantity)
+from 
+  customer_par c join orders_par o 
+  on 
+    c.c_custkey = o.o_custkey
+  join q18_tmp_par t 
+  on 
+    o.o_orderkey = t.l_orderkey and t.t_sum_quantity > 315
+  join lineitem_par l 
+  on 
+    o.o_orderkey = l.l_orderkey
+group by c_name,c_custkey,o_orderkey,o_orderdate,o_totalprice
+order by o_totalprice desc,o_orderdate
+limit 100;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150818053524_aafc52eb-4895-4b7c-96c9-9ebea24d26b9
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439860728005_0065)
+
+Map 1: -/-	Reducer 2: 0/72	
+Map 1: 0/9	Reducer 2: 0/72	
+Map 1: 0/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 0(+5)/9	Reducer 2: 0/72	
+Map 1: 1(+4)/9	Reducer 2: 0/72	
+Map 1: 1(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 2(+5)/9	Reducer 2: 0/72	
+Map 1: 3(+4)/9	Reducer 2: 0/9	
+Map 1: 4(+4)/9	Reducer 2: 0/9	
+Map 1: 4(+5)/9	Reducer 2: 0/9	
+Map 1: 5(+4)/9	Reducer 2: 0/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 5(+4)/9	Reducer 2: 0(+1)/9	
+Map 1: 6(+3)/9	Reducer 2: 0(+1)/9	
+Map 1: 6(+3)/9	Reducer 2: 0(+2)/9	
+Map 1: 7(+2)/9	Reducer 2: 0(+2)/9	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/9	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/9	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/9	
+Map 1: 7(+2)/9	Reducer 2: 0(+3)/9	
+Map 1: 8(+1)/9	Reducer 2: 0(+3)/9	
+Map 1: 8(+1)/9	Reducer 2: 0(+4)/9	
+Map 1: 8(+1)/9	Reducer 2: 0(+4)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 0(+5)/9	
+Map 1: 9/9	Reducer 2: 2(+5)/9	
+Map 1: 9/9	Reducer 2: 3(+4)/9	
+Map 1: 9/9	Reducer 2: 3(+5)/9	
+Map 1: 9/9	Reducer 2: 4(+5)/9	
+Map 1: 9/9	Reducer 2: 5(+4)/9	
+Map 1: 9/9	Reducer 2: 5(+4)/9	
+Map 1: 9/9	Reducer 2: 5(+4)/9	
+Map 1: 9/9	Reducer 2: 5(+4)/9	
+Map 1: 9/9	Reducer 2: 6(+3)/9	
+Map 1: 9/9	Reducer 2: 8(+1)/9	
+Map 1: 9/9	Reducer 2: 9/9	
+Loading data to table default.q18_tmp_par
+Table default.q18_tmp_par stats: [numFiles=9, numRows=37500000, totalSize=192313369, rawDataSize=75000000]
+OK
+Time taken: 157.222 seconds
+Query ID = leonidas_20150818053802_9b157232-ba00-4750-8345-5e89403d33cf
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1439860728005_0065)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Map 4: -/-	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 0(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 0(+4)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 0(+4)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 0(+5)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 3(+4)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 4(+5)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0/8	Map 2: 0/9	Map 3: 4(+4)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0(+1)/8	Map 2: 0/9	Map 3: 6(+3)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 0(+4)/8	Map 2: 0/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 1(+4)/8	Map 2: 0/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 4(+3)/8	Map 2: 0/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 4(+4)/8	Map 2: 0/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 6(+2)/8	Map 2: 0(+1)/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+4)/9	Map 3: 8(+1)/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+4)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 0(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 1(+4)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 1(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 2(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 3(+5)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 4(+4)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 3: 9/9	Map 4: 0/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 3: 9/9	Map 4: 0(+1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 3: 9/9	Map 4: 0(+1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 5(+4)/9	Map 3: 9/9	Map 4: 0(+1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 6(+3)/9	Map 3: 9/9	Map 4: 0(+2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 7(+2)/9	Map 3: 9/9	Map 4: 0(+3)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 8(+1)/9	Map 3: 9/9	Map 4: 0(+3)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 8(+1)/9	Map 3: 9/9	Map 4: 0(+4)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+4)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-1)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-2)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-3)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-3)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-4)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-5)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-6)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-6)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-7)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-8)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-8)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-9)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-10)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-11)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-12)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-13)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-13)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-13)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-13)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-14)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+5,-15)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Map 1: 8/8	Map 2: 9/9	Map 3: 9/9	Map 4: 0(+0,-16)/9	Reducer 5: 0/80	Reducer 6: 0/1	
+Status: Failed
+Vertex failed, vertexName=Map 4, vertexId=vertex_1439860728005_0065_2_03, diagnostics=[Task failed, taskId=task_1439860728005_0065_2_03_000000, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 1 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 2 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 3 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+]], Vertex did not succeed due to OWN_TASK_FAILURE, failedTasks:1 killedTasks:8, Vertex vertex_1439860728005_0065_2_03 [Map 4] killed/failed due to:null]
+Vertex killed, vertexName=Reducer 6, vertexId=vertex_1439860728005_0065_2_05, diagnostics=[Vertex received Kill while in RUNNING state., Vertex did not succeed due to OTHER_VERTEX_FAILURE, failedTasks:0 killedTasks:1, Vertex vertex_1439860728005_0065_2_05 [Reducer 6] killed/failed due to:null]
+Vertex killed, vertexName=Reducer 5, vertexId=vertex_1439860728005_0065_2_04, diagnostics=[Vertex received Kill while in RUNNING state., Vertex did not succeed due to OTHER_VERTEX_FAILURE, failedTasks:0 killedTasks:80, Vertex vertex_1439860728005_0065_2_04 [Reducer 5] killed/failed due to:null]
+DAG did not succeed due to VERTEX_FAILURE. failedVertices:1 killedVertices:2
+FAILED: Execution Error, return code 2 from org.apache.hadoop.hive.ql.exec.tez.TezTask. Vertex failed, vertexName=Map 4, vertexId=vertex_1439860728005_0065_2_03, diagnostics=[Task failed, taskId=task_1439860728005_0065_2_03_000000, diagnostics=[TaskAttempt 0 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 1 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 2 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+], TaskAttempt 3 failed, info=[Error: Failure while running task:java.lang.RuntimeException: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:171)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.run(TezProcessor.java:137)
+	at org.apache.tez.runtime.LogicalIOProcessorRuntimeTask.run(LogicalIOProcessorRuntimeTask.java:345)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:179)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable$1.run(TezTaskRunner.java:171)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:171)
+	at org.apache.tez.runtime.task.TezTaskRunner$TaskRunnerCallable.callInternal(TezTaskRunner.java:167)
+	at org.apache.tez.common.CallableWithNdc.call(CallableWithNdc.java:36)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.RuntimeException: Map operator initialization failed
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:229)
+	at org.apache.hadoop.hive.ql.exec.tez.TezProcessor.initializeAndRunProcessor(TezProcessor.java:147)
+	... 14 more
+Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:388)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:378)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:481)
+	at org.apache.hadoop.hive.ql.exec.Operator.initializeChildren(Operator.java:438)
+	at org.apache.hadoop.hive.ql.exec.Operator.initialize(Operator.java:375)
+	at org.apache.hadoop.hive.ql.exec.tez.MapRecordProcessor.init(MapRecordProcessor.java:214)
+	... 15 more
+Caused by: java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Java heap space
+	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at org.apache.hadoop.hive.ql.exec.Operator.completeInitialization(Operator.java:386)
+	... 20 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+	at org.apache.hadoop.hive.serde2.WriteBuffers.nextBufferToWrite(WriteBuffers.java:241)
+	at org.apache.hadoop.hive.serde2.WriteBuffers.<init>(WriteBuffers.java:64)
+	at org.apache.hadoop.hive.ql.exec.persistence.BytesBytesMultiHashMap.<init>(BytesBytesMultiHashMap.java:178)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer$HashPartition.<init>(HybridHashTableContainer.java:120)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:293)
+	at org.apache.hadoop.hive.ql.exec.persistence.HybridHashTableContainer.<init>(HybridHashTableContainer.java:222)
+	at org.apache.hadoop.hive.ql.exec.tez.HashTableLoader.load(HashTableLoader.java:188)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator.loadHashTable(MapJoinOperator.java:288)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:173)
+	at org.apache.hadoop.hive.ql.exec.MapJoinOperator$1.call(MapJoinOperator.java:169)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache.retrieve(ObjectCache.java:75)
+	at org.apache.hadoop.hive.ql.exec.tez.ObjectCache$1.call(ObjectCache.java:92)
+	... 4 more
+]], Vertex did not succeed due to OWN_TASK_FAILURE, failedTasks:1 killedTasks:8, Vertex vertex_1439860728005_0065_2_03 [Map 4] killed/failed due to:null]Vertex killed, vertexName=Reducer 6, vertexId=vertex_1439860728005_0065_2_05, diagnostics=[Vertex received Kill while in RUNNING state., Vertex did not succeed due to OTHER_VERTEX_FAILURE, failedTasks:0 killedTasks:1, Vertex vertex_1439860728005_0065_2_05 [Reducer 6] killed/failed due to:null]Vertex killed, vertexName=Reducer 5, vertexId=vertex_1439860728005_0065_2_04, diagnostics=[Vertex received Kill while in RUNNING state., Vertex did not succeed due to OTHER_VERTEX_FAILURE, failedTasks:0 killedTasks:80, Vertex vertex_1439860728005_0065_2_04 [Reducer 5] killed/failed due to:null]DAG did not succeed due to VERTEX_FAILURE. failedVertices:1 killedVertices:2

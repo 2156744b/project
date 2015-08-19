@@ -54,7 +54,7 @@ for fn in *.sql; do
         result=$RESULTS/${f}.spark_${suffix}run$run
         script="$params $content"
         echo "$script" > $result
-        sudo -u hive $SPARK --driver-memory 6g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
+        sudo -u hive $SPARK --driver-memory 40g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
 
 done
 
