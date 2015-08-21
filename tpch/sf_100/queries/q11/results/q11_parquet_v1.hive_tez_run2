@@ -1,0 +1,132 @@
+set hive.execution.engine=tez; -- the query
+insert overwrite table q11_part_tmp_par
+select
+  ps_partkey,
+  sum(ps_supplycost * ps_availqty) as part_value
+from
+  nation_par n join supplier_par s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+  join partsupp_par ps on ps.ps_suppkey = s.s_suppkey
+group by
+    ps_partkey;
+
+insert overwrite table q11_sum_tmp_par
+select
+  sum(part_value) as total_value
+from
+  q11_part_tmp_par;
+
+insert overwrite table q11_important_stock_par
+select
+  ps_partkey, part_value as value
+from
+  (
+    select ps_partkey, part_value, total_value
+    from q11_part_tmp_par join q11_sum_tmp_par
+  ) a
+where part_value > total_value * 0.000001
+order by value desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150821212004_b8983c22-c60c-4e02-b052-cc8acb4ff5ff
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440181020771_0021)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Reducer 4: 0/8	
+Map 1: 0/1	Map 2: 0/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 0/1	Map 2: 0(+2)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 0(+1)/1	Map 2: 0(+4)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 0(+1)/1	Map 2: 0(+4)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 0(+4)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 0(+5)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 0(+4)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 4(+3)/8	Map 3: 0/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 4(+4)/8	Map 3: 0(+1)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 5(+3)/8	Map 3: 0(+2)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 1(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 2(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 2(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 2(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 3(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 4(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 4(+5)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+4)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 6(+3)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 6(+3)/9	Reducer 4: 0/8	
+Map 1: 1/1	Map 2: 8/8	Map 3: 7(+2)/9	Reducer 4: 0/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 7(+2)/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 8(+1)/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9/9	Reducer 4: 0(+1)/1	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9/9	Reducer 4: 1/1	
+Loading data to table default.q11_part_tmp_par
+Table default.q11_part_tmp_par stats: [numFiles=1, numRows=3009556, totalSize=36116814, rawDataSize=6019112]
+OK
+Time taken: 78.098 seconds
+Query ID = leonidas_20150821212122_669921de-de8d-43b6-8527-d3cee4f7cea8
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440181020771_0021)
+
+Map 1: 0(+2)/3	Reducer 2: 0/1	
+Map 1: 0(+3)/3	Reducer 2: 0/1	
+Map 1: 0(+3)/3	Reducer 2: 0/1	
+Map 1: 1(+2)/3	Reducer 2: 0/1	
+Map 1: 2(+1)/3	Reducer 2: 0(+1)/1	
+Map 1: 3/3	Reducer 2: 0(+1)/1	
+Map 1: 3/3	Reducer 2: 1/1	
+Loading data to table default.q11_sum_tmp_par
+Table default.q11_sum_tmp_par stats: [numFiles=1, numRows=1, totalSize=203, rawDataSize=1]
+OK
+Time taken: 10.314 seconds
+Warning: Map Join MAPJOIN[12][bigTable=q11_part_tmp_par] in task 'Map 1' is a cross product
+Query ID = leonidas_20150821212132_b32de6f7-b3d2-4e6d-8391-06f548c9157f
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440181020771_0021)
+
+Map 1: 0(+1)/3	Map 3: 0(+1)/1	Reducer 2: 0/1	
+Map 1: 0(+2)/3	Map 3: 1/1	Reducer 2: 0/1	
+Map 1: 0(+3)/3	Map 3: 1/1	Reducer 2: 0/1	
+Map 1: 0(+3)/3	Map 3: 1/1	Reducer 2: 0/1	
+Map 1: 1(+2)/3	Map 3: 1/1	Reducer 2: 0/1	
+Map 1: 2(+1)/3	Map 3: 1/1	Reducer 2: 0(+1)/1	
+Map 1: 2(+1)/3	Map 3: 1/1	Reducer 2: 0(+1)/1	
+Map 1: 2(+1)/3	Map 3: 1/1	Reducer 2: 0(+1)/1	
+Map 1: 3/3	Map 3: 1/1	Reducer 2: 0(+1)/1	
+Map 1: 3/3	Map 3: 1/1	Reducer 2: 1/1	
+Loading data to table default.q11_important_stock_par
+Table default.q11_important_stock_par stats: [numFiles=1, numRows=94348, totalSize=1132505, rawDataSize=188696]
+OK
+Time taken: 15.302 seconds

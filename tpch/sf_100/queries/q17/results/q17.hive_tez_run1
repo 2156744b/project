@@ -1,0 +1,782 @@
+set hive.execution.engine=tez; -- the query
+insert into table lineitem_tmp
+select 
+  l_partkey as t_partkey, 0.2 * avg(l_quantity) as t_avg_quantity
+from 
+  lineitem
+group by l_partkey;
+
+insert into table q17_small_quantity_order_revenue
+select
+  sum(l_extendedprice) / 7.0 as avg_yearly
+from
+  (select l_quantity, l_extendedprice, t_avg_quantity from
+   lineitem_tmp t join
+     (select
+        l_quantity, l_partkey, l_extendedprice
+      from
+        part p join lineitem l
+        on
+          p.p_partkey = l.l_partkey
+          and p.p_brand = 'Brand#54'
+          and p.p_container = 'SM BAG'
+      ) l1 on l1.l_partkey = t.t_partkey
+   ) a
+where l_quantity < t_avg_quantity;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150821043338_c892de91-ac15-47d2-a676-994fd83db731
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440081008135_0076)
+
+Map 1: -/-	Reducer 2: 0/1009	
+Map 1: 0/28	Reducer 2: 0/1009	
+Map 1: 0/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 0(+5)/28	Reducer 2: 0/1009	
+Map 1: 1(+5)/28	Reducer 2: 0/1009	
+Map 1: 2(+4)/28	Reducer 2: 0/1009	
+Map 1: 3(+4)/28	Reducer 2: 0/1009	
+Map 1: 3(+5)/28	Reducer 2: 0/1009	
+Map 1: 4(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 5(+5)/28	Reducer 2: 0/1009	
+Map 1: 6(+5)/28	Reducer 2: 0/1009	
+Map 1: 7(+5)/28	Reducer 2: 0/1009	
+Map 1: 8(+4)/28	Reducer 2: 0/253	
+Map 1: 9(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 10(+5)/28	Reducer 2: 0/253	
+Map 1: 11(+5)/28	Reducer 2: 0/253	
+Map 1: 12(+5)/28	Reducer 2: 0/253	
+Map 1: 13(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+3)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 15(+5)/28	Reducer 2: 0/253	
+Map 1: 16(+4)/28	Reducer 2: 0/253	
+Map 1: 16(+5)/28	Reducer 2: 0/253	
+Map 1: 17(+5)/28	Reducer 2: 0/253	
+Map 1: 18(+5)/28	Reducer 2: 0/253	
+Map 1: 19(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 20(+5)/28	Reducer 2: 0/253	
+Map 1: 21(+5)/28	Reducer 2: 0/253	
+Map 1: 21(+5)/28	Reducer 2: 0/253	
+Map 1: 22(+5)/28	Reducer 2: 0/253	
+Map 1: 23(+5)/28	Reducer 2: 0/253	
+Map 1: 24(+4)/28	Reducer 2: 0(+1)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 25(+3)/28	Reducer 2: 0(+2)/253	
+Map 1: 26(+2)/28	Reducer 2: 0(+3)/253	
+Map 1: 26(+2)/28	Reducer 2: 0(+3)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 27(+1)/28	Reducer 2: 0(+4)/253	
+Map 1: 28/28	Reducer 2: 0(+5)/253	
+Map 1: 28/28	Reducer 2: 0(+5)/253	
+Map 1: 28/28	Reducer 2: 0(+5)/253	
+Map 1: 28/28	Reducer 2: 1(+4)/253	
+Map 1: 28/28	Reducer 2: 4(+3)/253	
+Map 1: 28/28	Reducer 2: 5(+5)/253	
+Map 1: 28/28	Reducer 2: 5(+5)/253	
+Map 1: 28/28	Reducer 2: 6(+5)/253	
+Map 1: 28/28	Reducer 2: 7(+4)/253	
+Map 1: 28/28	Reducer 2: 8(+5)/253	
+Map 1: 28/28	Reducer 2: 9(+4)/253	
+Map 1: 28/28	Reducer 2: 10(+5)/253	
+Map 1: 28/28	Reducer 2: 10(+5)/253	
+Map 1: 28/28	Reducer 2: 11(+4)/253	
+Map 1: 28/28	Reducer 2: 11(+5)/253	
+Map 1: 28/28	Reducer 2: 12(+5)/253	
+Map 1: 28/28	Reducer 2: 13(+4)/253	
+Map 1: 28/28	Reducer 2: 13(+5)/253	
+Map 1: 28/28	Reducer 2: 15(+5)/253	
+Map 1: 28/28	Reducer 2: 15(+5)/253	
+Map 1: 28/28	Reducer 2: 16(+5)/253	
+Map 1: 28/28	Reducer 2: 17(+5)/253	
+Map 1: 28/28	Reducer 2: 18(+5)/253	
+Map 1: 28/28	Reducer 2: 19(+4)/253	
+Map 1: 28/28	Reducer 2: 19(+5)/253	
+Map 1: 28/28	Reducer 2: 20(+5)/253	
+Map 1: 28/28	Reducer 2: 21(+5)/253	
+Map 1: 28/28	Reducer 2: 22(+5)/253	
+Map 1: 28/28	Reducer 2: 23(+5)/253	
+Map 1: 28/28	Reducer 2: 24(+5)/253	
+Map 1: 28/28	Reducer 2: 25(+5)/253	
+Map 1: 28/28	Reducer 2: 26(+4)/253	
+Map 1: 28/28	Reducer 2: 26(+5)/253	
+Map 1: 28/28	Reducer 2: 27(+4)/253	
+Map 1: 28/28	Reducer 2: 27(+5)/253	
+Map 1: 28/28	Reducer 2: 28(+5)/253	
+Map 1: 28/28	Reducer 2: 29(+4)/253	
+Map 1: 28/28	Reducer 2: 29(+5)/253	
+Map 1: 28/28	Reducer 2: 30(+5)/253	
+Map 1: 28/28	Reducer 2: 31(+4)/253	
+Map 1: 28/28	Reducer 2: 31(+5)/253	
+Map 1: 28/28	Reducer 2: 32(+4)/253	
+Map 1: 28/28	Reducer 2: 32(+5)/253	
+Map 1: 28/28	Reducer 2: 33(+5)/253	
+Map 1: 28/28	Reducer 2: 34(+4)/253	
+Map 1: 28/28	Reducer 2: 34(+5)/253	
+Map 1: 28/28	Reducer 2: 35(+5)/253	
+Map 1: 28/28	Reducer 2: 36(+5)/253	
+Map 1: 28/28	Reducer 2: 37(+5)/253	
+Map 1: 28/28	Reducer 2: 38(+5)/253	
+Map 1: 28/28	Reducer 2: 39(+4)/253	
+Map 1: 28/28	Reducer 2: 39(+5)/253	
+Map 1: 28/28	Reducer 2: 40(+4)/253	
+Map 1: 28/28	Reducer 2: 40(+5)/253	
+Map 1: 28/28	Reducer 2: 41(+5)/253	
+Map 1: 28/28	Reducer 2: 42(+4)/253	
+Map 1: 28/28	Reducer 2: 42(+5)/253	
+Map 1: 28/28	Reducer 2: 43(+5)/253	
+Map 1: 28/28	Reducer 2: 44(+5)/253	
+Map 1: 28/28	Reducer 2: 45(+4)/253	
+Map 1: 28/28	Reducer 2: 45(+5)/253	
+Map 1: 28/28	Reducer 2: 46(+5)/253	
+Map 1: 28/28	Reducer 2: 47(+5)/253	
+Map 1: 28/28	Reducer 2: 48(+4)/253	
+Map 1: 28/28	Reducer 2: 48(+5)/253	
+Map 1: 28/28	Reducer 2: 49(+4)/253	
+Map 1: 28/28	Reducer 2: 49(+5)/253	
+Map 1: 28/28	Reducer 2: 50(+5)/253	
+Map 1: 28/28	Reducer 2: 51(+4)/253	
+Map 1: 28/28	Reducer 2: 51(+5)/253	
+Map 1: 28/28	Reducer 2: 52(+5)/253	
+Map 1: 28/28	Reducer 2: 53(+4)/253	
+Map 1: 28/28	Reducer 2: 53(+5)/253	
+Map 1: 28/28	Reducer 2: 54(+4)/253	
+Map 1: 28/28	Reducer 2: 54(+5)/253	
+Map 1: 28/28	Reducer 2: 55(+5)/253	
+Map 1: 28/28	Reducer 2: 56(+5)/253	
+Map 1: 28/28	Reducer 2: 57(+5)/253	
+Map 1: 28/28	Reducer 2: 58(+4)/253	
+Map 1: 28/28	Reducer 2: 58(+5)/253	
+Map 1: 28/28	Reducer 2: 59(+5)/253	
+Map 1: 28/28	Reducer 2: 60(+5)/253	
+Map 1: 28/28	Reducer 2: 61(+4)/253	
+Map 1: 28/28	Reducer 2: 61(+5)/253	
+Map 1: 28/28	Reducer 2: 62(+5)/253	
+Map 1: 28/28	Reducer 2: 63(+4)/253	
+Map 1: 28/28	Reducer 2: 63(+5)/253	
+Map 1: 28/28	Reducer 2: 65(+4)/253	
+Map 1: 28/28	Reducer 2: 65(+5)/253	
+Map 1: 28/28	Reducer 2: 66(+4)/253	
+Map 1: 28/28	Reducer 2: 66(+5)/253	
+Map 1: 28/28	Reducer 2: 67(+5)/253	
+Map 1: 28/28	Reducer 2: 68(+4)/253	
+Map 1: 28/28	Reducer 2: 68(+5)/253	
+Map 1: 28/28	Reducer 2: 69(+5)/253	
+Map 1: 28/28	Reducer 2: 70(+4)/253	
+Map 1: 28/28	Reducer 2: 70(+5)/253	
+Map 1: 28/28	Reducer 2: 71(+4)/253	
+Map 1: 28/28	Reducer 2: 71(+5)/253	
+Map 1: 28/28	Reducer 2: 72(+4)/253	
+Map 1: 28/28	Reducer 2: 72(+5)/253	
+Map 1: 28/28	Reducer 2: 73(+5)/253	
+Map 1: 28/28	Reducer 2: 74(+5)/253	
+Map 1: 28/28	Reducer 2: 76(+5)/253	
+Map 1: 28/28	Reducer 2: 77(+4)/253	
+Map 1: 28/28	Reducer 2: 77(+5)/253	
+Map 1: 28/28	Reducer 2: 78(+4)/253	
+Map 1: 28/28	Reducer 2: 78(+5)/253	
+Map 1: 28/28	Reducer 2: 79(+4)/253	
+Map 1: 28/28	Reducer 2: 80(+4)/253	
+Map 1: 28/28	Reducer 2: 80(+5)/253	
+Map 1: 28/28	Reducer 2: 81(+4)/253	
+Map 1: 28/28	Reducer 2: 81(+5)/253	
+Map 1: 28/28	Reducer 2: 82(+4)/253	
+Map 1: 28/28	Reducer 2: 82(+5)/253	
+Map 1: 28/28	Reducer 2: 83(+4)/253	
+Map 1: 28/28	Reducer 2: 83(+5)/253	
+Map 1: 28/28	Reducer 2: 84(+4)/253	
+Map 1: 28/28	Reducer 2: 85(+4)/253	
+Map 1: 28/28	Reducer 2: 85(+5)/253	
+Map 1: 28/28	Reducer 2: 86(+5)/253	
+Map 1: 28/28	Reducer 2: 87(+5)/253	
+Map 1: 28/28	Reducer 2: 88(+5)/253	
+Map 1: 28/28	Reducer 2: 89(+5)/253	
+Map 1: 28/28	Reducer 2: 90(+4)/253	
+Map 1: 28/28	Reducer 2: 90(+5)/253	
+Map 1: 28/28	Reducer 2: 91(+5)/253	
+Map 1: 28/28	Reducer 2: 92(+5)/253	
+Map 1: 28/28	Reducer 2: 93(+5)/253	
+Map 1: 28/28	Reducer 2: 94(+5)/253	
+Map 1: 28/28	Reducer 2: 95(+5)/253	
+Map 1: 28/28	Reducer 2: 96(+5)/253	
+Map 1: 28/28	Reducer 2: 98(+3)/253	
+Map 1: 28/28	Reducer 2: 98(+5)/253	
+Map 1: 28/28	Reducer 2: 99(+4)/253	
+Map 1: 28/28	Reducer 2: 99(+5)/253	
+Map 1: 28/28	Reducer 2: 100(+4)/253	
+Map 1: 28/28	Reducer 2: 100(+5)/253	
+Map 1: 28/28	Reducer 2: 101(+5)/253	
+Map 1: 28/28	Reducer 2: 103(+5)/253	
+Map 1: 28/28	Reducer 2: 104(+4)/253	
+Map 1: 28/28	Reducer 2: 104(+5)/253	
+Map 1: 28/28	Reducer 2: 104(+4)/253	
+Map 1: 28/28	Reducer 2: 105(+5)/253	
+Map 1: 28/28	Reducer 2: 106(+4)/253	
+Map 1: 28/28	Reducer 2: 106(+5)/253	
+Map 1: 28/28	Reducer 2: 107(+4)/253	
+Map 1: 28/28	Reducer 2: 107(+5)/253	
+Map 1: 28/28	Reducer 2: 108(+4)/253	
+Map 1: 28/28	Reducer 2: 109(+5)/253	
+Map 1: 28/28	Reducer 2: 110(+5)/253	
+Map 1: 28/28	Reducer 2: 111(+5)/253	
+Map 1: 28/28	Reducer 2: 112(+5)/253	
+Map 1: 28/28	Reducer 2: 113(+4)/253	
+Map 1: 28/28	Reducer 2: 114(+4)/253	
+Map 1: 28/28	Reducer 2: 114(+5)/253	
+Map 1: 28/28	Reducer 2: 115(+4)/253	
+Map 1: 28/28	Reducer 2: 115(+5)/253	
+Map 1: 28/28	Reducer 2: 116(+4)/253	
+Map 1: 28/28	Reducer 2: 116(+5)/253	
+Map 1: 28/28	Reducer 2: 117(+4)/253	
+Map 1: 28/28	Reducer 2: 117(+5)/253	
+Map 1: 28/28	Reducer 2: 118(+4)/253	
+Map 1: 28/28	Reducer 2: 118(+5)/253	
+Map 1: 28/28	Reducer 2: 120(+4)/253	
+Map 1: 28/28	Reducer 2: 120(+5)/253	
+Map 1: 28/28	Reducer 2: 121(+5)/253	
+Map 1: 28/28	Reducer 2: 123(+3)/253	
+Map 1: 28/28	Reducer 2: 123(+5)/253	
+Map 1: 28/28	Reducer 2: 124(+4)/253	
+Map 1: 28/28	Reducer 2: 124(+5)/253	
+Map 1: 28/28	Reducer 2: 125(+5)/253	
+Map 1: 28/28	Reducer 2: 126(+4)/253	
+Map 1: 28/28	Reducer 2: 126(+5)/253	
+Map 1: 28/28	Reducer 2: 126(+4)/253	
+Map 1: 28/28	Reducer 2: 128(+5)/253	
+Map 1: 28/28	Reducer 2: 129(+4)/253	
+Map 1: 28/28	Reducer 2: 129(+5)/253	
+Map 1: 28/28	Reducer 2: 130(+4)/253	
+Map 1: 28/28	Reducer 2: 130(+5)/253	
+Map 1: 28/28	Reducer 2: 131(+5)/253	
+Map 1: 28/28	Reducer 2: 132(+4)/253	
+Map 1: 28/28	Reducer 2: 133(+5)/253	
+Map 1: 28/28	Reducer 2: 134(+5)/253	
+Map 1: 28/28	Reducer 2: 135(+5)/253	
+Map 1: 28/28	Reducer 2: 137(+5)/253	
+Map 1: 28/28	Reducer 2: 138(+5)/253	
+Map 1: 28/28	Reducer 2: 139(+4)/253	
+Map 1: 28/28	Reducer 2: 139(+5)/253	
+Map 1: 28/28	Reducer 2: 140(+4)/253	
+Map 1: 28/28	Reducer 2: 140(+5)/253	
+Map 1: 28/28	Reducer 2: 141(+4)/253	
+Map 1: 28/28	Reducer 2: 141(+5)/253	
+Map 1: 28/28	Reducer 2: 142(+4)/253	
+Map 1: 28/28	Reducer 2: 143(+4)/253	
+Map 1: 28/28	Reducer 2: 143(+5)/253	
+Map 1: 28/28	Reducer 2: 144(+4)/253	
+Map 1: 28/28	Reducer 2: 144(+5)/253	
+Map 1: 28/28	Reducer 2: 145(+4)/253	
+Map 1: 28/28	Reducer 2: 145(+5)/253	
+Map 1: 28/28	Reducer 2: 146(+4)/253	
+Map 1: 28/28	Reducer 2: 146(+5)/253	
+Map 1: 28/28	Reducer 2: 147(+5)/253	
+Map 1: 28/28	Reducer 2: 148(+4)/253	
+Map 1: 28/28	Reducer 2: 149(+4)/253	
+Map 1: 28/28	Reducer 2: 149(+5)/253	
+Map 1: 28/28	Reducer 2: 150(+5)/253	
+Map 1: 28/28	Reducer 2: 151(+4)/253	
+Map 1: 28/28	Reducer 2: 151(+5)/253	
+Map 1: 28/28	Reducer 2: 152(+5)/253	
+Map 1: 28/28	Reducer 2: 154(+3)/253	
+Map 1: 28/28	Reducer 2: 154(+5)/253	
+Map 1: 28/28	Reducer 2: 155(+5)/253	
+Map 1: 28/28	Reducer 2: 156(+5)/253	
+Map 1: 28/28	Reducer 2: 157(+4)/253	
+Map 1: 28/28	Reducer 2: 157(+5)/253	
+Map 1: 28/28	Reducer 2: 159(+4)/253	
+Map 1: 28/28	Reducer 2: 159(+5)/253	
+Map 1: 28/28	Reducer 2: 160(+4)/253	
+Map 1: 28/28	Reducer 2: 160(+5)/253	
+Map 1: 28/28	Reducer 2: 161(+5)/253	
+Map 1: 28/28	Reducer 2: 162(+4)/253	
+Map 1: 28/28	Reducer 2: 162(+5)/253	
+Map 1: 28/28	Reducer 2: 163(+4)/253	
+Map 1: 28/28	Reducer 2: 164(+4)/253	
+Map 1: 28/28	Reducer 2: 164(+5)/253	
+Map 1: 28/28	Reducer 2: 165(+4)/253	
+Map 1: 28/28	Reducer 2: 165(+5)/253	
+Map 1: 28/28	Reducer 2: 166(+5)/253	
+Map 1: 28/28	Reducer 2: 167(+5)/253	
+Map 1: 28/28	Reducer 2: 168(+5)/253	
+Map 1: 28/28	Reducer 2: 169(+5)/253	
+Map 1: 28/28	Reducer 2: 170(+4)/253	
+Map 1: 28/28	Reducer 2: 170(+5)/253	
+Map 1: 28/28	Reducer 2: 171(+4)/253	
+Map 1: 28/28	Reducer 2: 171(+5)/253	
+Map 1: 28/28	Reducer 2: 173(+4)/253	
+Map 1: 28/28	Reducer 2: 173(+5)/253	
+Map 1: 28/28	Reducer 2: 174(+4)/253	
+Map 1: 28/28	Reducer 2: 174(+5)/253	
+Map 1: 28/28	Reducer 2: 175(+5)/253	
+Map 1: 28/28	Reducer 2: 176(+4)/253	
+Map 1: 28/28	Reducer 2: 177(+5)/253	
+Map 1: 28/28	Reducer 2: 178(+5)/253	
+Map 1: 28/28	Reducer 2: 179(+4)/253	
+Map 1: 28/28	Reducer 2: 179(+5)/253	
+Map 1: 28/28	Reducer 2: 180(+5)/253	
+Map 1: 28/28	Reducer 2: 181(+5)/253	
+Map 1: 28/28	Reducer 2: 182(+4)/253	
+Map 1: 28/28	Reducer 2: 183(+5)/253	
+Map 1: 28/28	Reducer 2: 184(+5)/253	
+Map 1: 28/28	Reducer 2: 185(+4)/253	
+Map 1: 28/28	Reducer 2: 185(+5)/253	
+Map 1: 28/28	Reducer 2: 186(+4)/253	
+Map 1: 28/28	Reducer 2: 186(+5)/253	
+Map 1: 28/28	Reducer 2: 187(+4)/253	
+Map 1: 28/28	Reducer 2: 187(+5)/253	
+Map 1: 28/28	Reducer 2: 188(+5)/253	
+Map 1: 28/28	Reducer 2: 189(+5)/253	
+Map 1: 28/28	Reducer 2: 190(+5)/253	
+Map 1: 28/28	Reducer 2: 191(+4)/253	
+Map 1: 28/28	Reducer 2: 191(+5)/253	
+Map 1: 28/28	Reducer 2: 192(+5)/253	
+Map 1: 28/28	Reducer 2: 193(+5)/253	
+Map 1: 28/28	Reducer 2: 194(+5)/253	
+Map 1: 28/28	Reducer 2: 195(+4)/253	
+Map 1: 28/28	Reducer 2: 195(+5)/253	
+Map 1: 28/28	Reducer 2: 196(+5)/253	
+Map 1: 28/28	Reducer 2: 197(+4)/253	
+Map 1: 28/28	Reducer 2: 197(+5)/253	
+Map 1: 28/28	Reducer 2: 198(+5)/253	
+Map 1: 28/28	Reducer 2: 199(+4)/253	
+Map 1: 28/28	Reducer 2: 200(+5)/253	
+Map 1: 28/28	Reducer 2: 201(+4)/253	
+Map 1: 28/28	Reducer 2: 201(+5)/253	
+Map 1: 28/28	Reducer 2: 202(+4)/253	
+Map 1: 28/28	Reducer 2: 202(+5)/253	
+Map 1: 28/28	Reducer 2: 203(+5)/253	
+Map 1: 28/28	Reducer 2: 204(+4)/253	
+Map 1: 28/28	Reducer 2: 204(+5)/253	
+Map 1: 28/28	Reducer 2: 205(+5)/253	
+Map 1: 28/28	Reducer 2: 206(+4)/253	
+Map 1: 28/28	Reducer 2: 206(+5)/253	
+Map 1: 28/28	Reducer 2: 207(+5)/253	
+Map 1: 28/28	Reducer 2: 208(+5)/253	
+Map 1: 28/28	Reducer 2: 209(+5)/253	
+Map 1: 28/28	Reducer 2: 210(+5)/253	
+Map 1: 28/28	Reducer 2: 211(+5)/253	
+Map 1: 28/28	Reducer 2: 212(+5)/253	
+Map 1: 28/28	Reducer 2: 213(+5)/253	
+Map 1: 28/28	Reducer 2: 214(+5)/253	
+Map 1: 28/28	Reducer 2: 215(+5)/253	
+Map 1: 28/28	Reducer 2: 216(+5)/253	
+Map 1: 28/28	Reducer 2: 217(+5)/253	
+Map 1: 28/28	Reducer 2: 218(+5)/253	
+Map 1: 28/28	Reducer 2: 219(+5)/253	
+Map 1: 28/28	Reducer 2: 220(+4)/253	
+Map 1: 28/28	Reducer 2: 220(+5)/253	
+Map 1: 28/28	Reducer 2: 221(+5)/253	
+Map 1: 28/28	Reducer 2: 222(+4)/253	
+Map 1: 28/28	Reducer 2: 222(+5)/253	
+Map 1: 28/28	Reducer 2: 223(+4)/253	
+Map 1: 28/28	Reducer 2: 223(+5)/253	
+Map 1: 28/28	Reducer 2: 224(+4)/253	
+Map 1: 28/28	Reducer 2: 224(+5)/253	
+Map 1: 28/28	Reducer 2: 226(+3)/253	
+Map 1: 28/28	Reducer 2: 226(+5)/253	
+Map 1: 28/28	Reducer 2: 227(+5)/253	
+Map 1: 28/28	Reducer 2: 228(+5)/253	
+Map 1: 28/28	Reducer 2: 229(+4)/253	
+Map 1: 28/28	Reducer 2: 231(+4)/253	
+Map 1: 28/28	Reducer 2: 231(+5)/253	
+Map 1: 28/28	Reducer 2: 232(+5)/253	
+Map 1: 28/28	Reducer 2: 233(+5)/253	
+Map 1: 28/28	Reducer 2: 234(+4)/253	
+Map 1: 28/28	Reducer 2: 234(+5)/253	
+Map 1: 28/28	Reducer 2: 235(+5)/253	
+Map 1: 28/28	Reducer 2: 236(+5)/253	
+Map 1: 28/28	Reducer 2: 237(+5)/253	
+Map 1: 28/28	Reducer 2: 238(+4)/253	
+Map 1: 28/28	Reducer 2: 238(+5)/253	
+Map 1: 28/28	Reducer 2: 239(+5)/253	
+Map 1: 28/28	Reducer 2: 241(+3)/253	
+Map 1: 28/28	Reducer 2: 241(+5)/253	
+Map 1: 28/28	Reducer 2: 242(+4)/253	
+Map 1: 28/28	Reducer 2: 242(+5)/253	
+Map 1: 28/28	Reducer 2: 243(+5)/253	
+Map 1: 28/28	Reducer 2: 244(+5)/253	
+Map 1: 28/28	Reducer 2: 245(+4)/253	
+Map 1: 28/28	Reducer 2: 246(+5)/253	
+Map 1: 28/28	Reducer 2: 247(+4)/253	
+Map 1: 28/28	Reducer 2: 247(+5)/253	
+Map 1: 28/28	Reducer 2: 248(+5)/253	
+Map 1: 28/28	Reducer 2: 249(+4)/253	
+Map 1: 28/28	Reducer 2: 250(+3)/253	
+Map 1: 28/28	Reducer 2: 251(+2)/253	
+Map 1: 28/28	Reducer 2: 252(+1)/253	
+Map 1: 28/28	Reducer 2: 253/253	
+Loading data to table default.lineitem_tmp
+Table default.lineitem_tmp stats: [numFiles=253, numRows=20000000, totalSize=143602204, rawDataSize=240000000]
+OK
+Time taken: 779.728 seconds
+Query ID = leonidas_20150821044638_3f94ebc9-08b9-44ef-81f4-062e098d5e01
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440081008135_0076)
+
+Map 1: -/-	Map 2: -/-	Map 4: -/-	Reducer 3: 0/1	
+Map 1: 0(+2)/9	Map 2: -/-	Map 4: 0(+1)/9	Reducer 3: 0/1	
+Map 1: 0(+3)/9	Map 2: -/-	Map 4: 0(+1)/9	Reducer 3: 0/1	
+Map 1: 0(+3)/9	Map 2: 0/28	Map 4: 0(+1)/9	Reducer 3: 0/1	
+Map 1: 2(+1)/9	Map 2: 0/28	Map 4: 0(+1)/9	Reducer 3: 0/1	
+Map 1: 3(+2)/9	Map 2: 0/28	Map 4: 0(+2)/9	Reducer 3: 0/1	
+Map 1: 5(+1)/9	Map 2: 0/28	Map 4: 0(+2)/9	Reducer 3: 0/1	
+Map 1: 5(+1)/9	Map 2: 0/28	Map 4: 0(+3)/9	Reducer 3: 0/1	
+Map 1: 6(+0)/9	Map 2: 0/28	Map 4: 0(+3)/9	Reducer 3: 0/1	
+Map 1: 6(+1)/9	Map 2: 0/28	Map 4: 0(+3)/9	Reducer 3: 0/1	
+Map 1: 7(+0)/9	Map 2: 0/28	Map 4: 0(+4)/9	Reducer 3: 0/1	
+Map 1: 7(+0)/9	Map 2: 0/28	Map 4: 0(+5)/9	Reducer 3: 0/1	
+Map 1: 7(+0)/9	Map 2: 0/28	Map 4: 1(+4)/9	Reducer 3: 0/1	
+Map 1: 7(+1)/9	Map 2: 0/28	Map 4: 1(+4)/9	Reducer 3: 0/1	
+Map 1: 8(+0)/9	Map 2: 0/28	Map 4: 2(+3)/9	Reducer 3: 0/1	
+Map 1: 8(+1)/9	Map 2: 0/28	Map 4: 2(+4)/9	Reducer 3: 0/1	
+Map 1: 8(+1)/9	Map 2: 0/28	Map 4: 3(+4)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0/28	Map 4: 3(+5)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0/28	Map 4: 4(+4)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0/28	Map 4: 4(+5)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0/28	Map 4: 5(+4)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+1)/28	Map 4: 5(+4)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+2)/28	Map 4: 6(+3)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+2)/28	Map 4: 7(+2)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+3)/28	Map 4: 7(+2)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+3)/28	Map 4: 8(+1)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+4)/28	Map 4: 8(+1)/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 0(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 1(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 1(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 2(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 3(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 3(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 4(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 4(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 5(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 6(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 6(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 6(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 7(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 8(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 9(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 9(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 9(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 10(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 11(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 11(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 12(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 12(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 12(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 12(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 13(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 14(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 14(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 14(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 15(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 16(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 17(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 17(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 17(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 17(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 17(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 18(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 18(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 19(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 19(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 19(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 20(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+3)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 22(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 23(+4)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 23(+5)/28	Map 4: 9/9	Reducer 3: 0/1	
+Map 1: 9/9	Map 2: 24(+4)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 24(+4)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 24(+4)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 25(+3)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 26(+2)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 27(+1)/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 28/28	Map 4: 9/9	Reducer 3: 0(+1)/1	
+Map 1: 9/9	Map 2: 28/28	Map 4: 9/9	Reducer 3: 1/1	
+Loading data to table default.q17_small_quantity_order_revenue
+Table default.q17_small_quantity_order_revenue stats: [numFiles=1, numRows=1, totalSize=257, rawDataSize=8]
+OK
+Time taken: 428.956 seconds

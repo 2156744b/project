@@ -1,0 +1,135 @@
+set hive.execution.engine=tez; -- the query
+insert into table q11_part_tmp
+select ps_partkey, sum(ps_supplycost * ps_availqty) as part_value
+from nation n
+    join supplier s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+    join partsupp ps on ps.ps_suppkey = s.s_suppkey
+group by ps_partkey;
+
+insert into table q11_important_stock
+select ps_partkey, part_value as value
+from (select sum(part_value) as total_value from q11_part_tmp) sum_tmp
+    join q11_part_tmp
+where part_value > total_value * 0.000001
+order by value desc; 
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150822003434_e480832c-c7b8-494b-9821-bde52fa6f097
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440181020771_0052)
+
+Map 1: -/-	Map 2: -/-	Map 3: -/-	Reducer 4: 0/298	
+Map 1: 0/1	Map 2: 0/8	Map 3: -/-	Reducer 4: 0/298	
+Map 1: 0/1	Map 2: 0/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 0/1	Map 2: 0(+4)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 0(+1)/1	Map 2: 0(+4)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 0(+1)/1	Map 2: 0(+4)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 0(+4)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 0(+5)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 4(+1)/8	Map 3: 0/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 4(+4)/8	Map 3: 0(+1)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 6(+2)/8	Map 3: 0(+2)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 0(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 1(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 4(+4)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 5(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 6(+4)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 6(+5)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 7(+4)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 9(+4)/13	Reducer 4: 0/298	
+Map 1: 1/1	Map 2: 8/8	Map 3: 10(+3)/13	Reducer 4: 0(+2)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 10(+3)/13	Reducer 4: 0(+2)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 10(+3)/13	Reducer 4: 0(+2)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 10(+3)/13	Reducer 4: 0(+2)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 11(+2)/13	Reducer 4: 0(+3)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 12(+1)/13	Reducer 4: 0(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 0(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 1(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 3(+3)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 5(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 5(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 6(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 7(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 8(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 8(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 9(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 9(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 10(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 10(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 11(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 11(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 12(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 13(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 14(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 16(+3)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 16(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 17(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 19(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 19(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 20(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 20(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 22(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 24(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 24(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 25(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 25(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 28(+3)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 29(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 29(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 30(+5)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 31(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 34(+4)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 35(+3)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 36(+2)/38	
+Map 1: 1/1	Map 2: 8/8	Map 3: 13/13	Reducer 4: 38/38	
+Loading data to table default.q11_part_tmp
+Table default.q11_part_tmp stats: [numFiles=38, numRows=3009556, totalSize=26356934, rawDataSize=36114672]
+OK
+Time taken: 62.453 seconds
+Warning: Map Join MAPJOIN[15][bigTable=q11_part_tmp] in task 'Map 3' is a cross product
+Query ID = leonidas_20150822003536_a22e9d94-23a8-464e-8b1d-30389914d7ba
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440181020771_0052)
+
+Map 1: 0/3	Map 3: -/-	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+2)/3	Map 3: 0/3	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+3)/3	Map 3: 0/3	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+3)/3	Map 3: 0(+2)/3	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+3)/3	Map 3: 0(+2)/3	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 0(+3)/3	Map 3: 0(+2)/3	Reducer 2: 0/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 0(+2)/3	Reducer 2: 0(+1)/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 0(+2)/3	Reducer 2: 1/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 0(+3)/3	Reducer 2: 1/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 2(+1)/3	Reducer 2: 1/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 2(+1)/3	Reducer 2: 1/1	Reducer 4: 0(+1)/1	
+Map 1: 3/3	Map 3: 3/3	Reducer 2: 1/1	Reducer 4: 0(+1)/1	
+Map 1: 3/3	Map 3: 3/3	Reducer 2: 1/1	Reducer 4: 0/1	
+Map 1: 3/3	Map 3: 3/3	Reducer 2: 1/1	Reducer 4: 1/1	
+Loading data to table default.q11_important_stock
+Table default.q11_important_stock stats: [numFiles=1, numRows=94348, totalSize=915212, rawDataSize=1132176]
+OK
+Time taken: 16.0 seconds

@@ -1,0 +1,420 @@
+ -- the query
+insert into table lineitem_tmp
+select 
+  l_partkey as t_partkey, 0.2 * avg(l_quantity) as t_avg_quantity
+from 
+  lineitem
+group by l_partkey;
+
+insert into table q17_small_quantity_order_revenue
+select
+  sum(l_extendedprice) / 7.0 as avg_yearly
+from
+  (select l_quantity, l_extendedprice, t_avg_quantity from
+   lineitem_tmp t join
+     (select
+        l_quantity, l_partkey, l_extendedprice
+      from
+        part p join lineitem l
+        on
+          p.p_partkey = l.l_partkey
+          and p.p_brand = 'Brand#54'
+          and p.p_container = 'SM BAG'
+      ) l1 on l1.l_partkey = t.t_partkey
+   ) a
+where l_quantity < t_avg_quantity;
+15/08/21 07:42:46 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/21 07:42:46 INFO metastore: Connected to metastore.
+15/08/21 07:42:46 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+15/08/21 07:42:46 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:46 INFO SparkContext: Running Spark version 1.4.1
+15/08/21 07:42:46 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:47 INFO SecurityManager: Changing view acls to: hive
+15/08/21 07:42:47 INFO SecurityManager: Changing modify acls to: hive
+15/08/21 07:42:47 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(hive); users with modify permissions: Set(hive)
+15/08/21 07:42:47 INFO Slf4jLogger: Slf4jLogger started
+15/08/21 07:42:47 INFO Remoting: Starting remoting
+15/08/21 07:42:48 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@192.168.122.56:55820]
+15/08/21 07:42:48 INFO Utils: Successfully started service 'sparkDriver' on port 55820.
+15/08/21 07:42:48 INFO SparkEnv: Registering MapOutputTracker
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 INFO SparkEnv: Registering BlockManagerMaster
+15/08/21 07:42:48 INFO DiskBlockManager: Created local directory at /tmp/spark-4dfecf2a-cc02-42f9-bd72-d2780bfd39b2/blockmgr-2c1bb686-d944-45fb-9d7a-9f40e20ad79a
+15/08/21 07:42:48 INFO MemoryStore: MemoryStore started with capacity 20.7 GB
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 INFO HttpFileServer: HTTP File server directory is /tmp/spark-4dfecf2a-cc02-42f9-bd72-d2780bfd39b2/httpd-4fa2c2f9-c105-4bc9-a510-1a497de7bc77
+15/08/21 07:42:48 INFO HttpServer: Starting HTTP Server
+15/08/21 07:42:48 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/21 07:42:48 INFO AbstractConnector: Started SocketConnector@0.0.0.0:40679
+15/08/21 07:42:48 INFO Utils: Successfully started service 'HTTP file server' on port 40679.
+15/08/21 07:42:48 INFO SparkEnv: Registering OutputCommitCoordinator
+15/08/21 07:42:48 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/21 07:42:48 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+15/08/21 07:42:48 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/08/21 07:42:48 INFO SparkUI: Started SparkUI at http://192.168.122.56:4040
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:48 INFO Executor: Starting executor ID driver on host localhost
+15/08/21 07:42:48 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 56937.
+15/08/21 07:42:48 INFO NettyBlockTransferService: Server created on 56937
+15/08/21 07:42:48 INFO BlockManagerMaster: Trying to register BlockManager
+15/08/21 07:42:48 INFO BlockManagerMasterEndpoint: Registering block manager localhost:56937 with 20.7 GB RAM, BlockManagerId(driver, localhost, 56937)
+15/08/21 07:42:48 INFO BlockManagerMaster: Registered BlockManager
+15/08/21 07:42:49 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/21 07:42:49 INFO HiveContext: Initializing execution hive, version 0.13.1
+15/08/21 07:42:49 INFO HiveContext: Initializing HiveMetastoreConnection version 0.13.1 using Spark classes.
+15/08/21 07:42:50 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/08/21 07:42:50 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/21 07:42:50 INFO metastore: Connected to metastore.
+15/08/21 07:42:50 WARN DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+15/08/21 07:42:51 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+SET spark.sql.hive.version=0.13.1
+SET spark.sql.hive.version=0.13.1
+15/08/21 07:42:51 INFO ParseDriver: Parsing command: -- the query
+insert into table lineitem_tmp
+select 
+  l_partkey as t_partkey, 0.2 * avg(l_quantity) as t_avg_quantity
+from 
+  lineitem
+group by l_partkey
+15/08/21 07:42:51 INFO ParseDriver: Parse Completed
+15/08/21 07:42:53 INFO MemoryStore: ensureFreeSpace(592856) called with curMem=0, maxMem=22226833244
+15/08/21 07:42:53 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 579.0 KB, free 20.7 GB)
+15/08/21 07:42:53 INFO MemoryStore: ensureFreeSpace(39550) called with curMem=592856, maxMem=22226833244
+15/08/21 07:42:53 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 38.6 KB, free 20.7 GB)
+15/08/21 07:42:53 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:56937 (size: 38.6 KB, free: 20.7 GB)
+15/08/21 07:42:53 INFO SparkContext: Created broadcast 0 from processCmd at CliDriver.java:423
+15/08/21 07:42:54 INFO Exchange: Using SparkSqlSerializer2.
+15/08/21 07:42:54 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+15/08/21 07:42:54 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+15/08/21 07:42:54 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+15/08/21 07:42:54 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+15/08/21 07:42:54 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+15/08/21 07:42:54 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/21 07:42:55 INFO PerfLogger: <PERFLOG method=OrcGetSplits from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/21 07:42:55 INFO deprecation: mapred.input.dir is deprecated. Instead, use mapreduce.input.fileinputformat.inputdir
+15/08/21 07:42:55 INFO OrcInputFormat: FooterCacheHitRatio: 0/85
+15/08/21 07:42:55 INFO PerfLogger: </PERFLOG method=OrcGetSplits start=1440142975020 end=1440142975970 duration=950 from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/21 07:42:55 INFO DAGScheduler: Registering RDD 4 (processCmd at CliDriver.java:423)
+15/08/21 07:42:56 INFO DAGScheduler: Got job 0 (processCmd at CliDriver.java:423) with 200 output partitions (allowLocal=false)
+15/08/21 07:42:56 INFO DAGScheduler: Final stage: ResultStage 1(processCmd at CliDriver.java:423)
+15/08/21 07:42:56 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+15/08/21 07:42:56 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+15/08/21 07:42:56 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[4] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/21 07:42:56 INFO MemoryStore: ensureFreeSpace(14736) called with curMem=632406, maxMem=22226833244
+15/08/21 07:42:56 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 14.4 KB, free 20.7 GB)
+15/08/21 07:42:56 INFO MemoryStore: ensureFreeSpace(7110) called with curMem=647142, maxMem=22226833244
+15/08/21 07:42:56 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 6.9 KB, free 20.7 GB)
+15/08/21 07:42:56 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:56937 (size: 6.9 KB, free: 20.7 GB)
+15/08/21 07:42:56 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:874
+15/08/21 07:42:56 INFO DAGScheduler: Submitting 169 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[4] at processCmd at CliDriver.java:423)
+15/08/21 07:42:56 INFO TaskSchedulerImpl: Adding task set 0.0 with 169 tasks
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, localhost, ANY, 1454 bytes)
+15/08/21 07:42:56 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+15/08/21 07:42:56 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+15/08/21 07:42:56 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+15/08/21 07:42:56 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+15/08/21 07:42:56 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+15/08/21 07:42:56 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+15/08/21 07:42:56 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+15/08/21 07:42:56 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+15/08/21 07:42:56 INFO Executor: Running task 8.0 in stage 0.0 (TID 8)
+15/08/21 07:42:56 INFO Executor: Running task 9.0 in stage 0.0 (TID 9)
+15/08/21 07:42:56 INFO Executor: Running task 10.0 in stage 0.0 (TID 10)
+15/08/21 07:42:56 INFO Executor: Running task 11.0 in stage 0.0 (TID 11)
+15/08/21 07:42:56 INFO Executor: Running task 12.0 in stage 0.0 (TID 12)
+15/08/21 07:42:56 INFO Executor: Running task 14.0 in stage 0.0 (TID 14)
+15/08/21 07:42:56 INFO Executor: Running task 13.0 in stage 0.0 (TID 13)
+15/08/21 07:42:56 INFO Executor: Running task 15.0 in stage 0.0 (TID 15)
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0:3+277234847
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0:277200535+2689885
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0:277237733+2687754
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0:3+277218361
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000084_0:0+195050794
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0:3+277562846
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0:277234850+2690779
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0:3+277200532
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0:277562849+4384086
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0:3+277237730
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0:277218364+2697861
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0:3+277249657
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0:277213937+2698933
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0:277241671+2684631
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0:3+277241668
+15/08/21 07:42:56 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0:3+277213934
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277241671, length: 2684631}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277241668}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277237733, length: 2687754}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277213937, length: 2698933}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277218361}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277237730}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277213934}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277218364, length: 2697861}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277234850, length: 2690779}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277200532}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277234847}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000084_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 0, length: 195050794}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277200535, length: 2689885}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277249657}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277562849, length: 4384086}
+15/08/21 07:42:56 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277562846}
+15/08/21 07:42:59 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO Executor: Finished task 8.0 in stage 0.0 (TID 8). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO Executor: Finished task 10.0 in stage 0.0 (TID 10). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO Executor: Finished task 14.0 in stage 0.0 (TID 14). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 2125 bytes result sent to driver
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 16.0 in stage 0.0 (TID 16)
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 17.0 in stage 0.0 (TID 17)
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 18.0 in stage 0.0 (TID 18)
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 19.0 in stage 0.0 (TID 19)
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 20.0 in stage 0.0 (TID 20)
+15/08/21 07:42:59 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, localhost, ANY, 1454 bytes)
+15/08/21 07:42:59 INFO Executor: Running task 21.0 in stage 0.0 (TID 21)
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0:3+277159582
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0:277249660+2689962
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0:277235872+2687530
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277249660, length: 2689962}
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 3484 ms on localhost (1/169)
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 3487 ms on localhost (2/169)
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277159582}
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 3495 ms on localhost (3/169)
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0:3+277235869
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 3488 ms on localhost (4/169)
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277235872, length: 2687530}
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 3492 ms on localhost (5/169)
+15/08/21 07:42:59 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 3502 ms on localhost (6/169)
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0:3+277215123
+15/08/21 07:42:59 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0:277159585+3516456
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277215123}
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277235869}
+15/08/21 07:42:59 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277159585, length: 3516456}
+15/08/21 07:43:00 INFO Executor: Finished task 12.0 in stage 0.0 (TID 12). 2125 bytes result sent to driver
+15/08/21 07:43:00 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22, localhost, ANY, 1454 bytes)
+15/08/21 07:43:00 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 3855 ms on localhost (7/169)
+15/08/21 07:43:00 INFO Executor: Running task 22.0 in stage 0.0 (TID 22)
+15/08/21 07:43:00 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0:277215126+581920
+15/08/21 07:43:00 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277215126, length: 581920}
+15/08/21 07:43:00 INFO Executor: Finished task 22.0 in stage 0.0 (TID 22). 2125 bytes result sent to driver
+15/08/21 07:43:00 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23, localhost, ANY, 1454 bytes)
+15/08/21 07:43:00 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 663 ms on localhost (8/169)
+15/08/21 07:43:00 INFO Executor: Running task 23.0 in stage 0.0 (TID 23)
+15/08/21 07:43:00 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0:3+277226564
+15/08/21 07:43:00 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277226564}
+15/08/21 07:43:01 INFO Executor: Finished task 20.0 in stage 0.0 (TID 20). 2125 bytes result sent to driver
+15/08/21 07:43:01 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24, localhost, ANY, 1454 bytes)
+15/08/21 07:43:01 INFO Executor: Running task 24.0 in stage 0.0 (TID 24)
+15/08/21 07:43:01 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 2010 ms on localhost (9/169)
+15/08/21 07:43:01 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0:277226567+2684195
+15/08/21 07:43:01 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277226567, length: 2684195}
+15/08/21 07:43:02 INFO Executor: Finished task 16.0 in stage 0.0 (TID 16). 2125 bytes result sent to driver
+15/08/21 07:43:02 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25, localhost, ANY, 1454 bytes)
+15/08/21 07:43:02 INFO Executor: Running task 25.0 in stage 0.0 (TID 25)
+15/08/21 07:43:02 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 2885 ms on localhost (10/169)
+15/08/21 07:43:02 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0:3+277204262
+15/08/21 07:43:02 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277204262}
+15/08/21 07:43:02 INFO Executor: Finished task 19.0 in stage 0.0 (TID 19). 2125 bytes result sent to driver
+15/08/21 07:43:02 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26, localhost, ANY, 1454 bytes)
+15/08/21 07:43:02 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 2938 ms on localhost (11/169)
+15/08/21 07:43:02 INFO Executor: Running task 26.0 in stage 0.0 (TID 26)
+15/08/21 07:43:02 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0:277204265+599202
+15/08/21 07:43:02 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277204265, length: 599202}
+15/08/21 07:43:06 INFO Executor: Finished task 26.0 in stage 0.0 (TID 26). 2125 bytes result sent to driver
+15/08/21 07:43:06 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27, localhost, ANY, 1454 bytes)
+15/08/21 07:43:06 INFO Executor: Running task 27.0 in stage 0.0 (TID 27)
+15/08/21 07:43:06 INFO TaskSetManager: Finished task 26.0 in stage 0.0 (TID 26) in 4067 ms on localhost (12/169)
+15/08/21 07:43:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0:3+277234428
+15/08/21 07:43:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277234428}
+15/08/21 07:43:07 INFO Executor: Finished task 24.0 in stage 0.0 (TID 24). 2125 bytes result sent to driver
+15/08/21 07:43:07 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28, localhost, ANY, 1454 bytes)
+15/08/21 07:43:07 INFO Executor: Running task 28.0 in stage 0.0 (TID 28)
+15/08/21 07:43:07 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 5421 ms on localhost (13/169)
+15/08/21 07:43:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0:277234431+581656
+15/08/21 07:43:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 277234431, length: 581656}
+15/08/21 07:43:07 INFO Executor: Finished task 28.0 in stage 0.0 (TID 28). 2125 bytes result sent to driver
+15/08/21 07:43:07 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29, localhost, ANY, 1454 bytes)
+15/08/21 07:43:07 INFO Executor: Running task 29.0 in stage 0.0 (TID 29)
+15/08/21 07:43:07 INFO TaskSetManager: Finished task 28.0 in stage 0.0 (TID 28) in 471 ms on localhost (14/169)
+15/08/21 07:43:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0:3+277210413
+15/08/21 07:43:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0 with {include: [true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false], offset: 3, length: 277210413}
+15/08/21 07:49:08 WARN HeartbeatReceiver: Removing executor driver with no recent heartbeats: 121647 ms exceeds timeout 120000 ms
+15/08/21 07:49:08 ERROR TaskSchedulerImpl: Lost executor driver on localhost: Executor heartbeat timed out after 121647 ms
+15/08/21 07:49:08 INFO TaskSetManager: Re-queueing tasks for driver from TaskSet 0.0
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 8), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 26), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 2), so marking it as still running
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 23.0 in stage 0.0 (TID 23, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 20), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 14), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 4), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 22), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 16), so marking it as still running
+15/08/21 07:49:08 ERROR TaskSetManager: Task 23 in stage 0.0 failed 1 times; aborting job
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 10), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 28), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 19), so marking it as still running
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 12), so marking it as still running
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 17.0 in stage 0.0 (TID 17, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 11.0 in stage 0.0 (TID 11, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 6), so marking it as still running
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 29.0 in stage 0.0 (TID 29, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 INFO DAGScheduler: Resubmitted ShuffleMapTask(0, 24), so marking it as still running
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 5.0 in stage 0.0 (TID 5, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 13.0 in stage 0.0 (TID 13, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 7.0 in stage 0.0 (TID 7, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 25.0 in stage 0.0 (TID 25, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 1.0 in stage 0.0 (TID 1, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 27.0 in stage 0.0 (TID 27, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 9.0 in stage 0.0 (TID 9, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 18.0 in stage 0.0 (TID 18, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 3.0 in stage 0.0 (TID 3, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 21.0 in stage 0.0 (TID 21, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 15.0 in stage 0.0 (TID 15, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 WARN TaskSetManager: Lost task 0.0 in stage 0.0 (TID 0, localhost): ExecutorLostFailure (executor driver lost)
+15/08/21 07:49:08 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/08/21 07:49:08 INFO TaskSchedulerImpl: Cancelling stage 0
+15/08/21 07:49:08 INFO DAGScheduler: ShuffleMapStage 0 (processCmd at CliDriver.java:423) failed in 372.421 s
+15/08/21 07:49:08 INFO DAGScheduler: Job 0 failed: processCmd at CliDriver.java:423, took 373.874060 s
+15/08/21 07:49:08 ERROR SparkSQLDriver: Failed in [ -- the query
+insert into table lineitem_tmp
+select 
+  l_partkey as t_partkey, 0.2 * avg(l_quantity) as t_avg_quantity
+from 
+  lineitem
+group by l_partkey]
+org.apache.spark.SparkException: Job aborted due to stage failure: Task 23 in stage 0.0 failed 1 times, most recent failure: Lost task 23.0 in stage 0.0 (TID 23, localhost): ExecutorLostFailure (executor driver lost)
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1273)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1264)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1263)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1263)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1457)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1418)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+15/08/21 07:49:08 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@610d67cc
+org.apache.spark.SparkException: Job aborted due to stage failure: Task 23 in stage 0.0 failed 1 times, most recent failure: Lost task 23.0 in stage 0.0 (TID 23, localhost): ExecutorLostFailure (executor driver lost)
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1273)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1264)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1263)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1263)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1457)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1418)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+
+15/08/21 07:49:08 ERROR CliDriver: org.apache.spark.SparkException: Job aborted due to stage failure: Task 23 in stage 0.0 failed 1 times, most recent failure: Lost task 23.0 in stage 0.0 (TID 23, localhost): ExecutorLostFailure (executor driver lost)
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1273)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1264)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1263)
+	at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:47)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1263)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:730)
+	at scala.Option.foreach(Option.scala:236)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:730)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1457)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1418)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)
+
+15/08/21 07:49:08 INFO DAGScheduler: Executor lost: driver (epoch 0)
+15/08/21 07:49:08 INFO StatsReportListener: task runtime:(count: 14, mean: 3089.857143, stdev: 1251.312332, max: 5421.000000, min: 471.000000)
+15/08/21 07:49:08 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/21 07:49:08 INFO StatsReportListener: 	471.0 ms	471.0 ms	663.0 ms	2.9 s	3.5 s	3.5 s	4.1 s	5.4 s	5.4 s
+15/08/21 07:49:08 INFO BlockManagerMasterEndpoint: Trying to remove executor driver from BlockManagerMaster.
+15/08/21 07:49:08 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(driver, localhost, 56937)
+15/08/21 07:49:08 INFO BlockManagerMaster: Removed driver successfully in removeExecutor
+15/08/21 07:49:08 INFO StatsReportListener: shuffle bytes written:(count: 14, mean: 784562.285714, stdev: 334440.752055, max: 1401508.000000, min: 204989.000000)
+15/08/21 07:49:08 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/21 07:49:08 INFO StatsReportListener: 	200.2 KB	200.2 KB	200.5 KB	847.0 KB	849.4 KB	851.9 KB	1102.7 KB	1368.7 KB	1368.7 KB
+15/08/21 07:49:08 WARN Executor: Told to re-register on heartbeat
+15/08/21 07:49:08 INFO DAGScheduler: Host added was in lost list earlier: localhost
+15/08/21 07:49:08 INFO BlockManager: BlockManager re-registering with master
+15/08/21 07:49:08 INFO BlockManagerMaster: Trying to register BlockManager
+15/08/21 07:49:08 INFO StatsReportListener: task result size:(count: 14, mean: 2125.000000, stdev: 0.000000, max: 2125.000000, min: 2125.000000)
+15/08/21 07:49:08 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/21 07:49:08 INFO StatsReportListener: 	2.1 KB	2.1 KB	2.1 KB	2.1 KB	2.1 KB	2.1 KB	2.1 KB	2.1 KB	2.1 KB
+15/08/21 07:49:08 INFO BlockManagerMasterEndpoint: Registering block manager localhost:56937 with 20.7 GB RAM, BlockManagerId(driver, localhost, 56937)
+15/08/21 07:49:08 INFO BlockManagerMaster: Registered BlockManager
+15/08/21 07:49:08 INFO BlockManager: Reporting 4 blocks to the master.
+15/08/21 07:49:08 INFO StatsReportListener: executor (non-fetch) time pct: (count: 14, mean: 94.870888, stdev: 2.383629, max: 99.059214, min: 91.101056)
+15/08/21 07:49:08 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/21 07:49:08 INFO StatsReportListener: 	91 %	91 %	92 %	93 %	94 %	97 %	98 %	99 %	99 %
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+15/08/21 07:49:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:56937 (size: 38.6 KB, free: 20.7 GB)
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/08/21 07:49:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:56937 (size: 6.9 KB, free: 20.7 GB)
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/08/21 07:49:08 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/08/21 07:49:08 INFO StatsReportListener: other time pct: (count: 14, mean: 5.129112, stdev: 2.383629, max: 8.898944, min: 0.940786)
+15/08/21 07:49:08 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/21 07:49:08 INFO StatsReportListener: 	 1 %	 1 %	 2 %	 3 %	 6 %	 7 %	 8 %	 9 %	 9 %
+15/08/21 07:49:08 INFO SparkUI: Stopped Spark web UI at http://192.168.122.56:4040
+15/08/21 07:49:09 INFO DAGScheduler: Stopping DAGScheduler
+15/08/21 07:49:09 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+15/08/21 07:49:09 INFO Utils: path = /tmp/spark-4dfecf2a-cc02-42f9-bd72-d2780bfd39b2/blockmgr-2c1bb686-d944-45fb-9d7a-9f40e20ad79a, already present as root for deletion.
+15/08/21 07:49:09 INFO MemoryStore: MemoryStore cleared
+15/08/21 07:49:09 INFO BlockManager: BlockManager stopped
+15/08/21 07:49:09 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/08/21 07:49:09 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+15/08/21 07:49:09 INFO SparkContext: Successfully stopped SparkContext
+15/08/21 07:49:09 INFO Utils: Shutdown hook called
+15/08/21 07:49:09 INFO Utils: Deleting directory /tmp/spark-689c5015-3a93-4567-9ab4-08566ecf0d81
+15/08/21 07:49:09 INFO Utils: Deleting directory /tmp/spark-8218a727-fee9-4db2-9f3f-56843408589e
+15/08/21 07:49:09 INFO Utils: Deleting directory /tmp/spark-4dfecf2a-cc02-42f9-bd72-d2780bfd39b2
