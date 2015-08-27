@@ -1,0 +1,360 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+OK
+Time taken: 4.682 seconds
+OK
+Time taken: 0.721 seconds
+OK
+Time taken: 0.674 seconds
+OK
+Time taken: 0.702 seconds
+OK
+Time taken: 0.612 seconds
+OK
+Time taken: 0.493 seconds
+OK
+Time taken: 0.636 seconds
+OK
+Time taken: 0.52 seconds
+OK
+Time taken: 0.678 seconds
+OK
+Time taken: 0.333 seconds
+OK
+Time taken: 0.35 seconds
+OK
+Time taken: 0.321 seconds
+OK
+Time taken: 0.321 seconds
+OK
+Time taken: 0.439 seconds
+OK
+Time taken: 0.309 seconds
+OK
+Time taken: 0.314 seconds
+Query ID = leonidas_20150826165946_64117ee7-b302-4310-b6e9-60de75881d3d
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: -/-	
+Map 1: 0/8	
+Map 1: 0/8	
+Map 1: 0(+3)/8	
+Map 1: 0(+4)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 1(+4)/8	
+Map 1: 2(+3)/8	
+Map 1: 2(+4)/8	
+Map 1: 3(+4)/8	
+Map 1: 3(+5)/8	
+Map 1: 4(+4)/8	
+Map 1: 5(+3)/8	
+Map 1: 5(+3)/8	
+Map 1: 5(+3)/8	
+Map 1: 5(+3)/8	
+Map 1: 6(+2)/8	
+Map 1: 7(+1)/8	
+Map 1: 8/8	
+Loading data to table default.lineitem
+Table default.lineitem stats: [numFiles=8, numRows=6001215, totalSize=223296720, rawDataSize=4761210559]
+OK
+Time taken: 40.214 seconds
+Query ID = leonidas_20150826170026_a36ac172-7ad6-4046-a75a-1f9b84fee5c3
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+3)/8	
+Map 1: 2(+2)/8	
+Map 1: 2(+3)/8	
+Map 1: 3(+2)/8	
+Map 1: 3(+3)/8	
+Map 1: 3(+4)/8	
+Map 1: 3(+5)/8	
+Map 1: 5(+3)/8	
+Map 1: 6(+2)/8	
+Map 1: 6(+2)/8	
+Map 1: 8/8	
+Loading data to table default.orders
+Table default.orders stats: [numFiles=8, numRows=1500000, totalSize=48877665, rawDataSize=783000000]
+OK
+Time taken: 12.253 seconds
+Query ID = leonidas_20150826170038_90cbefb4-7925-4664-9dad-4835aa77dba7
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/2	
+Map 1: 1(+1)/2	
+Map 1: 2/2	
+Loading data to table default.customer
+Table default.customer stats: [numFiles=2, numRows=150000, totalSize=11424885, rawDataSize=86100000]
+OK
+Time taken: 4.177 seconds
+Query ID = leonidas_20150826170043_9bc42a24-a5b4-4126-be55-f5ab73701b88
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.nation
+Table default.nation stats: [numFiles=1, numRows=25, totalSize=2235, rawDataSize=6425]
+OK
+Time taken: 3.399 seconds
+Query ID = leonidas_20150826170046_333a0281-6ffb-43ce-b2ce-21553f34c6e3
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/2	
+Map 1: 1(+1)/2	
+Map 1: 2/2	
+Loading data to table default.part
+Table default.part stats: [numFiles=2, numRows=200000, totalSize=5276906, rawDataSize=122800000]
+OK
+Time taken: 3.501 seconds
+Query ID = leonidas_20150826170050_7f4d0b05-4046-428a-9d11-cbf370ec6a6c
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.supplier
+Table default.supplier stats: [numFiles=1, numRows=10000, totalSize=726661, rawDataSize=4710000]
+OK
+Time taken: 2.598 seconds
+Query ID = leonidas_20150826170052_9f33ecef-cbc6-4a8f-8fcc-8ff24cdff4b6
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/7	
+Map 1: 0(+3)/7	
+Map 1: 2(+2)/7	
+Map 1: 3(+2)/7	
+Map 1: 4(+1)/7	
+Map 1: 5(+2)/7	
+Map 1: 5(+2)/7	
+Map 1: 7/7	
+Loading data to table default.partsupp
+Table default.partsupp stats: [numFiles=7, numRows=800000, totalSize=41100962, rawDataSize=181600000]
+OK
+Time taken: 10.965 seconds
+Query ID = leonidas_20150826170103_bb881d58-ba30-4911-9d91-e35028132ccb
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.region
+Table default.region stats: [numFiles=1, numRows=5, totalSize=1179, rawDataSize=1220]
+OK
+Time taken: 2.791 seconds
+OK
+Time taken: 0.667 seconds
+OK
+Time taken: 0.573 seconds
+OK
+Time taken: 0.598 seconds
+OK
+Time taken: 0.651 seconds
+OK
+Time taken: 0.63 seconds
+OK
+Time taken: 0.668 seconds
+OK
+Time taken: 0.605 seconds
+OK
+Time taken: 0.628 seconds
+OK
+Time taken: 0.33 seconds
+OK
+Time taken: 0.418 seconds
+OK
+Time taken: 0.348 seconds
+OK
+Time taken: 0.317 seconds
+OK
+Time taken: 0.306 seconds
+OK
+Time taken: 0.304 seconds
+OK
+Time taken: 0.222 seconds
+OK
+Time taken: 0.267 seconds
+Query ID = leonidas_20150826170114_824679b5-4303-4b09-8f8c-d7354450e982
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/8	
+Map 1: 0(+3)/8	
+Map 1: 0(+4)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 1(+4)/8	
+Map 1: 1(+3)/8	
+Map 1: 2(+3)/8	
+Map 1: 2(+4)/8	
+Map 1: 2(+5)/8	
+Map 1: 2(+5)/8	
+Map 1: 3(+4)/8	
+Map 1: 3(+5)/8	
+Map 1: 4(+4)/8	
+Map 1: 5(+3)/8	
+Map 1: 5(+3)/8	
+Map 1: 6(+2)/8	
+Map 1: 7(+1)/8	
+Map 1: 7(+1)/8	
+Map 1: 8/8	
+Loading data to table default.lineitem_par
+Table default.lineitem_par stats: [numFiles=8, numRows=6001215, totalSize=211026928, rawDataSize=96019440]
+OK
+Time taken: 33.736 seconds
+Query ID = leonidas_20150826170147_178a9b08-1d62-48d4-bc9a-9be8faca36df
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+5)/8	
+Map 1: 0(+5)/8	
+Map 1: 2(+3)/8	
+Map 1: 2(+5)/8	
+Map 1: 3(+4)/8	
+Map 1: 5(+2)/8	
+Map 1: 5(+3)/8	
+Map 1: 8/8	
+Loading data to table default.orders_par
+Table default.orders_par stats: [numFiles=8, numRows=1500000, totalSize=56525899, rawDataSize=13500000]
+OK
+Time taken: 9.928 seconds
+Query ID = leonidas_20150826170157_1a0d5276-f66f-4175-b532-d2833bf4b142
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/2	
+Map 1: 1(+1)/2	
+Map 1: 2/2	
+Loading data to table default.customer_par
+Table default.customer_par stats: [numFiles=2, numRows=150000, totalSize=12660326, rawDataSize=1200000]
+OK
+Time taken: 4.333 seconds
+Query ID = leonidas_20150826170202_4cb8968c-2d8e-4add-83f0-02970c7fe097
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.nation_par
+Table default.nation_par stats: [numFiles=1, numRows=25, totalSize=2330, rawDataSize=100]
+OK
+Time taken: 3.028 seconds
+Query ID = leonidas_20150826170205_866c9088-262e-4e1c-abbf-d2cb569b1161
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/2	
+Map 1: 1(+1)/2	
+Map 1: 2/2	
+Loading data to table default.part_par
+Table default.part_par stats: [numFiles=2, numRows=200000, totalSize=6457128, rawDataSize=1800000]
+OK
+Time taken: 4.772 seconds
+Query ID = leonidas_20150826170210_7a0e528e-2991-4576-853e-ce6035543461
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.supplier_par
+Table default.supplier_par stats: [numFiles=1, numRows=10000, totalSize=809789, rawDataSize=70000]
+OK
+Time taken: 3.428 seconds
+Query ID = leonidas_20150826170213_ee4194e2-b15f-425a-8304-dcb847599915
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+2)/7	
+Map 1: 0(+4)/7	
+Map 1: 1(+3)/7	
+Map 1: 2(+4)/7	
+Map 1: 3(+3)/7	
+Map 1: 4(+2)/7	
+Map 1: 4(+3)/7	
+Map 1: 5(+2)/7	
+Map 1: 6(+1)/7	
+Map 1: 6(+1)/7	
+Map 1: 7/7	
+Loading data to table default.partsupp_par
+Table default.partsupp_par stats: [numFiles=7, numRows=800000, totalSize=44874214, rawDataSize=4000000]
+OK
+Time taken: 9.188 seconds
+Query ID = leonidas_20150826170222_6c0aca8c-71be-4b2b-befe-c58445337b21
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0001)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.region_par
+Table default.region_par stats: [numFiles=1, numRows=5, totalSize=1037, rawDataSize=15]
+OK
+Time taken: 2.441 seconds

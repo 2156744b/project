@@ -1,0 +1,8 @@
+ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        56.088        79.898        68.765     68.250333     11.913341
+Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        62.186        72.831        70.854     68.623667     5.6621371

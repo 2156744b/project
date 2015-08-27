@@ -1,0 +1,10 @@
+HDFS
+109331
+ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3       33516.5       33516.5       33516.5       33516.5             0
+Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3       33036.7       33036.7       33036.7       33036.7             0

@@ -1,0 +1,1387 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+OK
+Time taken: 2.063 seconds
+OK
+Time taken: 0.479 seconds
+OK
+Time taken: 0.486 seconds
+OK
+Time taken: 0.504 seconds
+OK
+Time taken: 0.817 seconds
+OK
+Time taken: 0.808 seconds
+OK
+Time taken: 0.491 seconds
+OK
+Time taken: 0.501 seconds
+OK
+Time taken: 0.378 seconds
+OK
+Time taken: 0.282 seconds
+OK
+Time taken: 0.288 seconds
+OK
+Time taken: 0.284 seconds
+OK
+Time taken: 0.288 seconds
+OK
+Time taken: 0.26 seconds
+OK
+Time taken: 0.258 seconds
+OK
+Time taken: 0.269 seconds
+Query ID = leonidas_20150826210031_75922eae-e285-4332-87d1-dd05fd7ea07d
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: -/-	
+Map 1: 0/42	
+Map 1: 0/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 1(+5)/42	
+Map 1: 2(+4)/42	
+Map 1: 2(+5)/42	
+Map 1: 3(+5)/42	
+Map 1: 5(+4)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 7(+4)/42	
+Map 1: 7(+5)/42	
+Map 1: 8(+5)/42	
+Map 1: 9(+4)/42	
+Map 1: 9(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 13(+5)/42	
+Map 1: 14(+4)/42	
+Map 1: 14(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 16(+4)/42	
+Map 1: 16(+5)/42	
+Map 1: 17(+4)/42	
+Map 1: 17(+5)/42	
+Map 1: 18(+5)/42	
+Map 1: 19(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 21(+4)/42	
+Map 1: 21(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 23(+5)/42	
+Map 1: 24(+4)/42	
+Map 1: 24(+5)/42	
+Map 1: 25(+4)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 27(+4)/42	
+Map 1: 28(+5)/42	
+Map 1: 29(+4)/42	
+Map 1: 29(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 32(+4)/42	
+Map 1: 32(+5)/42	
+Map 1: 33(+4)/42	
+Map 1: 33(+5)/42	
+Map 1: 34(+4)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 38(+4)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 42/42	
+Loading data to table default.lineitem
+Table default.lineitem stats: [numFiles=42, numRows=300005811, totalSize=11780925404, rawDataSize=238069027802]
+OK
+Time taken: 1023.779 seconds
+Query ID = leonidas_20150826211735_f1478165-44ae-4817-a2ed-89f41712f937
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+2)/10	
+Map 1: 0(+2)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 2(+5)/10	
+Map 1: 2(+5)/10	
+Map 1: 2(+5)/10	
+Map 1: 3(+4)/10	
+Map 1: 3(+5)/10	
+Map 1: 4(+5)/10	
+Map 1: 5(+4)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 7(+3)/10	
+Map 1: 8(+2)/10	
+Map 1: 8(+2)/10	
+Map 1: 9(+1)/10	
+Map 1: 10/10	
+Loading data to table default.orders
+Table default.orders stats: [numFiles=10, numRows=75000000, totalSize=2736231269, rawDataSize=39150000000]
+OK
+Time taken: 169.882 seconds
+Query ID = leonidas_20150826212025_d7ec1602-a1df-43ff-bcd7-b5aa8bc28373
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+4)/10	
+Map 1: 0(+4)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 1(+4)/10	
+Map 1: 3(+4)/10	
+Map 1: 3(+5)/10	
+Map 1: 4(+5)/10	
+Map 1: 4(+5)/10	
+Map 1: 4(+5)/10	
+Map 1: 5(+4)/10	
+Map 1: 5(+5)/10	
+Map 1: 6(+4)/10	
+Map 1: 7(+3)/10	
+Map 1: 8(+2)/10	
+Map 1: 9(+1)/10	
+Map 1: 10/10	
+Loading data to table default.customer
+Table default.customer stats: [numFiles=10, numRows=7500000, totalSize=570439746, rawDataSize=4304181570]
+OK
+Time taken: 25.756 seconds
+Query ID = leonidas_20150826212051_1bf4de85-1f31-48d4-9133-267120760f3c
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.nation
+Table default.nation stats: [numFiles=1, numRows=25, totalSize=2235, rawDataSize=6425]
+OK
+Time taken: 2.364 seconds
+Query ID = leonidas_20150826212053_73802365-1d68-402e-87ea-3a5747b3dc07
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 1(+4)/9	
+Map 1: 2(+4)/9	
+Map 1: 3(+5)/9	
+Map 1: 5(+3)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 7(+2)/9	
+Map 1: 8(+1)/9	
+Map 1: 9/9	
+Loading data to table default.part
+Table default.part stats: [numFiles=9, numRows=10000000, totalSize=263527662, rawDataSize=6140000000]
+OK
+Time taken: 28.646 seconds
+Query ID = leonidas_20150826212122_f1b19a9c-abb8-4ec4-a0b2-ce856ed1ec84
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+4)/5	
+Map 1: 2(+2)/5	
+Map 1: 4(+0)/5	
+Map 1: 4(+1)/5	
+Map 1: 4(+1)/5	
+Map 1: 5/5	
+Loading data to table default.supplier
+Table default.supplier stats: [numFiles=5, numRows=500000, totalSize=36217182, rawDataSize=235851953]
+OK
+Time taken: 8.316 seconds
+Query ID = leonidas_20150826212130_932e601b-94c1-44a5-abc3-0882f0d33f66
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 1(+4)/9	
+Map 1: 1(+5)/9	
+Map 1: 2(+4)/9	
+Map 1: 2(+5)/9	
+Map 1: 3(+4)/9	
+Map 1: 3(+5)/9	
+Map 1: 4(+4)/9	
+Map 1: 4(+5)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 6(+3)/9	
+Map 1: 7(+2)/9	
+Map 1: 8(+1)/9	
+Map 1: 8(+1)/9	
+Map 1: 9/9	
+Loading data to table default.partsupp
+Table default.partsupp stats: [numFiles=9, numRows=40000000, totalSize=2095149450, rawDataSize=9080000000]
+OK
+Time taken: 105.024 seconds
+Query ID = leonidas_20150826212315_c25d7409-fe29-45fa-949e-553f4b339f59
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.region
+Table default.region stats: [numFiles=1, numRows=5, totalSize=1179, rawDataSize=1220]
+OK
+Time taken: 2.316 seconds
+OK
+Time taken: 0.54 seconds
+OK
+Time taken: 0.407 seconds
+OK
+Time taken: 0.491 seconds
+OK
+Time taken: 0.523 seconds
+OK
+Time taken: 0.504 seconds
+OK
+Time taken: 0.488 seconds
+OK
+Time taken: 0.492 seconds
+OK
+Time taken: 0.499 seconds
+OK
+Time taken: 0.259 seconds
+OK
+Time taken: 0.271 seconds
+OK
+Time taken: 0.248 seconds
+OK
+Time taken: 0.256 seconds
+OK
+Time taken: 0.262 seconds
+OK
+Time taken: 0.273 seconds
+OK
+Time taken: 0.287 seconds
+OK
+Time taken: 0.279 seconds
+Query ID = leonidas_20150826212324_c204d02f-02dc-430c-8fb7-b3e21e879839
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+2)/42	
+Map 1: 0(+2)/42	
+Map 1: 0(+4)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 0(+5)/42	
+Map 1: 1(+5)/42	
+Map 1: 1(+5)/42	
+Map 1: 2(+4)/42	
+Map 1: 2(+5)/42	
+Map 1: 2(+5)/42	
+Map 1: 2(+5)/42	
+Map 1: 2(+5)/42	
+Map 1: 2(+5)/42	
+Map 1: 3(+5)/42	
+Map 1: 4(+4)/42	
+Map 1: 4(+5)/42	
+Map 1: 4(+5)/42	
+Map 1: 5(+4)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 5(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 6(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 7(+5)/42	
+Map 1: 8(+5)/42	
+Map 1: 9(+5)/42	
+Map 1: 9(+5)/42	
+Map 1: 9(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 10(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 11(+5)/42	
+Map 1: 12(+4)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 12(+5)/42	
+Map 1: 13(+4)/42	
+Map 1: 13(+5)/42	
+Map 1: 14(+5)/42	
+Map 1: 14(+5)/42	
+Map 1: 14(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 15(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 16(+5)/42	
+Map 1: 17(+4)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 17(+5)/42	
+Map 1: 18(+4)/42	
+Map 1: 18(+5)/42	
+Map 1: 19(+4)/42	
+Map 1: 19(+5)/42	
+Map 1: 19(+5)/42	
+Map 1: 19(+5)/42	
+Map 1: 19(+5)/42	
+Map 1: 19(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 20(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 21(+5)/42	
+Map 1: 22(+4)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 22(+5)/42	
+Map 1: 23(+4)/42	
+Map 1: 23(+5)/42	
+Map 1: 24(+4)/42	
+Map 1: 24(+5)/42	
+Map 1: 24(+5)/42	
+Map 1: 24(+5)/42	
+Map 1: 24(+5)/42	
+Map 1: 24(+5)/42	
+Map 1: 24(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 25(+5)/42	
+Map 1: 26(+4)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 26(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 27(+5)/42	
+Map 1: 28(+5)/42	
+Map 1: 29(+4)/42	
+Map 1: 29(+5)/42	
+Map 1: 29(+5)/42	
+Map 1: 29(+5)/42	
+Map 1: 29(+5)/42	
+Map 1: 29(+5)/42	
+Map 1: 29(+5)/42	
+Map 1: 30(+4)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 30(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 31(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 32(+5)/42	
+Map 1: 33(+4)/42	
+Map 1: 33(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 34(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 35(+5)/42	
+Map 1: 36(+4)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 36(+5)/42	
+Map 1: 37(+4)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 37(+5)/42	
+Map 1: 38(+4)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 39(+3)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 40(+2)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 41(+1)/42	
+Map 1: 42/42	
+Loading data to table default.lineitem_par
+Table default.lineitem_par stats: [numFiles=42, numRows=300005811, totalSize=10915949000, rawDataSize=4800092976]
+OK
+Time taken: 1179.014 seconds
+Query ID = leonidas_20150826214303_d7dd4923-2fb6-4b2d-80f4-cbe127e8c79b
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/10	
+Map 1: 0(+4)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 1(+4)/10	
+Map 1: 1(+5)/10	
+Map 1: 1(+5)/10	
+Map 1: 2(+5)/10	
+Map 1: 3(+4)/10	
+Map 1: 3(+5)/10	
+Map 1: 4(+4)/10	
+Map 1: 4(+5)/10	
+Map 1: 5(+4)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+4)/10	
+Map 1: 7(+3)/10	
+Map 1: 7(+3)/10	
+Map 1: 8(+2)/10	
+Map 1: 9(+1)/10	
+Map 1: 9(+1)/10	
+Map 1: 9(+1)/10	
+Map 1: 10/10	
+Loading data to table default.orders_par
+Table default.orders_par stats: [numFiles=10, numRows=75000000, totalSize=2894986915, rawDataSize=675000000]
+OK
+Time taken: 238.618 seconds
+Query ID = leonidas_20150826214701_fbebe48f-7893-4694-b432-877dbd8773a9
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+3)/10	
+Map 1: 0(+3)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 0(+5)/10	
+Map 1: 1(+4)/10	
+Map 1: 2(+5)/10	
+Map 1: 3(+4)/10	
+Map 1: 3(+5)/10	
+Map 1: 3(+5)/10	
+Map 1: 3(+5)/10	
+Map 1: 4(+4)/10	
+Map 1: 4(+5)/10	
+Map 1: 5(+4)/10	
+Map 1: 5(+5)/10	
+Map 1: 5(+5)/10	
+Map 1: 6(+4)/10	
+Map 1: 6(+3)/10	
+Map 1: 8(+2)/10	
+Map 1: 9(+1)/10	
+Map 1: 9(+1)/10	
+Map 1: 9(+1)/10	
+Map 1: 10/10	
+Loading data to table default.customer_par
+Table default.customer_par stats: [numFiles=10, numRows=7500000, totalSize=632313745, rawDataSize=60000000]
+OK
+Time taken: 39.682 seconds
+Query ID = leonidas_20150826214741_b64606c0-7dd8-449e-84de-d78e38198435
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.nation_par
+Table default.nation_par stats: [numFiles=1, numRows=25, totalSize=2330, rawDataSize=100]
+OK
+Time taken: 2.258 seconds
+Query ID = leonidas_20150826214743_fa9306e5-5a33-40f1-a680-4d7735f9cf03
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+3)/9	
+Map 1: 0(+4)/9	
+Map 1: 0(+4)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 1(+5)/9	
+Map 1: 2(+5)/9	
+Map 1: 3(+4)/9	
+Map 1: 4(+4)/9	
+Map 1: 4(+5)/9	
+Map 1: 4(+5)/9	
+Map 1: 4(+5)/9	
+Map 1: 4(+5)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 6(+3)/9	
+Map 1: 7(+2)/9	
+Map 1: 8(+1)/9	
+Map 1: 9/9	
+Loading data to table default.part_par
+Table default.part_par stats: [numFiles=9, numRows=10000000, totalSize=318364796, rawDataSize=90000000]
+OK
+Time taken: 36.775 seconds
+Query ID = leonidas_20150826214820_a437f208-d67f-4ba7-b5cc-ba2fa8d2ed41
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+5)/5	
+Map 1: 1(+4)/5	
+Map 1: 2(+3)/5	
+Map 1: 3(+2)/5	
+Map 1: 4(+1)/5	
+Map 1: 5/5	
+Loading data to table default.supplier_par
+Table default.supplier_par stats: [numFiles=5, numRows=500000, totalSize=40388299, rawDataSize=3500000]
+OK
+Time taken: 5.636 seconds
+Query ID = leonidas_20150826214826_207f26a7-7477-47a4-8ef8-e8bb6f09cafe
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 0(+5)/9	
+Map 1: 1(+4)/9	
+Map 1: 1(+5)/9	
+Map 1: 2(+4)/9	
+Map 1: 2(+5)/9	
+Map 1: 3(+5)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 5(+4)/9	
+Map 1: 6(+3)/9	
+Map 1: 7(+2)/9	
+Map 1: 8(+1)/9	
+Map 1: 9/9	
+Loading data to table default.partsupp_par
+Table default.partsupp_par stats: [numFiles=9, numRows=40000000, totalSize=2179723475, rawDataSize=200000000]
+OK
+Time taken: 124.8 seconds
+Query ID = leonidas_20150826215031_ecde446f-9eab-4f95-9764-67d15550868d
+Total jobs = 1
+Launching Job 1 out of 1
+
+
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0007)
+
+Map 1: 0(+1)/1	
+Map 1: 1/1	
+Loading data to table default.region_par
+Table default.region_par stats: [numFiles=1, numRows=5, totalSize=1037, rawDataSize=15]
+OK
+Time taken: 3.978 seconds
