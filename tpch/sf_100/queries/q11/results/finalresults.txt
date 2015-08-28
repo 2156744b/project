@@ -50,6 +50,9 @@ x <stdin>
     N           Min           Max        Median           Avg        Stddev
 x   3        89.028        94.481         92.34     91.949667     2.7473755
 Spark ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3       4265.39       4278.74       4268.26     4270.7967     7.0272067
 Hive Parquet
 Hive Tez Parquet
 x <stdin>
