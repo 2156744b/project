@@ -1,3 +1,5 @@
+version 3
+
 Hive ORC
 Hive Tez ORC
 x <stdin>
@@ -20,3 +22,40 @@ Pig ORC
 x <stdin>
     N           Min           Max        Median           Avg        Stddev
 x   3       290.911       310.788       299.395     300.36467     9.9739146
+version 2
+
+Hive ORC
+Hive Tez ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        75.924        78.453        76.086        76.821     1.4156726
+Spark ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        86.751        93.886        88.253         89.63      3.761536
+Hive Parquet
+Hive Tez Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3       116.882       117.691        116.98     117.18433    0.44151368
+Spark Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        82.732        86.661        83.266     84.219667     2.1310491
+version 1
+
+Hive ORC
+Hive Tez ORC
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        89.028        94.481         92.34     91.949667     2.7473755
+Spark ORC
+Hive Parquet
+Hive Tez Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3        102.77       116.625       103.714       107.703     7.7410818
+Spark Parquet
+x <stdin>
+    N           Min           Max        Median           Avg        Stddev
+x   3         54.01        69.181        63.418        62.203     7.6581316

@@ -44,31 +44,31 @@ for fn in *.sql; do
         echo "$script" > $result
         $HIVE -e "$script" 2>&1 | tee -a $result
 
-	$HIVE -f needed_tables.sql.exclude
+#	$HIVE -f needed_tables.sql.exclude
 
-        echo "*****************************************"
-        echo "* Now running run$run $f on SPARK"
-        echo "*****************************************"
+#        echo "*****************************************"
+#        echo "* Now running run$run $f on SPARK"
+#        echo "*****************************************"
 
-        params=""
-        result=$RESULTS/${f}.spark_${suffix}run$run
-        script="$params $content"
-        echo "$script" > $result
-        sudo -u hive $SPARK --driver-memory 40g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
+#        params=""
+#        result=$RESULTS/${f}.spark_${suffix}run$run
+#        script="$params $content"
+#        echo "$script" > $result
+#        sudo -u hive $SPARK --driver-memory 40g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
 
 done
 
-for f in *.pig; do
+#for f in *.pig; do
 	
-        echo "*****************************************"
-        echo "* Now running run$run $f on PIG"
-        echo "*****************************************"
+#        echo "*****************************************"
+#        echo "* Now running run$run $f on PIG"
+#        echo "*****************************************"
 
-	result=$RESULTS/${f}_${suffix}run$run
-        cat $f > $result
-        $PIG -Dpig.additional.jars=/home/leonidas/snappy-0.4.jar -x tez -f $f 2>&1 | tee -a $result
+#	result=$RESULTS/${f}_${suffix}run$run
+#        cat $f > $result
+#        $PIG -Dpig.additional.jars=/home/leonidas/snappy-0.4.jar -x tez -f $f 2>&1 | tee -a $result
 
-done
+#done
 
 done
 

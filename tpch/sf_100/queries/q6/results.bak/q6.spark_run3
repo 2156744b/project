@@ -1,0 +1,747 @@
+ -- the query
+insert into table q6_forecast_revenue_change 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24;
+15/08/19 23:02:42 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/19 23:02:42 INFO metastore: Connected to metastore.
+15/08/19 23:02:43 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+15/08/19 23:02:43 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:43 INFO SparkContext: Running Spark version 1.4.1
+15/08/19 23:02:43 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:43 INFO SecurityManager: Changing view acls to: hive
+15/08/19 23:02:43 INFO SecurityManager: Changing modify acls to: hive
+15/08/19 23:02:43 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(hive); users with modify permissions: Set(hive)
+15/08/19 23:02:44 INFO Slf4jLogger: Slf4jLogger started
+15/08/19 23:02:44 INFO Remoting: Starting remoting
+15/08/19 23:02:44 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriver@192.168.122.56:57557]
+15/08/19 23:02:44 INFO Utils: Successfully started service 'sparkDriver' on port 57557.
+15/08/19 23:02:44 INFO SparkEnv: Registering MapOutputTracker
+15/08/19 23:02:44 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:44 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:44 INFO SparkEnv: Registering BlockManagerMaster
+15/08/19 23:02:44 INFO DiskBlockManager: Created local directory at /tmp/spark-419a25fa-713e-442e-add3-20f6c7e357ef/blockmgr-bf34b048-7805-4d5b-96b4-23028e5a6469
+15/08/19 23:02:44 INFO MemoryStore: MemoryStore started with capacity 20.7 GB
+15/08/19 23:02:44 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:44 INFO HttpFileServer: HTTP File server directory is /tmp/spark-419a25fa-713e-442e-add3-20f6c7e357ef/httpd-301655d7-9c4f-4830-9eef-f92123dc6740
+15/08/19 23:02:44 INFO HttpServer: Starting HTTP Server
+15/08/19 23:02:44 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/19 23:02:44 INFO AbstractConnector: Started SocketConnector@0.0.0.0:49879
+15/08/19 23:02:44 INFO Utils: Successfully started service 'HTTP file server' on port 49879.
+15/08/19 23:02:44 INFO SparkEnv: Registering OutputCommitCoordinator
+15/08/19 23:02:45 INFO Server: jetty-8.y.z-SNAPSHOT
+15/08/19 23:02:45 INFO AbstractConnector: Started SelectChannelConnector@0.0.0.0:4040
+15/08/19 23:02:45 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+15/08/19 23:02:45 INFO SparkUI: Started SparkUI at http://192.168.122.56:4040
+15/08/19 23:02:45 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:45 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:45 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:45 INFO Executor: Starting executor ID driver on host localhost
+15/08/19 23:02:45 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 37076.
+15/08/19 23:02:45 INFO NettyBlockTransferService: Server created on 37076
+15/08/19 23:02:45 INFO BlockManagerMaster: Trying to register BlockManager
+15/08/19 23:02:45 INFO BlockManagerMasterEndpoint: Registering block manager localhost:37076 with 20.7 GB RAM, BlockManagerId(driver, localhost, 37076)
+15/08/19 23:02:45 INFO BlockManagerMaster: Registered BlockManager
+15/08/19 23:02:45 WARN SparkConf: The configuration key 'spark.yarn.applicationMaster.waitTries' has been deprecated as of Spark 1.3 and and may be removed in the future. Please use the new key 'spark.yarn.am.waitTime' instead.
+15/08/19 23:02:45 INFO HiveContext: Initializing execution hive, version 0.13.1
+15/08/19 23:02:45 INFO HiveContext: Initializing HiveMetastoreConnection version 0.13.1 using Spark classes.
+15/08/19 23:02:47 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+15/08/19 23:02:47 INFO metastore: Trying to connect to metastore with URI thrift://sandbox.hortonworks.com:9083
+15/08/19 23:02:47 INFO metastore: Connected to metastore.
+15/08/19 23:02:47 WARN DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+15/08/19 23:02:47 INFO SessionState: No Tez session required at this point. hive.execution.engine=mr.
+SET spark.sql.hive.version=0.13.1
+SET spark.sql.hive.version=0.13.1
+15/08/19 23:02:48 INFO ParseDriver: Parsing command: -- the query
+insert into table q6_forecast_revenue_change 
+select sum(l_extendedprice*l_discount) as revenue
+from lineitem
+where 
+  l_shipdate >= '1993-01-01'
+  and l_shipdate < '1994-01-01'
+  and l_discount >= 0.03 and l_discount <= 0.05
+  and l_quantity < 24
+15/08/19 23:02:48 INFO ParseDriver: Parse Completed
+15/08/19 23:02:49 INFO MemoryStore: ensureFreeSpace(592920) called with curMem=0, maxMem=22226833244
+15/08/19 23:02:49 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 579.0 KB, free 20.7 GB)
+15/08/19 23:02:50 INFO MemoryStore: ensureFreeSpace(39369) called with curMem=592920, maxMem=22226833244
+15/08/19 23:02:50 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 38.4 KB, free 20.7 GB)
+15/08/19 23:02:50 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:37076 (size: 38.4 KB, free: 20.7 GB)
+15/08/19 23:02:50 INFO SparkContext: Created broadcast 0 from processCmd at CliDriver.java:423
+15/08/19 23:02:50 INFO Exchange: Using SparkSqlSerializer2.
+15/08/19 23:02:50 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+15/08/19 23:02:50 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+15/08/19 23:02:50 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+15/08/19 23:02:50 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+15/08/19 23:02:50 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+15/08/19 23:02:51 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/19 23:02:51 INFO PerfLogger: <PERFLOG method=OrcGetSplits from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/19 23:02:51 INFO deprecation: mapred.input.dir is deprecated. Instead, use mapreduce.input.fileinputformat.inputdir
+15/08/19 23:02:52 INFO OrcInputFormat: FooterCacheHitRatio: 0/42
+15/08/19 23:02:52 INFO PerfLogger: </PERFLOG method=OrcGetSplits start=1440025371324 end=1440025372138 duration=814 from=org.apache.hadoop.hive.ql.io.orc.ReaderImpl>
+15/08/19 23:02:52 INFO DAGScheduler: Registering RDD 6 (processCmd at CliDriver.java:423)
+15/08/19 23:02:52 INFO DAGScheduler: Got job 0 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/19 23:02:52 INFO DAGScheduler: Final stage: ResultStage 1(processCmd at CliDriver.java:423)
+15/08/19 23:02:52 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+15/08/19 23:02:52 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+15/08/19 23:02:52 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[6] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/19 23:02:52 INFO MemoryStore: ensureFreeSpace(15384) called with curMem=632289, maxMem=22226833244
+15/08/19 23:02:52 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 15.0 KB, free 20.7 GB)
+15/08/19 23:02:52 INFO MemoryStore: ensureFreeSpace(7397) called with curMem=647673, maxMem=22226833244
+15/08/19 23:02:52 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 7.2 KB, free 20.7 GB)
+15/08/19 23:02:52 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on localhost:37076 (size: 7.2 KB, free: 20.7 GB)
+15/08/19 23:02:52 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:874
+15/08/19 23:02:52 INFO DAGScheduler: Submitting 84 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[6] at processCmd at CliDriver.java:423)
+15/08/19 23:02:52 INFO TaskSchedulerImpl: Adding task set 0.0 with 84 tasks
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15, localhost, ANY, 1454 bytes)
+15/08/19 23:02:52 INFO Executor: Running task 2.0 in stage 0.0 (TID 2)
+15/08/19 23:02:52 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+15/08/19 23:02:52 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+15/08/19 23:02:52 INFO Executor: Running task 5.0 in stage 0.0 (TID 5)
+15/08/19 23:02:52 INFO Executor: Running task 3.0 in stage 0.0 (TID 3)
+15/08/19 23:02:52 INFO Executor: Running task 4.0 in stage 0.0 (TID 4)
+15/08/19 23:02:52 INFO Executor: Running task 7.0 in stage 0.0 (TID 7)
+15/08/19 23:02:52 INFO Executor: Running task 6.0 in stage 0.0 (TID 6)
+15/08/19 23:02:52 INFO Executor: Running task 8.0 in stage 0.0 (TID 8)
+15/08/19 23:02:52 INFO Executor: Running task 9.0 in stage 0.0 (TID 9)
+15/08/19 23:02:52 INFO Executor: Running task 10.0 in stage 0.0 (TID 10)
+15/08/19 23:02:52 INFO Executor: Running task 11.0 in stage 0.0 (TID 11)
+15/08/19 23:02:52 INFO Executor: Running task 13.0 in stage 0.0 (TID 13)
+15/08/19 23:02:52 INFO Executor: Running task 12.0 in stage 0.0 (TID 12)
+15/08/19 23:02:52 INFO Executor: Running task 14.0 in stage 0.0 (TID 14)
+15/08/19 23:02:52 INFO Executor: Running task 15.0 in stage 0.0 (TID 15)
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0:3+277210868
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0:3+277220777
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0:3+277232880
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0:277224102+4112837
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0:277210871+4117944
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0:3+277558615
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0:3+277224099
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0:277232883+4106970
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0:3+277200092
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0:3+277155748
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0:3+277242149
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0:277200095+4109881
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0:277242152+4108936
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0:277155751+4932787
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0:277558618+5826753
+15/08/19 23:02:52 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0:277220780+4118935
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277210868}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277224102, length: 4112837}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000002_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277224099}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277558615}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000008_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277210871, length: 4117944}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277155751, length: 4932787}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000001_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277155748}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277200092}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000003_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277200095, length: 4109881}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277232880}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277242149}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000000_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277558618, length: 5826753}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277220777}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000005_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277232883, length: 4106970}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000009_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277220780, length: 4118935}
+15/08/19 23:02:52 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000006_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277242152, length: 4108936}
+15/08/19 23:02:53 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 7.0 in stage 0.0 (TID 7). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 11.0 in stage 0.0 (TID 11). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 9.0 in stage 0.0 (TID 9). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 3.0 in stage 0.0 (TID 3). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 5.0 in stage 0.0 (TID 5). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 13.0 in stage 0.0 (TID 13). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO Executor: Finished task 15.0 in stage 0.0 (TID 15). 1925 bytes result sent to driver
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 16.0 in stage 0.0 (TID 16)
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 17.0 in stage 0.0 (TID 17)
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 18.0 in stage 0.0 (TID 18)
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 19.0 in stage 0.0 (TID 19)
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 20.0 in stage 0.0 (TID 20)
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0:277234156+4116714
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 21.0 in stage 0.0 (TID 21)
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0:3+277234153
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0:3+277235379
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 22.0 in stage 0.0 (TID 22)
+15/08/19 23:02:53 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23, localhost, ANY, 1454 bytes)
+15/08/19 23:02:53 INFO Executor: Running task 23.0 in stage 0.0 (TID 23)
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277235379}
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0:277235382+4112102
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277234156, length: 4116714}
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000007_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277234153}
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 1328 ms on localhost (1/84)
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000010_0:277198941+4115135
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000004_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277235382, length: 4112102}
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 1365 ms on localhost (2/84)
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0:277219378+4008994
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 1373 ms on localhost (3/84)
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 1385 ms on localhost (4/84)
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000010_0:3+277198938
+15/08/19 23:02:53 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0:3+277219375
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000010_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277198941, length: 4115135}
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 1385 ms on localhost (5/84)
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 1383 ms on localhost (6/84)
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000010_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277198938}
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 1397 ms on localhost (7/84)
+15/08/19 23:02:53 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 1412 ms on localhost (8/84)
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277219375}
+15/08/19 23:02:53 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000013_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277219378, length: 4008994}
+15/08/19 23:02:54 INFO Executor: Finished task 22.0 in stage 0.0 (TID 22). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 24.0 in stage 0.0 (TID 24)
+15/08/19 23:02:54 INFO Executor: Finished task 23.0 in stage 0.0 (TID 23). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO Executor: Finished task 17.0 in stage 0.0 (TID 17). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 25.0 in stage 0.0 (TID 25)
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 26.0 in stage 0.0 (TID 26)
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 522 ms on localhost (9/84)
+15/08/19 23:02:54 INFO Executor: Finished task 19.0 in stage 0.0 (TID 19). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 27.0 in stage 0.0 (TID 27)
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 23.0 in stage 0.0 (TID 23) in 523 ms on localhost (10/84)
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 561 ms on localhost (11/84)
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0:3+277226112
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 575 ms on localhost (12/84)
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0:277226115+1976011
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000014_0:3+277213885
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000014_0:277213888+2004032
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277226112}
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000015_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277226115, length: 1976011}
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000014_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277213885}
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000014_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277213888, length: 2004032}
+15/08/19 23:02:54 INFO Executor: Finished task 27.0 in stage 0.0 (TID 27). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO Executor: Finished task 25.0 in stage 0.0 (TID 25). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 29.0 in stage 0.0 (TID 29)
+15/08/19 23:02:54 INFO Executor: Running task 28.0 in stage 0.0 (TID 28)
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 27.0 in stage 0.0 (TID 27) in 298 ms on localhost (13/84)
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 25.0 in stage 0.0 (TID 25) in 310 ms on localhost (14/84)
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000018_0:277223688+1984694
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000018_0:3+277223685
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000018_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277223688, length: 1984694}
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000018_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277223685}
+15/08/19 23:02:54 INFO Executor: Finished task 29.0 in stage 0.0 (TID 29). 1925 bytes result sent to driver
+15/08/19 23:02:54 INFO TaskSetManager: Starting task 30.0 in stage 0.0 (TID 30, localhost, ANY, 1454 bytes)
+15/08/19 23:02:54 INFO Executor: Running task 30.0 in stage 0.0 (TID 30)
+15/08/19 23:02:54 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0:3+277217860
+15/08/19 23:02:54 INFO TaskSetManager: Finished task 29.0 in stage 0.0 (TID 29) in 248 ms on localhost (15/84)
+15/08/19 23:02:54 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277217860}
+15/08/19 23:03:06 INFO Executor: Finished task 16.0 in stage 0.0 (TID 16). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 31.0 in stage 0.0 (TID 31, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO Executor: Running task 31.0 in stage 0.0 (TID 31)
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 12441 ms on localhost (16/84)
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0:277217863+1988695
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000016_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277217863, length: 1988695}
+15/08/19 23:03:06 INFO Executor: Finished task 31.0 in stage 0.0 (TID 31). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 32.0 in stage 0.0 (TID 32, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO Executor: Running task 32.0 in stage 0.0 (TID 32)
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 31.0 in stage 0.0 (TID 31) in 163 ms on localhost (17/84)
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0:3+277215922
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277215922}
+15/08/19 23:03:06 INFO Executor: Finished task 18.0 in stage 0.0 (TID 18). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 33.0 in stage 0.0 (TID 33, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO Executor: Running task 33.0 in stage 0.0 (TID 33)
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 12887 ms on localhost (18/84)
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0:277215925+4101464
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000012_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277215925, length: 4101464}
+15/08/19 23:03:06 INFO Executor: Finished task 20.0 in stage 0.0 (TID 20). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO Executor: Finished task 33.0 in stage 0.0 (TID 33). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 34.0 in stage 0.0 (TID 34, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO Executor: Running task 34.0 in stage 0.0 (TID 34)
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 35.0 in stage 0.0 (TID 35, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO Executor: Running task 35.0 in stage 0.0 (TID 35)
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 33.0 in stage 0.0 (TID 33) in 203 ms on localhost (19/84)
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0:3+277203655
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0:277203658+2001375
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 13073 ms on localhost (20/84)
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277203655}
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000017_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277203658, length: 2001375}
+15/08/19 23:03:06 INFO Executor: Finished task 35.0 in stage 0.0 (TID 35). 1925 bytes result sent to driver
+15/08/19 23:03:06 INFO TaskSetManager: Starting task 36.0 in stage 0.0 (TID 36, localhost, ANY, 1454 bytes)
+15/08/19 23:03:06 INFO TaskSetManager: Finished task 35.0 in stage 0.0 (TID 35) in 152 ms on localhost (21/84)
+15/08/19 23:03:06 INFO Executor: Running task 36.0 in stage 0.0 (TID 36)
+15/08/19 23:03:06 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000011_0:3+277228075
+15/08/19 23:03:06 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000011_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277228075}
+15/08/19 23:03:07 INFO Executor: Finished task 21.0 in stage 0.0 (TID 21). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 37.0 in stage 0.0 (TID 37, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 37.0 in stage 0.0 (TID 37)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 13434 ms on localhost (22/84)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000011_0:277228078+4114934
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000011_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277228078, length: 4114934}
+15/08/19 23:03:07 INFO Executor: Finished task 37.0 in stage 0.0 (TID 37). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 38.0 in stage 0.0 (TID 38, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 38.0 in stage 0.0 (TID 38)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 37.0 in stage 0.0 (TID 37) in 213 ms on localhost (23/84)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000019_0:3+277224975
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000019_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277224975}
+15/08/19 23:03:07 INFO Executor: Finished task 2.0 in stage 0.0 (TID 2). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 39.0 in stage 0.0 (TID 39, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 39.0 in stage 0.0 (TID 39)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000019_0:277224978+1982284
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 14985 ms on localhost (24/84)
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000019_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277224978, length: 1982284}
+15/08/19 23:03:07 INFO Executor: Finished task 39.0 in stage 0.0 (TID 39). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 40.0 in stage 0.0 (TID 40, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 40.0 in stage 0.0 (TID 40)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 39.0 in stage 0.0 (TID 39) in 124 ms on localhost (25/84)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000020_0:3+277242714
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000020_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277242714}
+15/08/19 23:03:07 INFO Executor: Finished task 28.0 in stage 0.0 (TID 28). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 41.0 in stage 0.0 (TID 41, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 41.0 in stage 0.0 (TID 41)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 28.0 in stage 0.0 (TID 28) in 13107 ms on localhost (26/84)
+15/08/19 23:03:07 INFO Executor: Finished task 4.0 in stage 0.0 (TID 4). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000020_0:277242717+1990572
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 42.0 in stage 0.0 (TID 42, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 15218 ms on localhost (27/84)
+15/08/19 23:03:07 INFO Executor: Running task 42.0 in stage 0.0 (TID 42)
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000020_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277242717, length: 1990572}
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000021_0:3+277220235
+15/08/19 23:03:07 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 43.0 in stage 0.0 (TID 43, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 43.0 in stage 0.0 (TID 43)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 15308 ms on localhost (28/84)
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000021_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277220235}
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000021_0:277220238+1980214
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000021_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277220238, length: 1980214}
+15/08/19 23:03:07 INFO Executor: Finished task 24.0 in stage 0.0 (TID 24). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 44.0 in stage 0.0 (TID 44, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 44.0 in stage 0.0 (TID 44)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 13558 ms on localhost (29/84)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000022_0:3+277242589
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000022_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277242589}
+15/08/19 23:03:07 INFO Executor: Finished task 43.0 in stage 0.0 (TID 43). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 45.0 in stage 0.0 (TID 45, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 45.0 in stage 0.0 (TID 45)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 43.0 in stage 0.0 (TID 43) in 122 ms on localhost (30/84)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000022_0:277242592+1984717
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000022_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277242592, length: 1984717}
+15/08/19 23:03:07 INFO Executor: Finished task 41.0 in stage 0.0 (TID 41). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 46.0 in stage 0.0 (TID 46, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 41.0 in stage 0.0 (TID 41) in 229 ms on localhost (31/84)
+15/08/19 23:03:07 INFO Executor: Running task 46.0 in stage 0.0 (TID 46)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000023_0:3+277221735
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000023_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277221735}
+15/08/19 23:03:07 INFO Executor: Finished task 45.0 in stage 0.0 (TID 45). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 47.0 in stage 0.0 (TID 47, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO Executor: Running task 47.0 in stage 0.0 (TID 47)
+15/08/19 23:03:07 INFO Executor: Finished task 30.0 in stage 0.0 (TID 30). 1925 bytes result sent to driver
+15/08/19 23:03:07 INFO TaskSetManager: Starting task 48.0 in stage 0.0 (TID 48, localhost, ANY, 1454 bytes)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000023_0:277221738+1982295
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 30.0 in stage 0.0 (TID 30) in 13198 ms on localhost (32/84)
+15/08/19 23:03:07 INFO TaskSetManager: Finished task 45.0 in stage 0.0 (TID 45) in 133 ms on localhost (33/84)
+15/08/19 23:03:07 INFO Executor: Running task 48.0 in stage 0.0 (TID 48)
+15/08/19 23:03:07 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000024_0:3+277249706
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000023_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277221738, length: 1982295}
+15/08/19 23:03:07 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000024_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277249706}
+15/08/19 23:03:08 INFO Executor: Finished task 47.0 in stage 0.0 (TID 47). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 49.0 in stage 0.0 (TID 49, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 49.0 in stage 0.0 (TID 49)
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 47.0 in stage 0.0 (TID 47) in 128 ms on localhost (34/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000024_0:277249709+1977522
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000024_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277249709, length: 1977522}
+15/08/19 23:03:08 INFO Executor: Finished task 49.0 in stage 0.0 (TID 49). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 50.0 in stage 0.0 (TID 50, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 50.0 in stage 0.0 (TID 50)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000025_0:3+277214901
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 49.0 in stage 0.0 (TID 49) in 335 ms on localhost (35/84)
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000025_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277214901}
+15/08/19 23:03:08 INFO Executor: Finished task 14.0 in stage 0.0 (TID 14). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 51.0 in stage 0.0 (TID 51, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 51.0 in stage 0.0 (TID 51)
+15/08/19 23:03:08 INFO Executor: Finished task 8.0 in stage 0.0 (TID 8). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 52.0 in stage 0.0 (TID 52, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 52.0 in stage 0.0 (TID 52)
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 16045 ms on localhost (36/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000025_0:277214904+1986444
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 16054 ms on localhost (37/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000026_0:3+277227514
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000025_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277214904, length: 1986444}
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000026_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277227514}
+15/08/19 23:03:08 INFO Executor: Finished task 51.0 in stage 0.0 (TID 51). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 53.0 in stage 0.0 (TID 53, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 53.0 in stage 0.0 (TID 53)
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 51.0 in stage 0.0 (TID 51) in 142 ms on localhost (38/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000026_0:277227517+1997406
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000026_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277227517, length: 1997406}
+15/08/19 23:03:08 INFO Executor: Finished task 53.0 in stage 0.0 (TID 53). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 54.0 in stage 0.0 (TID 54, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 54.0 in stage 0.0 (TID 54)
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 53.0 in stage 0.0 (TID 53) in 106 ms on localhost (39/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000027_0:3+277222208
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000027_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277222208}
+15/08/19 23:03:08 INFO Executor: Finished task 26.0 in stage 0.0 (TID 26). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 55.0 in stage 0.0 (TID 55, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 55.0 in stage 0.0 (TID 55)
+15/08/19 23:03:08 INFO Executor: Finished task 6.0 in stage 0.0 (TID 6). 1925 bytes result sent to driver
+15/08/19 23:03:08 INFO TaskSetManager: Starting task 56.0 in stage 0.0 (TID 56, localhost, ANY, 1454 bytes)
+15/08/19 23:03:08 INFO Executor: Running task 56.0 in stage 0.0 (TID 56)
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 26.0 in stage 0.0 (TID 26) in 14720 ms on localhost (40/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000027_0:277222211+1981262
+15/08/19 23:03:08 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 16541 ms on localhost (41/84)
+15/08/19 23:03:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000031_0:3+277225281
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000027_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277222211, length: 1981262}
+15/08/19 23:03:08 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000031_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277225281}
+15/08/19 23:03:09 INFO Executor: Finished task 12.0 in stage 0.0 (TID 12). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 57.0 in stage 0.0 (TID 57, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO Executor: Running task 57.0 in stage 0.0 (TID 57)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 16642 ms on localhost (42/84)
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000031_0:277225284+1987952
+15/08/19 23:03:09 INFO Executor: Finished task 55.0 in stage 0.0 (TID 55). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 58.0 in stage 0.0 (TID 58, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO Executor: Running task 58.0 in stage 0.0 (TID 58)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 55.0 in stage 0.0 (TID 55) in 132 ms on localhost (43/84)
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000031_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277225284, length: 1987952}
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000030_0:3+277248689
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000030_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277248689}
+15/08/19 23:03:09 INFO Executor: Finished task 57.0 in stage 0.0 (TID 57). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 59.0 in stage 0.0 (TID 59, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO Executor: Running task 59.0 in stage 0.0 (TID 59)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 57.0 in stage 0.0 (TID 57) in 119 ms on localhost (44/84)
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000030_0:277248692+1973610
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000030_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277248692, length: 1973610}
+15/08/19 23:03:09 INFO Executor: Finished task 59.0 in stage 0.0 (TID 59). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 60.0 in stage 0.0 (TID 60, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 59.0 in stage 0.0 (TID 59) in 184 ms on localhost (45/84)
+15/08/19 23:03:09 INFO Executor: Running task 60.0 in stage 0.0 (TID 60)
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000028_0:3+277203944
+15/08/19 23:03:09 INFO Executor: Finished task 10.0 in stage 0.0 (TID 10). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 61.0 in stage 0.0 (TID 61, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 16978 ms on localhost (46/84)
+15/08/19 23:03:09 INFO Executor: Running task 61.0 in stage 0.0 (TID 61)
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000028_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277203944}
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000028_0:277203947+1989672
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000028_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277203947, length: 1989672}
+15/08/19 23:03:09 INFO Executor: Finished task 61.0 in stage 0.0 (TID 61). 1925 bytes result sent to driver
+15/08/19 23:03:09 INFO TaskSetManager: Starting task 62.0 in stage 0.0 (TID 62, localhost, ANY, 1454 bytes)
+15/08/19 23:03:09 INFO Executor: Running task 62.0 in stage 0.0 (TID 62)
+15/08/19 23:03:09 INFO TaskSetManager: Finished task 61.0 in stage 0.0 (TID 61) in 144 ms on localhost (47/84)
+15/08/19 23:03:09 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000032_0:3+277214644
+15/08/19 23:03:09 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000032_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277214644}
+15/08/19 23:03:17 INFO Executor: Finished task 34.0 in stage 0.0 (TID 34). 1925 bytes result sent to driver
+15/08/19 23:03:17 INFO TaskSetManager: Starting task 63.0 in stage 0.0 (TID 63, localhost, ANY, 1454 bytes)
+15/08/19 23:03:17 INFO Executor: Running task 63.0 in stage 0.0 (TID 63)
+15/08/19 23:03:17 INFO TaskSetManager: Finished task 34.0 in stage 0.0 (TID 34) in 10897 ms on localhost (48/84)
+15/08/19 23:03:17 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000032_0:277214647+1981922
+15/08/19 23:03:17 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000032_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277214647, length: 1981922}
+15/08/19 23:03:17 INFO Executor: Finished task 63.0 in stage 0.0 (TID 63). 1925 bytes result sent to driver
+15/08/19 23:03:17 INFO TaskSetManager: Starting task 64.0 in stage 0.0 (TID 64, localhost, ANY, 1454 bytes)
+15/08/19 23:03:17 INFO Executor: Running task 64.0 in stage 0.0 (TID 64)
+15/08/19 23:03:17 INFO TaskSetManager: Finished task 63.0 in stage 0.0 (TID 63) in 111 ms on localhost (49/84)
+15/08/19 23:03:17 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000033_0:3+277202308
+15/08/19 23:03:17 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000033_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277202308}
+15/08/19 23:03:17 INFO Executor: Finished task 32.0 in stage 0.0 (TID 32). 1925 bytes result sent to driver
+15/08/19 23:03:17 INFO TaskSetManager: Starting task 65.0 in stage 0.0 (TID 65, localhost, ANY, 1454 bytes)
+15/08/19 23:03:17 INFO Executor: Running task 65.0 in stage 0.0 (TID 65)
+15/08/19 23:03:17 INFO TaskSetManager: Finished task 32.0 in stage 0.0 (TID 32) in 11562 ms on localhost (50/84)
+15/08/19 23:03:17 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000033_0:277202311+1994398
+15/08/19 23:03:17 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000033_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277202311, length: 1994398}
+15/08/19 23:03:17 INFO Executor: Finished task 65.0 in stage 0.0 (TID 65). 1925 bytes result sent to driver
+15/08/19 23:03:17 INFO TaskSetManager: Starting task 66.0 in stage 0.0 (TID 66, localhost, ANY, 1454 bytes)
+15/08/19 23:03:17 INFO Executor: Running task 66.0 in stage 0.0 (TID 66)
+15/08/19 23:03:17 INFO TaskSetManager: Finished task 65.0 in stage 0.0 (TID 65) in 108 ms on localhost (51/84)
+15/08/19 23:03:17 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000035_0:3+277209152
+15/08/19 23:03:17 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000035_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277209152}
+15/08/19 23:03:18 INFO Executor: Finished task 40.0 in stage 0.0 (TID 40). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 67.0 in stage 0.0 (TID 67, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO Executor: Running task 67.0 in stage 0.0 (TID 67)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 40.0 in stage 0.0 (TID 40) in 10637 ms on localhost (52/84)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000035_0:277209155+1992946
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000035_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277209155, length: 1992946}
+15/08/19 23:03:18 INFO Executor: Finished task 67.0 in stage 0.0 (TID 67). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 68.0 in stage 0.0 (TID 68, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO Executor: Running task 68.0 in stage 0.0 (TID 68)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 67.0 in stage 0.0 (TID 67) in 105 ms on localhost (53/84)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000036_0:3+277217431
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000036_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277217431}
+15/08/19 23:03:18 INFO Executor: Finished task 50.0 in stage 0.0 (TID 50). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 69.0 in stage 0.0 (TID 69, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 50.0 in stage 0.0 (TID 50) in 10237 ms on localhost (54/84)
+15/08/19 23:03:18 INFO Executor: Running task 69.0 in stage 0.0 (TID 69)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000036_0:277217434+1975585
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000036_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277217434, length: 1975585}
+15/08/19 23:03:18 INFO Executor: Finished task 38.0 in stage 0.0 (TID 38). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 70.0 in stage 0.0 (TID 70, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO Executor: Finished task 69.0 in stage 0.0 (TID 69). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 71.0 in stage 0.0 (TID 71, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO Executor: Running task 71.0 in stage 0.0 (TID 71)
+15/08/19 23:03:18 INFO Executor: Running task 70.0 in stage 0.0 (TID 70)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 38.0 in stage 0.0 (TID 38) in 11387 ms on localhost (55/84)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000037_0:277235190+1973885
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 69.0 in stage 0.0 (TID 69) in 131 ms on localhost (56/84)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000037_0:3+277235187
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000037_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277235190, length: 1973885}
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000037_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277235187}
+15/08/19 23:03:18 INFO Executor: Finished task 52.0 in stage 0.0 (TID 52). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 72.0 in stage 0.0 (TID 72, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO Executor: Running task 72.0 in stage 0.0 (TID 72)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 52.0 in stage 0.0 (TID 52) in 10350 ms on localhost (57/84)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000034_0:3+277241486
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000034_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277241486}
+15/08/19 23:03:18 INFO Executor: Finished task 71.0 in stage 0.0 (TID 71). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 73.0 in stage 0.0 (TID 73, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 71.0 in stage 0.0 (TID 71) in 132 ms on localhost (58/84)
+15/08/19 23:03:18 INFO Executor: Running task 73.0 in stage 0.0 (TID 73)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000034_0:277241489+1982675
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000034_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277241489, length: 1982675}
+15/08/19 23:03:18 INFO Executor: Finished task 73.0 in stage 0.0 (TID 73). 1925 bytes result sent to driver
+15/08/19 23:03:18 INFO TaskSetManager: Starting task 74.0 in stage 0.0 (TID 74, localhost, ANY, 1454 bytes)
+15/08/19 23:03:18 INFO TaskSetManager: Finished task 73.0 in stage 0.0 (TID 73) in 109 ms on localhost (59/84)
+15/08/19 23:03:18 INFO Executor: Running task 74.0 in stage 0.0 (TID 74)
+15/08/19 23:03:18 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000029_0:3+277211147
+15/08/19 23:03:18 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000029_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277211147}
+15/08/19 23:03:19 INFO Executor: Finished task 36.0 in stage 0.0 (TID 36). 1925 bytes result sent to driver
+15/08/19 23:03:19 INFO TaskSetManager: Starting task 75.0 in stage 0.0 (TID 75, localhost, ANY, 1454 bytes)
+15/08/19 23:03:19 INFO TaskSetManager: Finished task 36.0 in stage 0.0 (TID 36) in 12706 ms on localhost (60/84)
+15/08/19 23:03:19 INFO Executor: Running task 75.0 in stage 0.0 (TID 75)
+15/08/19 23:03:19 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000029_0:277211150+1978253
+15/08/19 23:03:19 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000029_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277211150, length: 1978253}
+15/08/19 23:03:19 INFO Executor: Finished task 75.0 in stage 0.0 (TID 75). 1925 bytes result sent to driver
+15/08/19 23:03:19 INFO TaskSetManager: Starting task 76.0 in stage 0.0 (TID 76, localhost, ANY, 1454 bytes)
+15/08/19 23:03:19 INFO Executor: Running task 76.0 in stage 0.0 (TID 76)
+15/08/19 23:03:19 INFO TaskSetManager: Finished task 75.0 in stage 0.0 (TID 75) in 123 ms on localhost (61/84)
+15/08/19 23:03:19 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000038_0:3+277213498
+15/08/19 23:03:19 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000038_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277213498}
+15/08/19 23:03:19 INFO Executor: Finished task 54.0 in stage 0.0 (TID 54). 1925 bytes result sent to driver
+15/08/19 23:03:19 INFO TaskSetManager: Starting task 77.0 in stage 0.0 (TID 77, localhost, ANY, 1454 bytes)
+15/08/19 23:03:19 INFO Executor: Running task 77.0 in stage 0.0 (TID 77)
+15/08/19 23:03:19 INFO TaskSetManager: Finished task 54.0 in stage 0.0 (TID 54) in 11193 ms on localhost (62/84)
+15/08/19 23:03:19 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000038_0:277213501+1989487
+15/08/19 23:03:19 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000038_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277213501, length: 1989487}
+15/08/19 23:03:19 INFO Executor: Finished task 46.0 in stage 0.0 (TID 46). 1925 bytes result sent to driver
+15/08/19 23:03:19 INFO TaskSetManager: Starting task 78.0 in stage 0.0 (TID 78, localhost, ANY, 1454 bytes)
+15/08/19 23:03:19 INFO Executor: Running task 78.0 in stage 0.0 (TID 78)
+15/08/19 23:03:19 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000039_0:3+277214418
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 46.0 in stage 0.0 (TID 46) in 12190 ms on localhost (63/84)
+15/08/19 23:03:20 INFO Executor: Finished task 77.0 in stage 0.0 (TID 77). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Starting task 79.0 in stage 0.0 (TID 79, localhost, ANY, 1454 bytes)
+15/08/19 23:03:20 INFO Executor: Running task 79.0 in stage 0.0 (TID 79)
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 77.0 in stage 0.0 (TID 77) in 166 ms on localhost (64/84)
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000039_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277214418}
+15/08/19 23:03:20 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000039_0:277214421+1999691
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000039_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277214421, length: 1999691}
+15/08/19 23:03:20 INFO Executor: Finished task 79.0 in stage 0.0 (TID 79). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Starting task 80.0 in stage 0.0 (TID 80, localhost, ANY, 1454 bytes)
+15/08/19 23:03:20 INFO Executor: Running task 80.0 in stage 0.0 (TID 80)
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 79.0 in stage 0.0 (TID 79) in 150 ms on localhost (65/84)
+15/08/19 23:03:20 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000040_0:3+277214343
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000040_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277214343}
+15/08/19 23:03:20 INFO Executor: Finished task 44.0 in stage 0.0 (TID 44). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Starting task 81.0 in stage 0.0 (TID 81, localhost, ANY, 1454 bytes)
+15/08/19 23:03:20 INFO Executor: Running task 81.0 in stage 0.0 (TID 81)
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 44.0 in stage 0.0 (TID 44) in 13114 ms on localhost (66/84)
+15/08/19 23:03:20 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000040_0:277214346+1992740
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000040_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277214346, length: 1992740}
+15/08/19 23:03:20 INFO Executor: Finished task 42.0 in stage 0.0 (TID 42). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Starting task 82.0 in stage 0.0 (TID 82, localhost, ANY, 1454 bytes)
+15/08/19 23:03:20 INFO Executor: Running task 82.0 in stage 0.0 (TID 82)
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 42.0 in stage 0.0 (TID 42) in 13316 ms on localhost (67/84)
+15/08/19 23:03:20 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000041_0:3+277239252
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000041_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 3, length: 277239252}
+15/08/19 23:03:20 INFO Executor: Finished task 81.0 in stage 0.0 (TID 81). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Starting task 83.0 in stage 0.0 (TID 83, localhost, ANY, 1454 bytes)
+15/08/19 23:03:20 INFO Executor: Running task 83.0 in stage 0.0 (TID 83)
+15/08/19 23:03:20 INFO Executor: Finished task 58.0 in stage 0.0 (TID 58). 1925 bytes result sent to driver
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 81.0 in stage 0.0 (TID 81) in 106 ms on localhost (68/84)
+15/08/19 23:03:20 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000041_0:277239255+23548466
+15/08/19 23:03:20 INFO TaskSetManager: Finished task 58.0 in stage 0.0 (TID 58) in 11900 ms on localhost (69/84)
+15/08/19 23:03:20 INFO ReaderImpl: Reading ORC rows from hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/lineitem/000041_0 with {include: [true, false, false, false, false, true, true, true, false, false, false, true, false, false, false, false, false], offset: 277239255, length: 23548466}
+15/08/19 23:03:21 INFO Executor: Finished task 48.0 in stage 0.0 (TID 48). 1925 bytes result sent to driver
+15/08/19 23:03:21 INFO TaskSetManager: Finished task 48.0 in stage 0.0 (TID 48) in 13131 ms on localhost (70/84)
+15/08/19 23:03:21 INFO Executor: Finished task 56.0 in stage 0.0 (TID 56). 1925 bytes result sent to driver
+15/08/19 23:03:21 INFO TaskSetManager: Finished task 56.0 in stage 0.0 (TID 56) in 12402 ms on localhost (71/84)
+15/08/19 23:03:21 INFO Executor: Finished task 62.0 in stage 0.0 (TID 62). 1925 bytes result sent to driver
+15/08/19 23:03:21 INFO TaskSetManager: Finished task 62.0 in stage 0.0 (TID 62) in 11996 ms on localhost (72/84)
+15/08/19 23:03:21 INFO Executor: Finished task 60.0 in stage 0.0 (TID 60). 1925 bytes result sent to driver
+15/08/19 23:03:21 INFO TaskSetManager: Finished task 60.0 in stage 0.0 (TID 60) in 12453 ms on localhost (73/84)
+15/08/19 23:03:21 INFO Executor: Finished task 83.0 in stage 0.0 (TID 83). 1925 bytes result sent to driver
+15/08/19 23:03:21 INFO TaskSetManager: Finished task 83.0 in stage 0.0 (TID 83) in 849 ms on localhost (74/84)
+15/08/19 23:03:27 INFO Executor: Finished task 66.0 in stage 0.0 (TID 66). 1925 bytes result sent to driver
+15/08/19 23:03:27 INFO TaskSetManager: Finished task 66.0 in stage 0.0 (TID 66) in 9823 ms on localhost (75/84)
+15/08/19 23:03:28 INFO Executor: Finished task 64.0 in stage 0.0 (TID 64). 1925 bytes result sent to driver
+15/08/19 23:03:28 INFO TaskSetManager: Finished task 64.0 in stage 0.0 (TID 64) in 10412 ms on localhost (76/84)
+15/08/19 23:03:28 INFO Executor: Finished task 68.0 in stage 0.0 (TID 68). 1925 bytes result sent to driver
+15/08/19 23:03:28 INFO TaskSetManager: Finished task 68.0 in stage 0.0 (TID 68) in 10124 ms on localhost (77/84)
+15/08/19 23:03:28 INFO Executor: Finished task 74.0 in stage 0.0 (TID 74). 1925 bytes result sent to driver
+15/08/19 23:03:28 INFO TaskSetManager: Finished task 74.0 in stage 0.0 (TID 74) in 9478 ms on localhost (78/84)
+15/08/19 23:03:29 INFO Executor: Finished task 72.0 in stage 0.0 (TID 72). 1925 bytes result sent to driver
+15/08/19 23:03:29 INFO TaskSetManager: Finished task 72.0 in stage 0.0 (TID 72) in 10766 ms on localhost (79/84)
+15/08/19 23:03:29 INFO Executor: Finished task 78.0 in stage 0.0 (TID 78). 1925 bytes result sent to driver
+15/08/19 23:03:29 INFO TaskSetManager: Finished task 78.0 in stage 0.0 (TID 78) in 9583 ms on localhost (80/84)
+15/08/19 23:03:29 INFO Executor: Finished task 70.0 in stage 0.0 (TID 70). 1925 bytes result sent to driver
+15/08/19 23:03:29 INFO TaskSetManager: Finished task 70.0 in stage 0.0 (TID 70) in 11007 ms on localhost (81/84)
+15/08/19 23:03:30 INFO Executor: Finished task 76.0 in stage 0.0 (TID 76). 1925 bytes result sent to driver
+15/08/19 23:03:30 INFO TaskSetManager: Finished task 76.0 in stage 0.0 (TID 76) in 10404 ms on localhost (82/84)
+15/08/19 23:03:30 INFO Executor: Finished task 80.0 in stage 0.0 (TID 80). 1925 bytes result sent to driver
+15/08/19 23:03:30 INFO TaskSetManager: Finished task 80.0 in stage 0.0 (TID 80) in 10365 ms on localhost (83/84)
+15/08/19 23:03:31 INFO Executor: Finished task 82.0 in stage 0.0 (TID 82). 1925 bytes result sent to driver
+15/08/19 23:03:31 INFO TaskSetManager: Finished task 82.0 in stage 0.0 (TID 82) in 10633 ms on localhost (84/84)
+15/08/19 23:03:31 INFO DAGScheduler: ShuffleMapStage 0 (processCmd at CliDriver.java:423) finished in 39.189 s
+15/08/19 23:03:31 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+15/08/19 23:03:31 INFO DAGScheduler: looking for newly runnable stages
+15/08/19 23:03:31 INFO DAGScheduler: running: Set()
+15/08/19 23:03:31 INFO DAGScheduler: waiting: Set(ResultStage 1)
+15/08/19 23:03:31 INFO DAGScheduler: failed: Set()
+15/08/19 23:03:31 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@274c9824
+15/08/19 23:03:31 INFO DAGScheduler: Missing parents for ResultStage 1: List()
+15/08/19 23:03:31 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[9] at processCmd at CliDriver.java:423), which is now runnable
+15/08/19 23:03:31 INFO StatsReportListener: task runtime:(count: 84, mean: 6488.559524, stdev: 6227.919096, max: 16978.000000, min: 105.000000)
+15/08/19 23:03:31 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:31 INFO StatsReportListener: 	105.0 ms	109.0 ms	123.0 ms	184.0 ms	9.5 s	12.4 s	14.7 s	16.0 s	17.0 s
+15/08/19 23:03:31 INFO StatsReportListener: shuffle bytes written:(count: 84, mean: 31.000000, stdev: 0.000000, max: 31.000000, min: 31.000000)
+15/08/19 23:03:31 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:31 INFO StatsReportListener: 	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B	31.0 B
+15/08/19 23:03:31 INFO StatsReportListener: task result size:(count: 84, mean: 1925.000000, stdev: 0.000000, max: 1925.000000, min: 1925.000000)
+15/08/19 23:03:31 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:31 INFO StatsReportListener: 	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B	1925.0 B
+15/08/19 23:03:31 INFO StatsReportListener: executor (non-fetch) time pct: (count: 84, mean: 89.204319, stdev: 12.392900, max: 99.846799, min: 25.970149)
+15/08/19 23:03:31 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:31 INFO StatsReportListener: 	26 %	74 %	76 %	80 %	99 %	100 %	100 %	100 %	100 %
+15/08/19 23:03:31 INFO StatsReportListener: other time pct: (count: 84, mean: 10.795681, stdev: 12.392900, max: 74.029851, min: 0.153201)
+15/08/19 23:03:31 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:31 INFO StatsReportListener: 	 0 %	 0 %	 0 %	 0 %	 2 %	20 %	24 %	26 %	74 %
+15/08/19 23:03:31 INFO MemoryStore: ensureFreeSpace(145416) called with curMem=655070, maxMem=22226833244
+15/08/19 23:03:31 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 142.0 KB, free 20.7 GB)
+15/08/19 23:03:31 INFO MemoryStore: ensureFreeSpace(47895) called with curMem=800486, maxMem=22226833244
+15/08/19 23:03:31 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 46.8 KB, free 20.7 GB)
+15/08/19 23:03:31 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on localhost:37076 (size: 46.8 KB, free: 20.7 GB)
+15/08/19 23:03:31 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:874
+15/08/19 23:03:31 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[9] at processCmd at CliDriver.java:423)
+15/08/19 23:03:31 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks
+15/08/19 23:03:31 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 84, localhost, PROCESS_LOCAL, 1165 bytes)
+15/08/19 23:03:31 INFO Executor: Running task 0.0 in stage 1.0 (TID 84)
+15/08/19 23:03:31 INFO ShuffleBlockFetcherIterator: Getting 84 non-empty blocks out of 84 blocks
+15/08/19 23:03:31 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 9 ms
+15/08/19 23:03:32 INFO FileOutputCommitter: Saved output of task 'attempt_201508192302_0001_m_000000_0' to hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-19_23-02-50_438_4099487994715507436-1/-ext-10000/_temporary/0/task_201508192302_0001_m_000000
+15/08/19 23:03:32 INFO SparkHadoopMapRedUtil: attempt_201508192302_0001_m_000000_0: Committed
+15/08/19 23:03:32 INFO Executor: Finished task 0.0 in stage 1.0 (TID 84). 843 bytes result sent to driver
+15/08/19 23:03:32 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 84) in 508 ms on localhost (1/1)
+15/08/19 23:03:32 INFO DAGScheduler: ResultStage 1 (processCmd at CliDriver.java:423) finished in 0.509 s
+15/08/19 23:03:32 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+15/08/19 23:03:32 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@46c48969
+15/08/19 23:03:32 INFO StatsReportListener: task runtime:(count: 1, mean: 508.000000, stdev: 0.000000, max: 508.000000, min: 508.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	508.0 ms	508.0 ms	508.0 ms	508.0 ms	508.0 ms	508.0 ms	508.0 ms	508.0 ms	508.0 ms
+15/08/19 23:03:32 INFO StatsReportListener: fetch wait time:(count: 1, mean: 2.000000, stdev: 0.000000, max: 2.000000, min: 2.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	2.0 ms	2.0 ms	2.0 ms	2.0 ms	2.0 ms	2.0 ms	2.0 ms	2.0 ms	2.0 ms
+15/08/19 23:03:32 INFO StatsReportListener: remote bytes read:(count: 1, mean: 0.000000, stdev: 0.000000, max: 0.000000, min: 0.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B	0.0 B
+15/08/19 23:03:32 INFO StatsReportListener: task result size:(count: 1, mean: 843.000000, stdev: 0.000000, max: 843.000000, min: 843.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B	843.0 B
+15/08/19 23:03:32 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 74.803150, stdev: 0.000000, max: 74.803150, min: 74.803150)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	75 %	75 %	75 %	75 %	75 %	75 %	75 %	75 %	75 %
+15/08/19 23:03:32 INFO DAGScheduler: Job 0 finished: processCmd at CliDriver.java:423, took 41.031706 s
+15/08/19 23:03:32 INFO StatsReportListener: fetch wait time pct: (count: 1, mean: 0.393701, stdev: 0.000000, max: 0.393701, min: 0.393701)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %	 0 %
+15/08/19 23:03:32 INFO StatsReportListener: other time pct: (count: 1, mean: 24.803150, stdev: 0.000000, max: 24.803150, min: 24.803150)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	25 %	25 %	25 %	25 %	25 %	25 %	25 %	25 %	25 %
+15/08/19 23:03:32 INFO Hive: Renaming src:hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-19_23-02-50_438_4099487994715507436-1/-ext-10000/_SUCCESS;dest: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change/_SUCCESS;Status:true
+15/08/19 23:03:32 INFO Hive: Renaming src:hdfs://sandbox.hortonworks.com:8020/tmp/hive-hive/hive_2015-08-19_23-02-50_438_4099487994715507436-1/-ext-10000/part-00000;dest: hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/q6_forecast_revenue_change/part-00000;Status:true
+15/08/19 23:03:32 INFO SparkContext: Starting job: processCmd at CliDriver.java:423
+15/08/19 23:03:32 INFO DAGScheduler: Got job 1 (processCmd at CliDriver.java:423) with 1 output partitions (allowLocal=false)
+15/08/19 23:03:32 INFO DAGScheduler: Final stage: ResultStage 2(processCmd at CliDriver.java:423)
+15/08/19 23:03:32 INFO DAGScheduler: Parents of final stage: List()
+15/08/19 23:03:32 INFO DAGScheduler: Missing parents: List()
+15/08/19 23:03:32 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[11] at processCmd at CliDriver.java:423), which has no missing parents
+15/08/19 23:03:32 INFO MemoryStore: ensureFreeSpace(2864) called with curMem=848381, maxMem=22226833244
+15/08/19 23:03:32 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 2.8 KB, free 20.7 GB)
+15/08/19 23:03:32 INFO MemoryStore: ensureFreeSpace(1714) called with curMem=851245, maxMem=22226833244
+15/08/19 23:03:32 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 1714.0 B, free 20.7 GB)
+15/08/19 23:03:32 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on localhost:37076 (size: 1714.0 B, free: 20.7 GB)
+15/08/19 23:03:32 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:874
+15/08/19 23:03:32 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[11] at processCmd at CliDriver.java:423)
+15/08/19 23:03:32 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks
+15/08/19 23:03:32 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 85, localhost, PROCESS_LOCAL, 1316 bytes)
+15/08/19 23:03:32 INFO Executor: Running task 0.0 in stage 2.0 (TID 85)
+15/08/19 23:03:32 INFO Executor: Finished task 0.0 in stage 2.0 (TID 85). 606 bytes result sent to driver
+15/08/19 23:03:32 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 85) in 35 ms on localhost (1/1)
+15/08/19 23:03:32 INFO DAGScheduler: ResultStage 2 (processCmd at CliDriver.java:423) finished in 0.037 s
+15/08/19 23:03:32 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+15/08/19 23:03:32 INFO StatsReportListener: Finished stage: org.apache.spark.scheduler.StageInfo@2b81e8b9
+15/08/19 23:03:32 INFO DAGScheduler: Job 1 finished: processCmd at CliDriver.java:423, took 0.067867 s
+15/08/19 23:03:32 INFO StatsReportListener: task runtime:(count: 1, mean: 35.000000, stdev: 0.000000, max: 35.000000, min: 35.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	35.0 ms	35.0 ms	35.0 ms	35.0 ms	35.0 ms	35.0 ms	35.0 ms	35.0 ms	35.0 ms
+15/08/19 23:03:32 INFO StatsReportListener: task result size:(count: 1, mean: 606.000000, stdev: 0.000000, max: 606.000000, min: 606.000000)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B	606.0 B
+15/08/19 23:03:32 INFO StatsReportListener: executor (non-fetch) time pct: (count: 1, mean: 2.857143, stdev: 0.000000, max: 2.857143, min: 2.857143)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %	 3 %
+15/08/19 23:03:32 INFO StatsReportListener: other time pct: (count: 1, mean: 97.142857, stdev: 0.000000, max: 97.142857, min: 97.142857)
+15/08/19 23:03:32 INFO StatsReportListener: 	0%	5%	10%	25%	50%	75%	90%	95%	100%
+15/08/19 23:03:32 INFO StatsReportListener: 	97 %	97 %	97 %	97 %	97 %	97 %	97 %	97 %	97 %
+Time taken: 44.766 seconds
+15/08/19 23:03:32 INFO CliDriver: Time taken: 44.766 seconds
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/metrics/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/kill,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/api,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/static,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/threadDump,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/executors,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/environment,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/rdd,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/storage,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/pool,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/stage,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/stages,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/job,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs/json,null}
+15/08/19 23:03:32 INFO ContextHandler: stopped o.s.j.s.ServletContextHandler{/jobs,null}
+15/08/19 23:03:32 INFO SparkUI: Stopped Spark web UI at http://192.168.122.56:4040
+15/08/19 23:03:32 INFO DAGScheduler: Stopping DAGScheduler
+15/08/19 23:03:32 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+15/08/19 23:03:32 INFO Utils: path = /tmp/spark-419a25fa-713e-442e-add3-20f6c7e357ef/blockmgr-bf34b048-7805-4d5b-96b4-23028e5a6469, already present as root for deletion.
+15/08/19 23:03:32 INFO MemoryStore: MemoryStore cleared
+15/08/19 23:03:32 INFO BlockManager: BlockManager stopped
+15/08/19 23:03:32 INFO BlockManagerMaster: BlockManagerMaster stopped
+15/08/19 23:03:32 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+15/08/19 23:03:32 INFO SparkContext: Successfully stopped SparkContext
+15/08/19 23:03:32 INFO Utils: Shutdown hook called
+15/08/19 23:03:32 INFO Utils: Deleting directory /tmp/spark-419a25fa-713e-442e-add3-20f6c7e357ef
+15/08/19 23:03:32 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+15/08/19 23:03:32 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+15/08/19 23:03:32 INFO Utils: Deleting directory /tmp/spark-22d93184-f165-4903-ac13-70bc50789b3e
+15/08/19 23:03:32 INFO Utils: Deleting directory /tmp/spark-3aa6386f-383d-4196-b25a-c8a98fe8c78a
+15/08/19 23:03:32 INFO RemoteActorRefProvider$RemotingTerminator: Remoting shut down.

@@ -20,58 +20,88 @@ SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
 
 Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
-Query ID = leonidas_20150819224004_6aa38b10-f573-4265-968e-5a3b8a5d214a
+Query ID = leonidas_20150828010608_f5371a05-c7bd-46d4-8ddc-389135a339dd
 Total jobs = 1
 Launching Job 1 out of 1
 
 
-Status: Running (Executing on YARN cluster with App id application_1439860728005_0238)
+Status: Running (Executing on YARN cluster with App id application_1440607848312_0037)
 
 Map 1: -/-	Reducer 2: 0/1	
-Map 1: 0/14	Reducer 2: 0/1	
-Map 1: 0/14	Reducer 2: 0/1	
-Map 1: 0(+4)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+5)/14	Reducer 2: 0/1	
-Map 1: 0(+4)/14	Reducer 2: 0/1	
-Map 1: 2(+4)/14	Reducer 2: 0/1	
-Map 1: 2(+5)/14	Reducer 2: 0/1	
-Map 1: 3(+4)/14	Reducer 2: 0/1	
-Map 1: 3(+5)/14	Reducer 2: 0/1	
-Map 1: 4(+4)/14	Reducer 2: 0/1	
-Map 1: 4(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+4)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 5(+5)/14	Reducer 2: 0/1	
-Map 1: 6(+5)/14	Reducer 2: 0/1	
-Map 1: 7(+5)/14	Reducer 2: 0/1	
-Map 1: 8(+5)/14	Reducer 2: 0/1	
-Map 1: 8(+4)/14	Reducer 2: 0/1	
-Map 1: 10(+4)/14	Reducer 2: 0/1	
-Map 1: 10(+4)/14	Reducer 2: 0(+1)/1	
-Map 1: 10(+4)/14	Reducer 2: 0(+1)/1	
-Map 1: 10(+4)/14	Reducer 2: 0(+1)/1	
-Map 1: 10(+4)/14	Reducer 2: 0(+1)/1	
-Map 1: 10(+4)/14	Reducer 2: 0(+1)/1	
-Map 1: 11(+3)/14	Reducer 2: 0(+1)/1	
-Map 1: 12(+2)/14	Reducer 2: 0(+1)/1	
-Map 1: 14/14	Reducer 2: 0(+1)/1	
-Map 1: 14/14	Reducer 2: 1/1	
+Map 1: 0/28	Reducer 2: 0/1	
+Map 1: 0(+1)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+5)/28	Reducer 2: 0/1	
+Map 1: 0(+4)/28	Reducer 2: 0/1	
+Map 1: 1(+4)/28	Reducer 2: 0/1	
+Map 1: 1(+5)/28	Reducer 2: 0/1	
+Map 1: 2(+4)/28	Reducer 2: 0/1	
+Map 1: 3(+4)/28	Reducer 2: 0/1	
+Map 1: 3(+5)/28	Reducer 2: 0/1	
+Map 1: 4(+4)/28	Reducer 2: 0/1	
+Map 1: 4(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+4)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 5(+5)/28	Reducer 2: 0/1	
+Map 1: 6(+5)/28	Reducer 2: 0/1	
+Map 1: 7(+5)/28	Reducer 2: 0/1	
+Map 1: 9(+4)/28	Reducer 2: 0/1	
+Map 1: 9(+5)/28	Reducer 2: 0/1	
+Map 1: 10(+5)/28	Reducer 2: 0/1	
+Map 1: 10(+5)/28	Reducer 2: 0/1	
+Map 1: 10(+5)/28	Reducer 2: 0/1	
+Map 1: 10(+5)/28	Reducer 2: 0/1	
+Map 1: 10(+5)/28	Reducer 2: 0/1	
+Map 1: 11(+5)/28	Reducer 2: 0/1	
+Map 1: 12(+4)/28	Reducer 2: 0/1	
+Map 1: 13(+5)/28	Reducer 2: 0/1	
+Map 1: 14(+4)/28	Reducer 2: 0/1	
+Map 1: 14(+5)/28	Reducer 2: 0/1	
+Map 1: 15(+4)/28	Reducer 2: 0/1	
+Map 1: 15(+5)/28	Reducer 2: 0/1	
+Map 1: 15(+5)/28	Reducer 2: 0/1	
+Map 1: 15(+5)/28	Reducer 2: 0/1	
+Map 1: 15(+5)/28	Reducer 2: 0/1	
+Map 1: 15(+5)/28	Reducer 2: 0/1	
+Map 1: 16(+4)/28	Reducer 2: 0/1	
+Map 1: 16(+5)/28	Reducer 2: 0/1	
+Map 1: 17(+5)/28	Reducer 2: 0/1	
+Map 1: 18(+4)/28	Reducer 2: 0/1	
+Map 1: 18(+5)/28	Reducer 2: 0/1	
+Map 1: 19(+4)/28	Reducer 2: 0/1	
+Map 1: 19(+5)/28	Reducer 2: 0/1	
+Map 1: 20(+5)/28	Reducer 2: 0/1	
+Map 1: 20(+5)/28	Reducer 2: 0/1	
+Map 1: 20(+5)/28	Reducer 2: 0/1	
+Map 1: 20(+5)/28	Reducer 2: 0/1	
+Map 1: 20(+5)/28	Reducer 2: 0/1	
+Map 1: 21(+4)/28	Reducer 2: 0/1	
+Map 1: 21(+5)/28	Reducer 2: 0/1	
+Map 1: 22(+4)/28	Reducer 2: 0/1	
+Map 1: 22(+5)/28	Reducer 2: 0/1	
+Map 1: 23(+4)/28	Reducer 2: 0/1	
+Map 1: 24(+4)/28	Reducer 2: 0/1	
+Map 1: 24(+4)/28	Reducer 2: 0(+1)/1	
+Map 1: 25(+3)/28	Reducer 2: 0(+1)/1	
+Map 1: 25(+3)/28	Reducer 2: 0(+1)/1	
+Map 1: 25(+3)/28	Reducer 2: 0(+1)/1	
+Map 1: 25(+3)/28	Reducer 2: 0(+1)/1	
+Map 1: 26(+2)/28	Reducer 2: 0(+1)/1	
+Map 1: 27(+1)/28	Reducer 2: 0(+1)/1	
+Map 1: 28/28	Reducer 2: 0(+1)/1	
+Map 1: 28/28	Reducer 2: 1/1	
 Loading data to table default.q6_forecast_revenue_change
 Table default.q6_forecast_revenue_change stats: [numFiles=1, numRows=1, totalSize=257, rawDataSize=8]
 OK
-Time taken: 89.436 seconds
+Time taken: 127.184 seconds
