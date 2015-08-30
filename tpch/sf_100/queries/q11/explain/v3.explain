@@ -1,0 +1,20 @@
+== Physical Plan ==
+Sort [value#2 DESC], true
+ Project [ps_partkey#64,part_value#0 AS value#2]
+  Filter (part_value#0 > (total_value#1 * 1.0E-6))
+   Window [ps_partkey#64,part_value#0,_w0#20], [HiveWindowFunction#org.apache.hadoop.hive.ql.udf.generic.GenericUDAFSum(_w0#20) WindowSpecDefinition ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING AS total_value#1], WindowSpecDefinition ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    Exchange SinglePartition
+     Aggregate false, [ps_partkey#64], [ps_partkey#64,CombineSum(PartialSum#71) AS part_value#0,CombineSum(PartialSum#72) AS _w0#20]
+      Exchange (HashPartitioning 200)
+       Aggregate true, [ps_partkey#64], [ps_partkey#64,SUM((ps_supplycost#67 * CAST(ps_availqty#66, DoubleType))) AS PartialSum#71,SUM((ps_supplycost#67 * CAST(ps_availqty#66, DoubleType))) AS PartialSum#72]
+        Project [ps_partkey#64,ps_supplycost#67,ps_availqty#66]
+         ShuffledHashJoin [s_suppkey#47], [ps_suppkey#65], BuildRight
+          Exchange (HashPartitioning 200)
+           Project [s_suppkey#47]
+            BroadcastHashJoin [n_nationkey#29], [s_nationkey#50], BuildLeft
+             Project [n_nationkey#29]
+              Filter (n_name#30 = RUSSIA)
+               PhysicalRDD [n_nationkey#29,n_name#30], MapPartitionsRDD[1] at
+             PhysicalRDD [s_suppkey#47,s_nationkey#50], MapPartitionsRDD[3] at
+          Exchange (HashPartitioning 200)
+           PhysicalRDD [ps_availqty#66,ps_supplycost#67,ps_partkey#64,ps_suppkey#65], MapPartitionsRDD[8] at

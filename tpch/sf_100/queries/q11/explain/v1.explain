@@ -1,0 +1,32 @@
+== Physical Plan ==
+Aggregate false, [ps_partkey#61], [ps_partkey#61,CombineSum(PartialSum#67) AS part_value#0]
+ Exchange (HashPartitioning 200)
+  Aggregate true, [ps_partkey#61], [ps_partkey#61,SUM((ps_supplycost#64 * CAST(ps_availqty#63, DoubleType))) AS PartialSum#67]
+   Project [ps_partkey#61,ps_supplycost#64,ps_availqty#63]
+    ShuffledHashJoin [s_suppkey#44], [ps_suppkey#62], BuildRight
+     Exchange (HashPartitioning 200)
+      Project [s_suppkey#44]
+       BroadcastHashJoin [n_nationkey#26], [s_nationkey#47], BuildLeft
+        Project [n_nationkey#26]
+         Filter (n_name#27 = RUSSIA)
+          PhysicalRDD [n_nationkey#26,n_name#27], MapPartitionsRDD[1] at
+        PhysicalRDD [s_suppkey#44,s_nationkey#47], MapPartitionsRDD[3] at
+     Exchange (HashPartitioning 200)
+      PhysicalRDD [ps_partkey#61,ps_suppkey#62,ps_availqty#63,ps_supplycost#64], MapPartitionsRDD[8] at
+
+== Physical Plan ==
+Aggregate false, [CombineSum(PartialSum#98) AS total_value#89]
+ Exchange SinglePartition
+  Aggregate true, [SUM(part_value#96) AS PartialSum#98]
+   PhysicalRDD [part_value#96], MapPartitionsRDD[12] at
+
+== Physical Plan ==
+Sort [value#102 DESC], true
+ Exchange (RangePartitioning 200)
+  Project [ps_partkey#107,part_value#108 AS value#102]
+   Filter (part_value#108 > (total_value#110 * 1.0E-6))
+    CartesianProduct
+     PhysicalRDD [ps_partkey#107,part_value#108], MapPartitionsRDD[16] at
+     PhysicalRDD [total_value#110], MapPartitionsRDD[18] at
+
+
