@@ -20,17 +20,17 @@ for fn in *.sql; do
 	content=$(<$fn)	
 	f=${fn%.*}
 
-#	$HIVE -f needed_tables.sql.exclude
+	$HIVE -f needed_tables.sql.exclude
 	
-#	echo "*****************************************"
-#	echo "* Now running run$run $f on HIVE"
-#	echo "*****************************************"
+	echo "*****************************************"
+	echo "* Now running run$run $f on HIVE"
+	echo "*****************************************"
 
-#	params="set hive.execution.engine=mr;"
-#	result=$RESULTS/${f}.hive_${suffix}run$run
-#	script="$params $content"
-#	echo "$script" > $result
-#	$HIVE -e "$script" 2>&1 | tee -a $result 	
+	params="set hive.execution.engine=mr;"
+	result=$RESULTS/${f}.hive_${suffix}run$run
+	script="$params $content"
+	echo "$script" > $result
+	$HIVE -e "$script" 2>&1 | tee -a $result 	
 
 #	$HIVE -f needed_tables.sql.exclude
 
@@ -44,17 +44,17 @@ for fn in *.sql; do
 #        echo "$script" > $result
 #        $HIVE -e "$script" 2>&1 | tee -a $result
 
-	$HIVE -f needed_tables.sql.exclude
+#	$HIVE -f needed_tables.sql.exclude
 
-        echo "*****************************************"
-        echo "* Now running run$run $f on SPARK"
-        echo "*****************************************"
+#        echo "*****************************************"
+#        echo "* Now running run$run $f on SPARK"
+#        echo "*****************************************"
 
-        params=""
-        result=$RESULTS/${f}.spark_${suffix}run$run
-        script="$params $content"
-        echo "$script" > $result
-        sudo -u hive $SPARK --driver-memory 40g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
+#        params=""
+#        result=$RESULTS/${f}.spark_${suffix}run$run
+#        script="$params $content"
+#        echo "$script" > $result
+#        sudo -u hive $SPARK --driver-memory 40g --executor-memory 6g -e "$script" 2>&1 | tee -a $result
 
 done
 
@@ -72,4 +72,4 @@ done
 
 done
 
-/bin/bash ./evaluate_results.sh
+#/bin/bash ./evaluate_results.sh

@@ -20,29 +20,29 @@ for fn in *.sql; do
 	content=$(<$fn)	
 	f=${fn%.*}
 
-#	$HIVE -f needed_tables.sql.exclude
-	
-#	echo "*****************************************"
-#	echo "* Now running run$run $f on HIVE"
-#	echo "*****************************************"
-
-#	params="set hive.execution.engine=mr;"
-#	result=$RESULTS/${f}.hive_${suffix}run$run
-#	script="$params $content"
-#	echo "$script" > $result
-#	$HIVE -e "$script" 2>&1 | tee -a $result 	
-
 	$HIVE -f needed_tables.sql.exclude
+	
+	echo "*****************************************"
+	echo "* Now running run$run $f on HIVE"
+	echo "*****************************************"
 
-        echo "*****************************************"
-        echo "* Now running run$run $f on HIVE-TEZ"
-        echo "*****************************************"
+	params="set hive.execution.engine=mr;"
+	result=$RESULTS/${f}.hive_${suffix}run$run
+	script="$params $content"
+	echo "$script" > $result
+	$HIVE -e "$script" 2>&1 | tee -a $result 	
 
-        params="set hive.execution.engine=tez;"
-        result=$RESULTS/${f}.hive_tez_${suffix}run$run
-        script="$params $content"
-        echo "$script" > $result
-        $HIVE -e "$script" 2>&1 | tee -a $result
+#	$HIVE -f needed_tables.sql.exclude
+
+#        echo "*****************************************"
+#        echo "* Now running run$run $f on HIVE-TEZ"
+#        echo "*****************************************"
+
+#        params="set hive.execution.engine=tez;"
+#        result=$RESULTS/${f}.hive_tez_${suffix}run$run
+#        script="$params $content"
+#        echo "$script" > $result
+#        $HIVE -e "$script" 2>&1 | tee -a $result
 
 #	$HIVE -f needed_tables.sql.exclude
 
@@ -72,4 +72,4 @@ done
 
 done
 
-/bin/bash ./evaluate_results.sh
+#/bin/bash ./evaluate_results.sh

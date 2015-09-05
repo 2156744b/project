@@ -8,7 +8,7 @@ fnation = filter nation by n_name == 'RUSSIA';
 
 -- Moved small set second
 --j1 = join fnation by n_nationkey, supplier by s_nationkey;  
-j1 = join supplier by s_nationkey, fnation by n_nationkey;
+j1 = join supplier by s_nationkey, fnation by n_nationkey using 'replicated';
 
 selj1 = foreach j1 generate s_suppkey;
 
