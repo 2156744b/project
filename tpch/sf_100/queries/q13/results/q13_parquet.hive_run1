@@ -1,0 +1,295 @@
+set hive.execution.engine=mr; -- the query
+insert into table q13_customer_distribution_par
+select 
+  c_count, count(*) as custdist
+from 
+  (select 
+     c_custkey, count(o_orderkey) as c_count
+   from 
+     customer_par c left outer join orders_par o 
+     on 
+       c.c_custkey = o.o_custkey and not o.o_comment like '%special%deposits%'
+   group by c_custkey
+   ) c_orders
+group by c_count
+order by custdist desc, c_count desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150901185828_8b35b68b-9be9-4f71-8d59-09eb0b8d7457
+Total jobs = 4
+Stage-1 is selected by condition resolver.
+Launching Job 1 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 115
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0219, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0219/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0219
+Hadoop job information for Stage-1: number of mappers: 25; number of reducers: 115
+2015-09-01 18:58:41,534 Stage-1 map = 0%,  reduce = 0%
+2015-09-01 18:59:07,109 Stage-1 map = 2%,  reduce = 0%, Cumulative CPU 88.95 sec
+2015-09-01 18:59:44,156 Stage-1 map = 6%,  reduce = 0%, Cumulative CPU 359.45 sec
+2015-09-01 18:59:52,623 Stage-1 map = 8%,  reduce = 0%, Cumulative CPU 391.94 sec
+2015-09-01 18:59:53,675 Stage-1 map = 11%,  reduce = 0%, Cumulative CPU 403.04 sec
+2015-09-01 19:00:22,378 Stage-1 map = 13%,  reduce = 0%, Cumulative CPU 518.99 sec
+2015-09-01 19:00:23,434 Stage-1 map = 16%,  reduce = 0%, Cumulative CPU 524.01 sec
+2015-09-01 19:00:44,155 Stage-1 map = 17%,  reduce = 0%, Cumulative CPU 588.26 sec
+2015-09-01 19:00:46,448 Stage-1 map = 18%,  reduce = 0%, Cumulative CPU 622.1 sec
+2015-09-01 19:01:18,708 Stage-1 map = 19%,  reduce = 0%, Cumulative CPU 847.43 sec
+2015-09-01 19:01:21,224 Stage-1 map = 21%,  reduce = 0%, Cumulative CPU 858.93 sec
+2015-09-01 19:01:22,278 Stage-1 map = 22%,  reduce = 0%, Cumulative CPU 869.92 sec
+2015-09-01 19:01:29,689 Stage-1 map = 24%,  reduce = 0%, Cumulative CPU 900.72 sec
+2015-09-01 19:01:30,741 Stage-1 map = 27%,  reduce = 0%, Cumulative CPU 911.03 sec
+2015-09-01 19:01:55,977 Stage-1 map = 28%,  reduce = 0%, Cumulative CPU 1011.76 sec
+2015-09-01 19:01:58,081 Stage-1 map = 29%,  reduce = 0%, Cumulative CPU 1018.62 sec
+2015-09-01 19:01:59,158 Stage-1 map = 31%,  reduce = 0%, Cumulative CPU 1022.26 sec
+2015-09-01 19:02:01,279 Stage-1 map = 32%,  reduce = 0%, Cumulative CPU 1025.17 sec
+2015-09-01 19:02:15,212 Stage-1 map = 33%,  reduce = 0%, Cumulative CPU 1053.85 sec
+2015-09-01 19:02:21,730 Stage-1 map = 34%,  reduce = 0%, Cumulative CPU 1114.48 sec
+2015-09-01 19:02:52,258 Stage-1 map = 35%,  reduce = 0%, Cumulative CPU 1348.88 sec
+2015-09-01 19:02:54,448 Stage-1 map = 37%,  reduce = 0%, Cumulative CPU 1363.2 sec
+2015-09-01 19:02:57,652 Stage-1 map = 38%,  reduce = 0%, Cumulative CPU 1380.23 sec
+2015-09-01 19:03:00,827 Stage-1 map = 40%,  reduce = 0%, Cumulative CPU 1395.23 sec
+2015-09-01 19:03:02,977 Stage-1 map = 41%,  reduce = 0%, Cumulative CPU 1401.98 sec
+2015-09-01 19:03:06,173 Stage-1 map = 42%,  reduce = 0%, Cumulative CPU 1415.62 sec
+2015-09-01 19:03:07,235 Stage-1 map = 43%,  reduce = 0%, Cumulative CPU 1422.22 sec
+2015-09-01 19:03:28,250 Stage-1 map = 44%,  reduce = 0%, Cumulative CPU 1509.67 sec
+2015-09-01 19:03:31,422 Stage-1 map = 45%,  reduce = 0%, Cumulative CPU 1519.66 sec
+2015-09-01 19:03:32,474 Stage-1 map = 47%,  reduce = 0%, Cumulative CPU 1521.24 sec
+2015-09-01 19:03:36,686 Stage-1 map = 48%,  reduce = 0%, Cumulative CPU 1526.48 sec
+2015-09-01 19:03:48,573 Stage-1 map = 49%,  reduce = 0%, Cumulative CPU 1554.87 sec
+2015-09-01 19:03:52,808 Stage-1 map = 50%,  reduce = 0%, Cumulative CPU 1611.68 sec
+2015-09-01 19:04:26,456 Stage-1 map = 51%,  reduce = 0%, Cumulative CPU 1851.59 sec
+2015-09-01 19:04:27,504 Stage-1 map = 53%,  reduce = 0%, Cumulative CPU 1864.47 sec
+2015-09-01 19:04:30,697 Stage-1 map = 54%,  reduce = 0%, Cumulative CPU 1880.31 sec
+2015-09-01 19:04:32,805 Stage-1 map = 56%,  reduce = 0%, Cumulative CPU 1887.73 sec
+2015-09-01 19:04:35,974 Stage-1 map = 58%,  reduce = 0%, Cumulative CPU 1904.9 sec
+2015-09-01 19:04:37,044 Stage-1 map = 59%,  reduce = 0%, Cumulative CPU 1908.88 sec
+2015-09-01 19:04:59,058 Stage-1 map = 60%,  reduce = 0%, Cumulative CPU 1998.05 sec
+2015-09-01 19:05:04,357 Stage-1 map = 61%,  reduce = 0%, Cumulative CPU 2017.97 sec
+2015-09-01 19:05:06,481 Stage-1 map = 63%,  reduce = 0%, Cumulative CPU 2020.38 sec
+2015-09-01 19:05:07,568 Stage-1 map = 64%,  reduce = 0%, Cumulative CPU 2023.31 sec
+2015-09-01 19:05:18,355 Stage-1 map = 65%,  reduce = 0%, Cumulative CPU 2048.17 sec
+2015-09-01 19:05:45,774 Stage-1 map = 66%,  reduce = 0%, Cumulative CPU 2158.55 sec
+2015-09-01 19:05:52,061 Stage-1 map = 67%,  reduce = 0%, Cumulative CPU 2172.64 sec
+2015-09-01 19:05:55,215 Stage-1 map = 68%,  reduce = 0%, Cumulative CPU 2180.88 sec
+2015-09-01 19:06:00,445 Stage-1 map = 69%,  reduce = 0%, Cumulative CPU 2191.26 sec
+2015-09-01 19:06:23,470 Stage-1 map = 71%,  reduce = 0%, Cumulative CPU 2241.11 sec
+2015-09-01 19:06:30,999 Stage-1 map = 72%,  reduce = 0%, Cumulative CPU 2249.8 sec
+2015-09-01 19:06:41,465 Stage-1 map = 75%,  reduce = 0%, Cumulative CPU 2267.87 sec
+2015-09-01 19:06:47,772 Stage-1 map = 76%,  reduce = 0%, Cumulative CPU 2275.23 sec
+2015-09-01 19:06:48,818 Stage-1 map = 79%,  reduce = 0%, Cumulative CPU 2292.38 sec
+2015-09-01 19:06:55,112 Stage-1 map = 80%,  reduce = 0%, Cumulative CPU 2298.97 sec
+2015-09-01 19:07:03,517 Stage-1 map = 83%,  reduce = 0%, Cumulative CPU 2314.85 sec
+2015-09-01 19:07:10,935 Stage-1 map = 84%,  reduce = 0%, Cumulative CPU 2322.95 sec
+2015-09-01 19:07:12,001 Stage-1 map = 87%,  reduce = 0%, Cumulative CPU 2339.54 sec
+2015-09-01 19:07:18,306 Stage-1 map = 88%,  reduce = 0%, Cumulative CPU 2346.15 sec
+2015-09-01 19:07:37,204 Stage-1 map = 91%,  reduce = 0%, Cumulative CPU 2398.32 sec
+2015-09-01 19:07:38,256 Stage-1 map = 92%,  reduce = 0%, Cumulative CPU 2399.78 sec
+2015-09-01 19:07:47,868 Stage-1 map = 96%,  reduce = 0%, Cumulative CPU 2432.96 sec
+2015-09-01 19:07:53,087 Stage-1 map = 97%,  reduce = 0%, Cumulative CPU 2440.48 sec
+2015-09-01 19:08:01,504 Stage-1 map = 99%,  reduce = 0%, Cumulative CPU 2452.73 sec
+2015-09-01 19:08:28,653 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2481.99 sec
+2015-09-01 19:08:32,826 Stage-1 map = 100%,  reduce = 1%, Cumulative CPU 2489.51 sec
+2015-09-01 19:08:40,175 Stage-1 map = 100%,  reduce = 2%, Cumulative CPU 2506.04 sec
+2015-09-01 19:08:45,418 Stage-1 map = 100%,  reduce = 3%, Cumulative CPU 2516.89 sec
+2015-09-01 19:08:55,962 Stage-1 map = 100%,  reduce = 4%, Cumulative CPU 2540.09 sec
+2015-09-01 19:09:01,370 Stage-1 map = 100%,  reduce = 5%, Cumulative CPU 2552.34 sec
+2015-09-01 19:09:07,667 Stage-1 map = 100%,  reduce = 6%, Cumulative CPU 2563.8 sec
+2015-09-01 19:09:11,897 Stage-1 map = 100%,  reduce = 7%, Cumulative CPU 2575.92 sec
+2015-09-01 19:09:18,206 Stage-1 map = 100%,  reduce = 8%, Cumulative CPU 2586.64 sec
+2015-09-01 19:09:22,421 Stage-1 map = 100%,  reduce = 9%, Cumulative CPU 2598.71 sec
+2015-09-01 19:09:27,657 Stage-1 map = 100%,  reduce = 10%, Cumulative CPU 2609.55 sec
+2015-09-01 19:09:38,117 Stage-1 map = 100%,  reduce = 11%, Cumulative CPU 2633.71 sec
+2015-09-01 19:09:43,371 Stage-1 map = 100%,  reduce = 12%, Cumulative CPU 2644.62 sec
+2015-09-01 19:09:48,636 Stage-1 map = 100%,  reduce = 13%, Cumulative CPU 2656.82 sec
+2015-09-01 19:09:53,872 Stage-1 map = 100%,  reduce = 14%, Cumulative CPU 2669.1 sec
+2015-09-01 19:10:00,196 Stage-1 map = 100%,  reduce = 15%, Cumulative CPU 2681.48 sec
+2015-09-01 19:10:05,474 Stage-1 map = 100%,  reduce = 16%, Cumulative CPU 2693.79 sec
+2015-09-01 19:10:10,738 Stage-1 map = 100%,  reduce = 17%, Cumulative CPU 2705.33 sec
+2015-09-01 19:10:21,408 Stage-1 map = 100%,  reduce = 18%, Cumulative CPU 2729.38 sec
+2015-09-01 19:10:26,627 Stage-1 map = 100%,  reduce = 19%, Cumulative CPU 2741.04 sec
+2015-09-01 19:10:31,908 Stage-1 map = 100%,  reduce = 20%, Cumulative CPU 2753.35 sec
+2015-09-01 19:10:37,131 Stage-1 map = 100%,  reduce = 21%, Cumulative CPU 2766.18 sec
+2015-09-01 19:10:42,372 Stage-1 map = 100%,  reduce = 22%, Cumulative CPU 2776.97 sec
+2015-09-01 19:10:47,606 Stage-1 map = 100%,  reduce = 23%, Cumulative CPU 2787.81 sec
+2015-09-01 19:10:57,021 Stage-1 map = 100%,  reduce = 24%, Cumulative CPU 2810.78 sec
+2015-09-01 19:11:03,323 Stage-1 map = 100%,  reduce = 25%, Cumulative CPU 2823.71 sec
+2015-09-01 19:11:08,567 Stage-1 map = 100%,  reduce = 26%, Cumulative CPU 2835.93 sec
+2015-09-01 19:11:13,805 Stage-1 map = 100%,  reduce = 27%, Cumulative CPU 2846.82 sec
+2015-09-01 19:11:19,015 Stage-1 map = 100%,  reduce = 28%, Cumulative CPU 2858.45 sec
+2015-09-01 19:11:24,221 Stage-1 map = 100%,  reduce = 29%, Cumulative CPU 2870.24 sec
+2015-09-01 19:11:29,622 Stage-1 map = 100%,  reduce = 30%, Cumulative CPU 2881.74 sec
+2015-09-01 19:11:39,038 Stage-1 map = 100%,  reduce = 31%, Cumulative CPU 2904.58 sec
+2015-09-01 19:11:44,261 Stage-1 map = 100%,  reduce = 32%, Cumulative CPU 2915.24 sec
+2015-09-01 19:11:49,484 Stage-1 map = 100%,  reduce = 33%, Cumulative CPU 2926.63 sec
+2015-09-01 19:11:54,718 Stage-1 map = 100%,  reduce = 34%, Cumulative CPU 2937.69 sec
+2015-09-01 19:11:58,895 Stage-1 map = 100%,  reduce = 35%, Cumulative CPU 2948.49 sec
+2015-09-01 19:12:05,181 Stage-1 map = 100%,  reduce = 36%, Cumulative CPU 2960.2 sec
+2015-09-01 19:12:10,455 Stage-1 map = 100%,  reduce = 37%, Cumulative CPU 2972.38 sec
+2015-09-01 19:12:20,921 Stage-1 map = 100%,  reduce = 38%, Cumulative CPU 2995.15 sec
+2015-09-01 19:12:27,209 Stage-1 map = 100%,  reduce = 39%, Cumulative CPU 3006.48 sec
+2015-09-01 19:12:30,351 Stage-1 map = 100%,  reduce = 40%, Cumulative CPU 3018.27 sec
+2015-09-01 19:12:37,879 Stage-1 map = 100%,  reduce = 41%, Cumulative CPU 3030.67 sec
+2015-09-01 19:12:41,048 Stage-1 map = 100%,  reduce = 42%, Cumulative CPU 3042.45 sec
+2015-09-01 19:12:49,423 Stage-1 map = 100%,  reduce = 43%, Cumulative CPU 3054.19 sec
+2015-09-01 19:12:59,875 Stage-1 map = 100%,  reduce = 44%, Cumulative CPU 3077.85 sec
+2015-09-01 19:13:01,966 Stage-1 map = 100%,  reduce = 45%, Cumulative CPU 3089.24 sec
+2015-09-01 19:13:10,456 Stage-1 map = 100%,  reduce = 46%, Cumulative CPU 3101.49 sec
+2015-09-01 19:13:13,609 Stage-1 map = 100%,  reduce = 47%, Cumulative CPU 3113.44 sec
+2015-09-01 19:13:20,906 Stage-1 map = 100%,  reduce = 48%, Cumulative CPU 3124.36 sec
+2015-09-01 19:13:24,042 Stage-1 map = 100%,  reduce = 49%, Cumulative CPU 3135.79 sec
+2015-09-01 19:13:31,377 Stage-1 map = 100%,  reduce = 50%, Cumulative CPU 3148.64 sec
+2015-09-01 19:13:40,782 Stage-1 map = 100%,  reduce = 51%, Cumulative CPU 3171.66 sec
+2015-09-01 19:13:43,909 Stage-1 map = 100%,  reduce = 52%, Cumulative CPU 3182.69 sec
+2015-09-01 19:13:51,462 Stage-1 map = 100%,  reduce = 53%, Cumulative CPU 3194.58 sec
+2015-09-01 19:13:54,608 Stage-1 map = 100%,  reduce = 54%, Cumulative CPU 3205.76 sec
+2015-09-01 19:14:01,928 Stage-1 map = 100%,  reduce = 55%, Cumulative CPU 3217.89 sec
+2015-09-01 19:14:04,044 Stage-1 map = 100%,  reduce = 56%, Cumulative CPU 3230.73 sec
+2015-09-01 19:14:13,541 Stage-1 map = 100%,  reduce = 57%, Cumulative CPU 3243.22 sec
+2015-09-01 19:14:23,020 Stage-1 map = 100%,  reduce = 58%, Cumulative CPU 3267.95 sec
+2015-09-01 19:14:26,170 Stage-1 map = 100%,  reduce = 59%, Cumulative CPU 3279.33 sec
+2015-09-01 19:14:33,474 Stage-1 map = 100%,  reduce = 60%, Cumulative CPU 3290.68 sec
+2015-09-01 19:14:36,639 Stage-1 map = 100%,  reduce = 61%, Cumulative CPU 3302.17 sec
+2015-09-01 19:14:43,909 Stage-1 map = 100%,  reduce = 62%, Cumulative CPU 3314.03 sec
+2015-09-01 19:14:46,015 Stage-1 map = 100%,  reduce = 63%, Cumulative CPU 3326.55 sec
+2015-09-01 19:14:56,439 Stage-1 map = 100%,  reduce = 64%, Cumulative CPU 3348.89 sec
+2015-09-01 19:15:05,042 Stage-1 map = 100%,  reduce = 65%, Cumulative CPU 3360.31 sec
+2015-09-01 19:15:07,149 Stage-1 map = 100%,  reduce = 66%, Cumulative CPU 3371.88 sec
+2015-09-01 19:15:15,546 Stage-1 map = 100%,  reduce = 67%, Cumulative CPU 3383.07 sec
+2015-09-01 19:15:17,649 Stage-1 map = 100%,  reduce = 68%, Cumulative CPU 3394.37 sec
+2015-09-01 19:15:25,988 Stage-1 map = 100%,  reduce = 69%, Cumulative CPU 3405.69 sec
+2015-09-01 19:15:27,025 Stage-1 map = 100%,  reduce = 70%, Cumulative CPU 3416.74 sec
+2015-09-01 19:15:37,491 Stage-1 map = 100%,  reduce = 71%, Cumulative CPU 3439.19 sec
+2015-09-01 19:15:45,864 Stage-1 map = 100%,  reduce = 72%, Cumulative CPU 3450.16 sec
+2015-09-01 19:15:46,903 Stage-1 map = 100%,  reduce = 73%, Cumulative CPU 3461.2 sec
+2015-09-01 19:15:56,291 Stage-1 map = 100%,  reduce = 74%, Cumulative CPU 3472.71 sec
+2015-09-01 19:15:57,331 Stage-1 map = 100%,  reduce = 75%, Cumulative CPU 3484.43 sec
+2015-09-01 19:16:07,880 Stage-1 map = 100%,  reduce = 76%, Cumulative CPU 3496.23 sec
+2015-09-01 19:16:08,922 Stage-1 map = 100%,  reduce = 77%, Cumulative CPU 3509.86 sec
+2015-09-01 19:16:19,659 Stage-1 map = 100%,  reduce = 78%, Cumulative CPU 3534.06 sec
+2015-09-01 19:16:28,028 Stage-1 map = 100%,  reduce = 79%, Cumulative CPU 3545.28 sec
+2015-09-01 19:16:29,072 Stage-1 map = 100%,  reduce = 80%, Cumulative CPU 3556.47 sec
+2015-09-01 19:16:37,448 Stage-1 map = 100%,  reduce = 81%, Cumulative CPU 3567.89 sec
+2015-09-01 19:16:39,538 Stage-1 map = 100%,  reduce = 82%, Cumulative CPU 3579.61 sec
+2015-09-01 19:16:47,904 Stage-1 map = 100%,  reduce = 83%, Cumulative CPU 3591.76 sec
+2015-09-01 19:16:57,299 Stage-1 map = 100%,  reduce = 84%, Cumulative CPU 3614.64 sec
+2015-09-01 19:16:59,392 Stage-1 map = 100%,  reduce = 85%, Cumulative CPU 3626.02 sec
+2015-09-01 19:17:07,789 Stage-1 map = 100%,  reduce = 86%, Cumulative CPU 3637.5 sec
+2015-09-01 19:17:09,884 Stage-1 map = 100%,  reduce = 87%, Cumulative CPU 3649.06 sec
+2015-09-01 19:17:18,274 Stage-1 map = 100%,  reduce = 88%, Cumulative CPU 3660.46 sec
+2015-09-01 19:17:20,356 Stage-1 map = 100%,  reduce = 89%, Cumulative CPU 3672.48 sec
+2015-09-01 19:17:28,742 Stage-1 map = 100%,  reduce = 90%, Cumulative CPU 3683.87 sec
+2015-09-01 19:17:39,345 Stage-1 map = 100%,  reduce = 91%, Cumulative CPU 3706.36 sec
+2015-09-01 19:17:40,382 Stage-1 map = 100%,  reduce = 92%, Cumulative CPU 3718.06 sec
+2015-09-01 19:17:49,798 Stage-1 map = 100%,  reduce = 94%, Cumulative CPU 3741.2 sec
+2015-09-01 19:17:59,217 Stage-1 map = 100%,  reduce = 95%, Cumulative CPU 3753.94 sec
+2015-09-01 19:18:00,261 Stage-1 map = 100%,  reduce = 96%, Cumulative CPU 3765.84 sec
+2015-09-01 19:18:10,796 Stage-1 map = 100%,  reduce = 97%, Cumulative CPU 3778.2 sec
+2015-09-01 19:18:21,287 Stage-1 map = 100%,  reduce = 98%, Cumulative CPU 3803.8 sec
+2015-09-01 19:18:22,329 Stage-1 map = 100%,  reduce = 99%, Cumulative CPU 3816.49 sec
+2015-09-01 19:18:30,710 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 3828.69 sec
+MapReduce Total cumulative CPU time: 0 days 1 hours 3 minutes 48 seconds 690 msec
+Ended Job = job_1441059882143_0219
+Launching Job 2 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 5
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0220, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0220/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0220
+Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 5
+2015-09-01 19:18:41,881 Stage-2 map = 0%,  reduce = 0%
+2015-09-01 19:18:56,572 Stage-2 map = 4%,  reduce = 0%, Cumulative CPU 34.91 sec
+2015-09-01 19:18:59,724 Stage-2 map = 14%,  reduce = 0%, Cumulative CPU 38.51 sec
+2015-09-01 19:19:01,001 Stage-2 map = 17%,  reduce = 0%, Cumulative CPU 52.3 sec
+2015-09-01 19:19:02,048 Stage-2 map = 21%,  reduce = 0%, Cumulative CPU 65.0 sec
+2015-09-01 19:19:03,117 Stage-2 map = 23%,  reduce = 0%, Cumulative CPU 68.2 sec
+2015-09-01 19:19:05,232 Stage-2 map = 29%,  reduce = 0%, Cumulative CPU 71.53 sec
+2015-09-01 19:19:06,286 Stage-2 map = 32%,  reduce = 0%, Cumulative CPU 74.78 sec
+2015-09-01 19:19:08,382 Stage-2 map = 39%,  reduce = 0%, Cumulative CPU 78.07 sec
+2015-09-01 19:19:09,422 Stage-2 map = 42%,  reduce = 0%, Cumulative CPU 81.4 sec
+2015-09-01 19:19:11,523 Stage-2 map = 45%,  reduce = 0%, Cumulative CPU 84.83 sec
+2015-09-01 19:19:12,577 Stage-2 map = 47%,  reduce = 0%, Cumulative CPU 88.07 sec
+2015-09-01 19:19:15,717 Stage-2 map = 50%,  reduce = 0%, Cumulative CPU 94.64 sec
+2015-09-01 19:19:16,773 Stage-2 map = 66%,  reduce = 0%, Cumulative CPU 97.31 sec
+2015-09-01 19:19:18,890 Stage-2 map = 69%,  reduce = 0%, Cumulative CPU 100.8 sec
+2015-09-01 19:19:22,083 Stage-2 map = 72%,  reduce = 0%, Cumulative CPU 104.04 sec
+2015-09-01 19:19:25,263 Stage-2 map = 74%,  reduce = 0%, Cumulative CPU 107.41 sec
+2015-09-01 19:19:28,373 Stage-2 map = 77%,  reduce = 0%, Cumulative CPU 110.58 sec
+2015-09-01 19:19:29,417 Stage-2 map = 77%,  reduce = 3%, Cumulative CPU 111.46 sec
+2015-09-01 19:19:30,457 Stage-2 map = 80%,  reduce = 7%, Cumulative CPU 115.56 sec
+2015-09-01 19:19:33,599 Stage-2 map = 83%,  reduce = 7%, Cumulative CPU 119.24 sec
+2015-09-01 19:20:08,483 Stage-2 map = 100%,  reduce = 7%, Cumulative CPU 159.29 sec
+2015-09-01 19:20:10,562 Stage-2 map = 100%,  reduce = 17%, Cumulative CPU 162.5 sec
+2015-09-01 19:20:12,672 Stage-2 map = 100%,  reduce = 27%, Cumulative CPU 166.83 sec
+2015-09-01 19:20:13,717 Stage-2 map = 100%,  reduce = 29%, Cumulative CPU 174.21 sec
+2015-09-01 19:20:15,802 Stage-2 map = 100%,  reduce = 34%, Cumulative CPU 180.77 sec
+2015-09-01 19:20:16,847 Stage-2 map = 100%,  reduce = 40%, Cumulative CPU 185.25 sec
+2015-09-01 19:20:26,285 Stage-2 map = 100%,  reduce = 57%, Cumulative CPU 195.87 sec
+2015-09-01 19:20:27,321 Stage-2 map = 100%,  reduce = 73%, Cumulative CPU 206.44 sec
+2015-09-01 19:20:28,352 Stage-2 map = 100%,  reduce = 77%, Cumulative CPU 208.83 sec
+2015-09-01 19:20:29,412 Stage-2 map = 100%,  reduce = 80%, Cumulative CPU 211.3 sec
+2015-09-01 19:20:38,790 Stage-2 map = 100%,  reduce = 98%, Cumulative CPU 223.14 sec
+2015-09-01 19:20:40,900 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 225.47 sec
+MapReduce Total cumulative CPU time: 3 minutes 45 seconds 470 msec
+Ended Job = job_1441059882143_0220
+Launching Job 3 out of 4
+Number of reduce tasks not specified. Estimated from input data size: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0221, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0221/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0221
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 1
+2015-09-01 19:20:50,317 Stage-3 map = 0%,  reduce = 0%
+2015-09-01 19:21:02,962 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 12.72 sec
+2015-09-01 19:21:10,298 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 16.08 sec
+MapReduce Total cumulative CPU time: 16 seconds 80 msec
+Ended Job = job_1441059882143_0221
+Launching Job 4 out of 4
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0222, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0222/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0222
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 1
+2015-09-01 19:21:18,846 Stage-4 map = 0%,  reduce = 0%
+2015-09-01 19:21:29,323 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 13.19 sec
+2015-09-01 19:21:37,724 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 20.37 sec
+MapReduce Total cumulative CPU time: 20 seconds 370 msec
+Ended Job = job_1441059882143_0222
+Loading data to table default.q13_customer_distribution_par
+Table default.q13_customer_distribution_par stats: [numFiles=1, numRows=45, totalSize=645, rawDataSize=90]
+MapReduce Jobs Launched: 
+Stage-Stage-1: Map: 25  Reduce: 115   Cumulative CPU: 3828.69 sec   HDFS Read: 4326165657 HDFS Write: 333241023 SUCCESS
+Stage-Stage-2: Map: 2  Reduce: 5   Cumulative CPU: 225.47 sec   HDFS Read: 333289001 HDFS Write: 5096 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 1   Cumulative CPU: 16.08 sec   HDFS Read: 10375 HDFS Write: 1054 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 1   Cumulative CPU: 20.37 sec   HDFS Read: 6356 HDFS Write: 738 SUCCESS
+Total MapReduce CPU Time Spent: 0 days 1 hours 8 minutes 10 seconds 610 msec
+OK
+Time taken: 1391.273 seconds

@@ -1,0 +1,479 @@
+set hive.execution.engine=mr; -- the query
+insert into table q7_volume_shipping_par 
+select
+        supp_nation,
+        cust_nation,
+        l_year,
+        sum(volume) as revenue
+from
+        (
+                select
+                        n1.n_name as supp_nation,
+                        n2.n_name as cust_nation,
+                        year(l_shipdate) as l_year,
+                        l_extendedprice * (1 - l_discount) as volume
+                from
+                        supplier_par,
+                        lineitem_par,
+                        orders_par,
+                        customer_par,
+                        nation_par n1,
+                        nation_par n2
+                where
+                        s_suppkey = l_suppkey
+                        and o_orderkey = l_orderkey
+                        and c_custkey = o_custkey
+                        and s_nationkey = n1.n_nationkey
+                        and c_nationkey = n2.n_nationkey
+                        and (
+                                (n1.n_name = 'INDIA' and n2.n_name = 'ETHIOPIA')
+                                or (n1.n_name = 'ETHIOPIA' and n2.n_name = 'INDIA')
+                        )
+                        and l_shipdate >= '1995-01-01' and l_shipdate <= '1996-12-31'
+        ) as shipping
+group by
+        supp_nation,
+        cust_nation,
+        l_year
+order by
+        supp_nation,
+        cust_nation,
+        l_year;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150901125258_8bc7975b-1cd5-4c19-943e-140131812ca3
+Total jobs = 6
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150901125258_8bc7975b-1cd5-4c19-943e-140131812ca3.log
+2015-09-01 12:53:11	Starting to launch local task to process map join;	maximum memory = 1046478848
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2015-09-01 12:53:15	Processing rows:	200000	Hashtable size:	199999	Memory usage:	64791304	percentage:	0.062
+2015-09-01 12:53:15	Processing rows:	300000	Hashtable size:	299999	Memory usage:	87488544	percentage:	0.084
+2015-09-01 12:53:16	Processing rows:	400000	Hashtable size:	399999	Memory usage:	113656472	percentage:	0.109
+2015-09-01 12:53:16	Processing rows:	500000	Hashtable size:	499999	Memory usage:	132161528	percentage:	0.126
+2015-09-01 12:53:16	Processing rows:	600000	Hashtable size:	599999	Memory usage:	155517824	percentage:	0.149
+2015-09-01 12:53:17	Processing rows:	700000	Hashtable size:	699999	Memory usage:	176367088	percentage:	0.169
+2015-09-01 12:53:18	Processing rows:	800000	Hashtable size:	799999	Memory usage:	209236360	percentage:	0.20
+2015-09-01 12:53:18	Processing rows:	900000	Hashtable size:	899999	Memory usage:	235916576	percentage:	0.225
+2015-09-01 12:53:19	Processing rows:	1000000	Hashtable size:	999999	Memory usage:	248636840	percentage:	0.238
+2015-09-01 12:53:19	Dump the side-table for tag: 0 with group count: 1000000 into file: file:/tmp/leonidas/27ab6c43-fe15-4a5a-a023-0bfe89c3c91c/hive_2015-09-01_12-52-58_996_3559819767374103771-1/-local-10014/HashTable-Stage-20/MapJoin-mapfile50--.hashtable
+2015-09-01 12:53:20	Uploaded 1 File to: file:/tmp/leonidas/27ab6c43-fe15-4a5a-a023-0bfe89c3c91c/hive_2015-09-01_12-52-58_996_3559819767374103771-1/-local-10014/HashTable-Stage-20/MapJoin-mapfile50--.hashtable (23046326 bytes)
+2015-09-01 12:53:20	End of local task; Time Taken: 8.379 sec.
+01-Sep-2015 12:53:13 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:13 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:14 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:14 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 125782 records.
+01-Sep-2015 12:53:14 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:14 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 57 ms. row count = 125782
+01-Sep-2015 12:53:15 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:15 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:15 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124899 records.
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 5 ms. row count = 124899
+01-Sep-2015 12:53:15 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:15 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:15 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124828 records.
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:15 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 8 ms. row count = 124828
+01-Sep-2015 12:53:16 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:16 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:16 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124936 records.
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 7 ms. row count = 124936
+01-Sep-2015 12:53:16 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:16 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:16 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124842 records.
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:16 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 6 ms. row count = 124842
+01-Sep-2015 12:53:17 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:17 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:17 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124895 records.
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 7 ms. row count = 124895
+01-Sep-2015 12:53:17 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:17 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:17 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124880 records.
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:17 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 4 ms. row count = 124880
+01-Sep-2015 12:53:18 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(s_suppkey, null)), not(eq(s_nationkey, null)))
+01-Sep-2015 12:53:18 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(s_suppkey, null), noteq(s_nationkey, null))
+01-Sep-2015 12:53:18 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 12:53:18 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 124938 records.
+01-Sep-2015 12:53:18 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 12:53:18 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 8 ms. row count = 124938
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 6
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1441059882143_0195, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0195/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0195
+Hadoop job information for Stage-20: number of mappers: 85; number of reducers: 0
+2015-09-01 12:53:30,731 Stage-20 map = 0%,  reduce = 0%
+2015-09-01 12:54:15,628 Stage-20 map = 3%,  reduce = 0%, Cumulative CPU 293.41 sec
+2015-09-01 12:54:16,678 Stage-20 map = 5%,  reduce = 0%, Cumulative CPU 298.55 sec
+2015-09-01 12:54:56,330 Stage-20 map = 6%,  reduce = 0%, Cumulative CPU 584.74 sec
+2015-09-01 12:54:58,474 Stage-20 map = 9%,  reduce = 0%, Cumulative CPU 601.79 sec
+2015-09-01 12:55:34,957 Stage-20 map = 11%,  reduce = 0%, Cumulative CPU 863.03 sec
+2015-09-01 12:55:37,069 Stage-20 map = 12%,  reduce = 0%, Cumulative CPU 874.95 sec
+2015-09-01 12:55:38,118 Stage-20 map = 14%,  reduce = 0%, Cumulative CPU 883.04 sec
+2015-09-01 12:56:16,446 Stage-20 map = 15%,  reduce = 0%, Cumulative CPU 1157.86 sec
+2015-09-01 12:56:17,517 Stage-20 map = 16%,  reduce = 0%, Cumulative CPU 1161.64 sec
+2015-09-01 12:56:18,573 Stage-20 map = 19%,  reduce = 0%, Cumulative CPU 1169.69 sec
+2015-09-01 12:56:55,011 Stage-20 map = 20%,  reduce = 0%, Cumulative CPU 1429.67 sec
+2015-09-01 12:56:56,070 Stage-20 map = 22%,  reduce = 0%, Cumulative CPU 1437.61 sec
+2015-09-01 12:56:58,171 Stage-20 map = 24%,  reduce = 0%, Cumulative CPU 1444.21 sec
+2015-09-01 12:57:35,443 Stage-20 map = 26%,  reduce = 0%, Cumulative CPU 1722.89 sec
+2015-09-01 12:57:36,511 Stage-20 map = 27%,  reduce = 0%, Cumulative CPU 1725.74 sec
+2015-09-01 12:57:37,554 Stage-20 map = 28%,  reduce = 0%, Cumulative CPU 1728.55 sec
+2015-09-01 12:58:17,177 Stage-20 map = 29%,  reduce = 0%, Cumulative CPU 2009.14 sec
+2015-09-01 12:58:18,252 Stage-20 map = 32%,  reduce = 0%, Cumulative CPU 2017.7 sec
+2015-09-01 12:58:19,300 Stage-20 map = 33%,  reduce = 0%, Cumulative CPU 2022.18 sec
+2015-09-01 12:58:58,932 Stage-20 map = 34%,  reduce = 0%, Cumulative CPU 2303.87 sec
+2015-09-01 12:58:59,986 Stage-20 map = 35%,  reduce = 0%, Cumulative CPU 2311.06 sec
+2015-09-01 12:59:01,097 Stage-20 map = 36%,  reduce = 0%, Cumulative CPU 2315.32 sec
+2015-09-01 12:59:02,168 Stage-20 map = 38%,  reduce = 0%, Cumulative CPU 2320.16 sec
+2015-09-01 12:59:39,571 Stage-20 map = 39%,  reduce = 0%, Cumulative CPU 2593.32 sec
+2015-09-01 12:59:40,640 Stage-20 map = 40%,  reduce = 0%, Cumulative CPU 2596.96 sec
+2015-09-01 12:59:42,757 Stage-20 map = 42%,  reduce = 0%, Cumulative CPU 2606.51 sec
+2015-09-01 13:00:21,370 Stage-20 map = 45%,  reduce = 0%, Cumulative CPU 2894.65 sec
+2015-09-01 13:00:22,414 Stage-20 map = 46%,  reduce = 0%, Cumulative CPU 2896.96 sec
+2015-09-01 13:00:23,452 Stage-20 map = 47%,  reduce = 0%, Cumulative CPU 2900.44 sec
+2015-09-01 13:00:59,671 Stage-20 map = 48%,  reduce = 0%, Cumulative CPU 3178.98 sec
+2015-09-01 13:01:00,768 Stage-20 map = 51%,  reduce = 0%, Cumulative CPU 3192.5 sec
+2015-09-01 13:01:01,844 Stage-20 map = 52%,  reduce = 0%, Cumulative CPU 3193.83 sec
+2015-09-01 13:01:40,293 Stage-20 map = 53%,  reduce = 0%, Cumulative CPU 3458.76 sec
+2015-09-01 13:01:41,354 Stage-20 map = 54%,  reduce = 0%, Cumulative CPU 3463.15 sec
+2015-09-01 13:01:42,417 Stage-20 map = 56%,  reduce = 0%, Cumulative CPU 3471.4 sec
+2015-09-01 13:02:24,217 Stage-20 map = 61%,  reduce = 0%, Cumulative CPU 3775.48 sec
+2015-09-01 13:03:06,739 Stage-20 map = 64%,  reduce = 0%, Cumulative CPU 4061.25 sec
+2015-09-01 13:03:07,827 Stage-20 map = 66%,  reduce = 0%, Cumulative CPU 4070.31 sec
+2015-09-01 13:03:44,816 Stage-20 map = 67%,  reduce = 0%, Cumulative CPU 4398.98 sec
+2015-09-01 13:03:46,929 Stage-20 map = 68%,  reduce = 0%, Cumulative CPU 4413.18 sec
+2015-09-01 13:03:48,006 Stage-20 map = 71%,  reduce = 0%, Cumulative CPU 4420.75 sec
+2015-09-01 13:03:49,057 Stage-20 map = 72%,  reduce = 0%, Cumulative CPU 4425.03 sec
+2015-09-01 13:04:27,776 Stage-20 map = 73%,  reduce = 0%, Cumulative CPU 4759.78 sec
+2015-09-01 13:04:29,896 Stage-20 map = 74%,  reduce = 0%, Cumulative CPU 4770.29 sec
+2015-09-01 13:04:30,945 Stage-20 map = 75%,  reduce = 0%, Cumulative CPU 4774.41 sec
+2015-09-01 13:04:33,085 Stage-20 map = 78%,  reduce = 0%, Cumulative CPU 4784.21 sec
+2015-09-01 13:05:10,303 Stage-20 map = 79%,  reduce = 0%, Cumulative CPU 5109.74 sec
+2015-09-01 13:05:12,400 Stage-20 map = 80%,  reduce = 0%, Cumulative CPU 5125.93 sec
+2015-09-01 13:05:13,457 Stage-20 map = 82%,  reduce = 0%, Cumulative CPU 5132.33 sec
+2015-09-01 13:05:15,560 Stage-20 map = 84%,  reduce = 0%, Cumulative CPU 5138.26 sec
+2015-09-01 13:05:56,743 Stage-20 map = 85%,  reduce = 0%, Cumulative CPU 5503.73 sec
+2015-09-01 13:05:57,849 Stage-20 map = 88%,  reduce = 0%, Cumulative CPU 5520.54 sec
+2015-09-01 13:06:01,063 Stage-20 map = 89%,  reduce = 0%, Cumulative CPU 5526.62 sec
+2015-09-01 13:06:41,655 Stage-20 map = 93%,  reduce = 0%, Cumulative CPU 5879.52 sec
+2015-09-01 13:06:42,717 Stage-20 map = 94%,  reduce = 0%, Cumulative CPU 5882.48 sec
+2015-09-01 13:06:43,789 Stage-20 map = 95%,  reduce = 0%, Cumulative CPU 5887.4 sec
+2015-09-01 13:07:15,159 Stage-20 map = 96%,  reduce = 0%, Cumulative CPU 6125.96 sec
+2015-09-01 13:07:20,403 Stage-20 map = 99%,  reduce = 0%, Cumulative CPU 6149.58 sec
+2015-09-01 13:07:22,518 Stage-20 map = 100%,  reduce = 0%, Cumulative CPU 6153.34 sec
+MapReduce Total cumulative CPU time: 0 days 1 hours 42 minutes 33 seconds 340 msec
+Ended Job = job_1441059882143_0195
+Stage-22 is filtered out by condition resolver.
+Stage-23 is filtered out by condition resolver.
+Stage-2 is selected by condition resolver.
+Launching Job 2 out of 6
+Number of reduce tasks not specified. Estimated from input data size: 255
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0196, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0196/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0196
+Hadoop job information for Stage-2: number of mappers: 49; number of reducers: 255
+2015-09-01 13:07:32,081 Stage-2 map = 0%,  reduce = 0%
+2015-09-01 13:08:10,615 Stage-2 map = 1%,  reduce = 0%, Cumulative CPU 266.97 sec
+2015-09-01 13:08:11,665 Stage-2 map = 2%,  reduce = 0%, Cumulative CPU 277.31 sec
+2015-09-01 13:08:23,208 Stage-2 map = 3%,  reduce = 0%, Cumulative CPU 334.46 sec
+2015-09-01 13:08:24,269 Stage-2 map = 4%,  reduce = 0%, Cumulative CPU 341.12 sec
+2015-09-01 13:08:26,369 Stage-2 map = 5%,  reduce = 0%, Cumulative CPU 351.13 sec
+2015-09-01 13:08:36,898 Stage-2 map = 6%,  reduce = 0%, Cumulative CPU 407.53 sec
+2015-09-01 13:08:39,010 Stage-2 map = 7%,  reduce = 0%, Cumulative CPU 417.5 sec
+2015-09-01 13:08:53,730 Stage-2 map = 9%,  reduce = 0%, Cumulative CPU 499.91 sec
+2015-09-01 13:08:54,819 Stage-2 map = 10%,  reduce = 0%, Cumulative CPU 500.96 sec
+2015-09-01 13:09:30,263 Stage-2 map = 11%,  reduce = 0%, Cumulative CPU 770.76 sec
+2015-09-01 13:09:32,638 Stage-2 map = 12%,  reduce = 0%, Cumulative CPU 784.19 sec
+2015-09-01 13:09:45,284 Stage-2 map = 13%,  reduce = 0%, Cumulative CPU 847.36 sec
+2015-09-01 13:09:46,333 Stage-2 map = 14%,  reduce = 0%, Cumulative CPU 854.21 sec
+2015-09-01 13:09:47,382 Stage-2 map = 15%,  reduce = 0%, Cumulative CPU 861.09 sec
+2015-09-01 13:10:02,225 Stage-2 map = 16%,  reduce = 0%, Cumulative CPU 936.17 sec
+2015-09-01 13:10:03,293 Stage-2 map = 17%,  reduce = 0%, Cumulative CPU 946.66 sec
+2015-09-01 13:10:17,982 Stage-2 map = 18%,  reduce = 0%, Cumulative CPU 1024.2 sec
+2015-09-01 13:10:19,055 Stage-2 map = 19%,  reduce = 0%, Cumulative CPU 1027.21 sec
+2015-09-01 13:10:20,120 Stage-2 map = 20%,  reduce = 0%, Cumulative CPU 1031.23 sec
+2015-09-01 13:10:53,436 Stage-2 map = 21%,  reduce = 0%, Cumulative CPU 1300.1 sec
+2015-09-01 13:10:54,486 Stage-2 map = 22%,  reduce = 0%, Cumulative CPU 1307.43 sec
+2015-09-01 13:10:58,776 Stage-2 map = 23%,  reduce = 0%, Cumulative CPU 1325.93 sec
+2015-09-01 13:11:10,748 Stage-2 map = 24%,  reduce = 0%, Cumulative CPU 1384.95 sec
+2015-09-01 13:11:18,154 Stage-2 map = 25%,  reduce = 0%, Cumulative CPU 1426.54 sec
+2015-09-01 13:11:24,513 Stage-2 map = 26%,  reduce = 0%, Cumulative CPU 1459.49 sec
+2015-09-01 13:11:25,583 Stage-2 map = 27%,  reduce = 0%, Cumulative CPU 1466.12 sec
+2015-09-01 13:11:41,300 Stage-2 map = 29%,  reduce = 0%, Cumulative CPU 1547.41 sec
+2015-09-01 13:11:43,405 Stage-2 map = 30%,  reduce = 0%, Cumulative CPU 1555.51 sec
+2015-09-01 13:11:47,623 Stage-2 map = 31%,  reduce = 0%, Cumulative CPU 1560.9 sec
+2015-09-01 13:12:25,550 Stage-2 map = 32%,  reduce = 0%, Cumulative CPU 1895.17 sec
+2015-09-01 13:12:29,982 Stage-2 map = 33%,  reduce = 0%, Cumulative CPU 1920.69 sec
+2015-09-01 13:12:41,563 Stage-2 map = 34%,  reduce = 0%, Cumulative CPU 1976.86 sec
+2015-09-01 13:12:42,622 Stage-2 map = 35%,  reduce = 0%, Cumulative CPU 1983.47 sec
+2015-09-01 13:12:53,152 Stage-2 map = 36%,  reduce = 0%, Cumulative CPU 2037.67 sec
+2015-09-01 13:12:57,368 Stage-2 map = 37%,  reduce = 0%, Cumulative CPU 2064.14 sec
+2015-09-01 13:13:11,021 Stage-2 map = 38%,  reduce = 0%, Cumulative CPU 2127.94 sec
+2015-09-01 13:13:13,125 Stage-2 map = 39%,  reduce = 0%, Cumulative CPU 2142.59 sec
+2015-09-01 13:13:15,204 Stage-2 map = 41%,  reduce = 0%, Cumulative CPU 2146.81 sec
+2015-09-01 13:13:52,281 Stage-2 map = 42%,  reduce = 0%, Cumulative CPU 2443.3 sec
+2015-09-01 13:13:54,419 Stage-2 map = 43%,  reduce = 0%, Cumulative CPU 2455.54 sec
+2015-09-01 13:14:10,267 Stage-2 map = 44%,  reduce = 0%, Cumulative CPU 2534.16 sec
+2015-09-01 13:14:13,453 Stage-2 map = 45%,  reduce = 0%, Cumulative CPU 2549.88 sec
+2015-09-01 13:14:25,052 Stage-2 map = 46%,  reduce = 0%, Cumulative CPU 2608.7 sec
+2015-09-01 13:14:28,273 Stage-2 map = 47%,  reduce = 0%, Cumulative CPU 2623.77 sec
+2015-09-01 13:14:30,359 Stage-2 map = 48%,  reduce = 0%, Cumulative CPU 2633.87 sec
+2015-09-01 13:14:43,963 Stage-2 map = 50%,  reduce = 0%, Cumulative CPU 2705.21 sec
+2015-09-01 13:14:45,012 Stage-2 map = 51%,  reduce = 0%, Cumulative CPU 2708.16 sec
+2015-09-01 13:15:23,396 Stage-2 map = 52%,  reduce = 0%, Cumulative CPU 2881.73 sec
+2015-09-01 13:15:39,194 Stage-2 map = 53%,  reduce = 0%, Cumulative CPU 2932.3 sec
+2015-09-01 13:15:40,245 Stage-2 map = 54%,  reduce = 0%, Cumulative CPU 2936.15 sec
+2015-09-01 13:15:51,880 Stage-2 map = 55%,  reduce = 0%, Cumulative CPU 2974.72 sec
+2015-09-01 13:16:10,799 Stage-2 map = 57%,  reduce = 0%, Cumulative CPU 3032.64 sec
+2015-09-01 13:16:30,233 Stage-2 map = 58%,  reduce = 0%, Cumulative CPU 3108.09 sec
+2015-09-01 13:16:35,463 Stage-2 map = 59%,  reduce = 0%, Cumulative CPU 3134.71 sec
+2015-09-01 13:16:36,517 Stage-2 map = 60%,  reduce = 0%, Cumulative CPU 3152.34 sec
+2015-09-01 13:16:39,670 Stage-2 map = 61%,  reduce = 0%, Cumulative CPU 3162.74 sec
+2015-09-01 13:16:59,457 Stage-2 map = 62%,  reduce = 0%, Cumulative CPU 3222.67 sec
+2015-09-01 13:17:00,545 Stage-2 map = 63%,  reduce = 0%, Cumulative CPU 3227.22 sec
+2015-09-01 13:17:17,475 Stage-2 map = 64%,  reduce = 0%, Cumulative CPU 3246.15 sec
+2015-09-01 13:17:23,758 Stage-2 map = 65%,  reduce = 0%, Cumulative CPU 3323.6 sec
+2015-09-01 13:17:24,804 Stage-2 map = 66%,  reduce = 0%, Cumulative CPU 3340.31 sec
+2015-09-01 13:17:27,916 Stage-2 map = 67%,  reduce = 0%, Cumulative CPU 3350.15 sec
+2015-09-01 13:17:48,023 Stage-2 map = 69%,  reduce = 0%, Cumulative CPU 3411.89 sec
+2015-09-01 13:18:06,023 Stage-2 map = 70%,  reduce = 0%, Cumulative CPU 3455.92 sec
+2015-09-01 13:18:12,454 Stage-2 map = 71%,  reduce = 0%, Cumulative CPU 3500.21 sec
+2015-09-01 13:18:13,604 Stage-2 map = 72%,  reduce = 0%, Cumulative CPU 3519.78 sec
+2015-09-01 13:18:18,879 Stage-2 map = 73%,  reduce = 0%, Cumulative CPU 3550.63 sec
+2015-09-01 13:18:37,638 Stage-2 map = 74%,  reduce = 0%, Cumulative CPU 3608.11 sec
+2015-09-01 13:18:38,708 Stage-2 map = 75%,  reduce = 0%, Cumulative CPU 3611.71 sec
+2015-09-01 13:18:39,757 Stage-2 map = 76%,  reduce = 0%, Cumulative CPU 3614.06 sec
+2015-09-01 13:19:04,174 Stage-2 map = 78%,  reduce = 0%, Cumulative CPU 3718.75 sec
+2015-09-01 13:19:07,374 Stage-2 map = 80%,  reduce = 0%, Cumulative CPU 3728.68 sec
+2015-09-01 13:19:28,411 Stage-2 map = 82%,  reduce = 0%, Cumulative CPU 3792.9 sec
+2015-09-01 13:19:50,571 Stage-2 map = 83%,  reduce = 0%, Cumulative CPU 3874.84 sec
+2015-09-01 13:19:51,611 Stage-2 map = 84%,  reduce = 0%, Cumulative CPU 3902.33 sec
+2015-09-01 13:19:53,681 Stage-2 map = 85%,  reduce = 0%, Cumulative CPU 3905.65 sec
+2015-09-01 13:19:54,721 Stage-2 map = 86%,  reduce = 0%, Cumulative CPU 3912.29 sec
+2015-09-01 13:20:14,592 Stage-2 map = 87%,  reduce = 0%, Cumulative CPU 3971.47 sec
+2015-09-01 13:20:15,632 Stage-2 map = 88%,  reduce = 0%, Cumulative CPU 3974.1 sec
+2015-09-01 13:20:33,795 Stage-2 map = 89%,  reduce = 0%, Cumulative CPU 4034.99 sec
+2015-09-01 13:20:38,020 Stage-2 map = 90%,  reduce = 0%, Cumulative CPU 4057.85 sec
+2015-09-01 13:20:40,094 Stage-2 map = 91%,  reduce = 0%, Cumulative CPU 4075.73 sec
+2015-09-01 13:20:43,204 Stage-2 map = 92%,  reduce = 0%, Cumulative CPU 4085.5 sec
+2015-09-01 13:20:57,821 Stage-2 map = 93%,  reduce = 0%, Cumulative CPU 4134.5 sec
+2015-09-01 13:21:03,068 Stage-2 map = 94%,  reduce = 0%, Cumulative CPU 4143.64 sec
+2015-09-01 13:21:16,836 Stage-2 map = 96%,  reduce = 0%, Cumulative CPU 4173.31 sec
+2015-09-01 13:21:24,212 Stage-2 map = 97%,  reduce = 0%, Cumulative CPU 4216.84 sec
+2015-09-01 13:21:29,430 Stage-2 map = 99%,  reduce = 0%, Cumulative CPU 4245.42 sec
+2015-09-01 13:21:46,120 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 4265.22 sec
+2015-09-01 13:21:50,337 Stage-2 map = 100%,  reduce = 1%, Cumulative CPU 4283.41 sec
+2015-09-01 13:22:10,579 Stage-2 map = 100%,  reduce = 2%, Cumulative CPU 4329.77 sec
+2015-09-01 13:22:36,731 Stage-2 map = 100%,  reduce = 3%, Cumulative CPU 4375.77 sec
+2015-09-01 13:22:51,327 Stage-2 map = 100%,  reduce = 4%, Cumulative CPU 4417.77 sec
+2015-09-01 13:23:04,933 Stage-2 map = 100%,  reduce = 5%, Cumulative CPU 4447.53 sec
+2015-09-01 13:23:30,352 Stage-2 map = 100%,  reduce = 6%, Cumulative CPU 4496.08 sec
+2015-09-01 13:23:43,965 Stage-2 map = 100%,  reduce = 7%, Cumulative CPU 4526.05 sec
+2015-09-01 13:23:57,624 Stage-2 map = 100%,  reduce = 8%, Cumulative CPU 4568.52 sec
+2015-09-01 13:24:14,387 Stage-2 map = 100%,  reduce = 9%, Cumulative CPU 4604.78 sec
+2015-09-01 13:24:37,384 Stage-2 map = 100%,  reduce = 10%, Cumulative CPU 4646.9 sec
+2015-09-01 13:24:52,363 Stage-2 map = 100%,  reduce = 11%, Cumulative CPU 4678.28 sec
+2015-09-01 13:25:07,120 Stage-2 map = 100%,  reduce = 12%, Cumulative CPU 4720.47 sec
+2015-09-01 13:25:23,798 Stage-2 map = 100%,  reduce = 13%, Cumulative CPU 4755.57 sec
+2015-09-01 13:25:45,712 Stage-2 map = 100%,  reduce = 14%, Cumulative CPU 4796.91 sec
+2015-09-01 13:26:00,797 Stage-2 map = 100%,  reduce = 15%, Cumulative CPU 4838.88 sec
+2015-09-01 13:26:14,412 Stage-2 map = 100%,  reduce = 16%, Cumulative CPU 4868.72 sec
+2015-09-01 13:26:40,481 Stage-2 map = 100%,  reduce = 17%, Cumulative CPU 4916.25 sec
+2015-09-01 13:26:53,329 Stage-2 map = 100%,  reduce = 18%, Cumulative CPU 4946.61 sec
+2015-09-01 13:27:09,095 Stage-2 map = 100%,  reduce = 19%, Cumulative CPU 4988.02 sec
+2015-09-01 13:27:22,676 Stage-2 map = 100%,  reduce = 20%, Cumulative CPU 5017.57 sec
+2015-09-01 13:27:47,790 Stage-2 map = 100%,  reduce = 21%, Cumulative CPU 5062.95 sec
+2015-09-01 13:28:01,447 Stage-2 map = 100%,  reduce = 22%, Cumulative CPU 5092.86 sec
+2015-09-01 13:28:17,340 Stage-2 map = 100%,  reduce = 23%, Cumulative CPU 5137.27 sec
+2015-09-01 13:28:31,960 Stage-2 map = 100%,  reduce = 24%, Cumulative CPU 5168.16 sec
+2015-09-01 13:28:55,018 Stage-2 map = 100%,  reduce = 25%, Cumulative CPU 5211.8 sec
+2015-09-01 13:29:11,766 Stage-2 map = 100%,  reduce = 26%, Cumulative CPU 5256.45 sec
+2015-09-01 13:29:25,567 Stage-2 map = 100%,  reduce = 27%, Cumulative CPU 5290.01 sec
+2015-09-01 13:29:49,562 Stage-2 map = 100%,  reduce = 28%, Cumulative CPU 5333.36 sec
+2015-09-01 13:30:02,145 Stage-2 map = 100%,  reduce = 29%, Cumulative CPU 5363.32 sec
+2015-09-01 13:30:18,899 Stage-2 map = 100%,  reduce = 30%, Cumulative CPU 5407.13 sec
+2015-09-01 13:30:32,467 Stage-2 map = 100%,  reduce = 31%, Cumulative CPU 5436.81 sec
+2015-09-01 13:30:57,771 Stage-2 map = 100%,  reduce = 32%, Cumulative CPU 5481.07 sec
+2015-09-01 13:31:12,400 Stage-2 map = 100%,  reduce = 33%, Cumulative CPU 5523.42 sec
+2015-09-01 13:31:25,988 Stage-2 map = 100%,  reduce = 34%, Cumulative CPU 5553.93 sec
+2015-09-01 13:31:41,658 Stage-2 map = 100%,  reduce = 35%, Cumulative CPU 5587.9 sec
+2015-09-01 13:32:04,922 Stage-2 map = 100%,  reduce = 36%, Cumulative CPU 5628.66 sec
+2015-09-01 13:32:19,536 Stage-2 map = 100%,  reduce = 37%, Cumulative CPU 5670.83 sec
+2015-09-01 13:32:33,133 Stage-2 map = 100%,  reduce = 38%, Cumulative CPU 5698.51 sec
+2015-09-01 13:32:58,311 Stage-2 map = 100%,  reduce = 39%, Cumulative CPU 5746.13 sec
+2015-09-01 13:33:10,923 Stage-2 map = 100%,  reduce = 40%, Cumulative CPU 5777.29 sec
+2015-09-01 13:33:26,818 Stage-2 map = 100%,  reduce = 41%, Cumulative CPU 5821.21 sec
+2015-09-01 13:33:40,386 Stage-2 map = 100%,  reduce = 42%, Cumulative CPU 5851.17 sec
+2015-09-01 13:34:04,515 Stage-2 map = 100%,  reduce = 43%, Cumulative CPU 5894.45 sec
+2015-09-01 13:34:20,239 Stage-2 map = 100%,  reduce = 44%, Cumulative CPU 5936.7 sec
+2015-09-01 13:34:32,966 Stage-2 map = 100%,  reduce = 45%, Cumulative CPU 5965.46 sec
+2015-09-01 13:34:58,064 Stage-2 map = 100%,  reduce = 46%, Cumulative CPU 6011.3 sec
+2015-09-01 13:35:11,691 Stage-2 map = 100%,  reduce = 47%, Cumulative CPU 6039.99 sec
+2015-09-01 13:35:26,326 Stage-2 map = 100%,  reduce = 48%, Cumulative CPU 6082.82 sec
+2015-09-01 13:35:39,921 Stage-2 map = 100%,  reduce = 49%, Cumulative CPU 6114.71 sec
+2015-09-01 13:36:03,177 Stage-2 map = 100%,  reduce = 50%, Cumulative CPU 6159.18 sec
+2015-09-01 13:36:16,850 Stage-2 map = 100%,  reduce = 51%, Cumulative CPU 6190.33 sec
+2015-09-01 13:36:32,521 Stage-2 map = 100%,  reduce = 52%, Cumulative CPU 6232.64 sec
+2015-09-01 13:36:48,226 Stage-2 map = 100%,  reduce = 53%, Cumulative CPU 6264.39 sec
+2015-09-01 13:37:09,217 Stage-2 map = 100%,  reduce = 54%, Cumulative CPU 6306.08 sec
+2015-09-01 13:37:24,067 Stage-2 map = 100%,  reduce = 55%, Cumulative CPU 6337.72 sec
+2015-09-01 13:37:37,639 Stage-2 map = 100%,  reduce = 56%, Cumulative CPU 6377.62 sec
+2015-09-01 13:38:00,713 Stage-2 map = 100%,  reduce = 57%, Cumulative CPU 6419.97 sec
+2015-09-01 13:38:14,367 Stage-2 map = 100%,  reduce = 58%, Cumulative CPU 6449.76 sec
+2015-09-01 13:38:30,069 Stage-2 map = 100%,  reduce = 59%, Cumulative CPU 6493.27 sec
+2015-09-01 13:38:42,828 Stage-2 map = 100%,  reduce = 60%, Cumulative CPU 6521.43 sec
+2015-09-01 13:39:07,991 Stage-2 map = 100%,  reduce = 61%, Cumulative CPU 6565.21 sec
+2015-09-01 13:39:21,677 Stage-2 map = 100%,  reduce = 62%, Cumulative CPU 6596.53 sec
+2015-09-01 13:39:37,350 Stage-2 map = 100%,  reduce = 63%, Cumulative CPU 6639.38 sec
+2015-09-01 13:39:53,363 Stage-2 map = 100%,  reduce = 64%, Cumulative CPU 6670.61 sec
+2015-09-01 13:40:14,419 Stage-2 map = 100%,  reduce = 65%, Cumulative CPU 6711.65 sec
+2015-09-01 13:40:29,046 Stage-2 map = 100%,  reduce = 66%, Cumulative CPU 6754.36 sec
+2015-09-01 13:40:42,635 Stage-2 map = 100%,  reduce = 67%, Cumulative CPU 6782.33 sec
+2015-09-01 13:41:05,541 Stage-2 map = 100%,  reduce = 68%, Cumulative CPU 6824.3 sec
+2015-09-01 13:41:18,319 Stage-2 map = 100%,  reduce = 69%, Cumulative CPU 6853.2 sec
+2015-09-01 13:41:32,948 Stage-2 map = 100%,  reduce = 70%, Cumulative CPU 6892.93 sec
+2015-09-01 13:41:47,564 Stage-2 map = 100%,  reduce = 71%, Cumulative CPU 6925.29 sec
+2015-09-01 13:42:11,609 Stage-2 map = 100%,  reduce = 72%, Cumulative CPU 6965.37 sec
+2015-09-01 13:42:26,270 Stage-2 map = 100%,  reduce = 73%, Cumulative CPU 7006.59 sec
+2015-09-01 13:42:38,992 Stage-2 map = 100%,  reduce = 74%, Cumulative CPU 7035.25 sec
+2015-09-01 13:42:54,628 Stage-2 map = 100%,  reduce = 75%, Cumulative CPU 7067.58 sec
+2015-09-01 13:43:18,763 Stage-2 map = 100%,  reduce = 76%, Cumulative CPU 7109.7 sec
+2015-09-01 13:43:33,409 Stage-2 map = 100%,  reduce = 77%, Cumulative CPU 7152.0 sec
+2015-09-01 13:43:45,892 Stage-2 map = 100%,  reduce = 78%, Cumulative CPU 7180.67 sec
+2015-09-01 13:44:12,519 Stage-2 map = 100%,  reduce = 79%, Cumulative CPU 7227.56 sec
+2015-09-01 13:44:26,106 Stage-2 map = 100%,  reduce = 80%, Cumulative CPU 7256.81 sec
+2015-09-01 13:44:39,699 Stage-2 map = 100%,  reduce = 81%, Cumulative CPU 7299.3 sec
+2015-09-01 13:44:54,311 Stage-2 map = 100%,  reduce = 82%, Cumulative CPU 7331.03 sec
+2015-09-01 13:45:18,950 Stage-2 map = 100%,  reduce = 83%, Cumulative CPU 7377.75 sec
+2015-09-01 13:45:32,522 Stage-2 map = 100%,  reduce = 84%, Cumulative CPU 7417.98 sec
+2015-09-01 13:45:46,077 Stage-2 map = 100%,  reduce = 85%, Cumulative CPU 7446.57 sec
+2015-09-01 13:46:12,417 Stage-2 map = 100%,  reduce = 86%, Cumulative CPU 7495.17 sec
+2015-09-01 13:46:25,128 Stage-2 map = 100%,  reduce = 87%, Cumulative CPU 7525.73 sec
+2015-09-01 13:46:38,645 Stage-2 map = 100%,  reduce = 88%, Cumulative CPU 7565.9 sec
+2015-09-01 13:46:52,252 Stage-2 map = 100%,  reduce = 89%, Cumulative CPU 7595.6 sec
+2015-09-01 13:47:19,568 Stage-2 map = 100%,  reduce = 90%, Cumulative CPU 7643.99 sec
+2015-09-01 13:47:32,330 Stage-2 map = 100%,  reduce = 91%, Cumulative CPU 7673.69 sec
+2015-09-01 13:47:46,967 Stage-2 map = 100%,  reduce = 92%, Cumulative CPU 7714.78 sec
+2015-09-01 13:48:01,696 Stage-2 map = 100%,  reduce = 93%, Cumulative CPU 7749.86 sec
+2015-09-01 13:48:24,854 Stage-2 map = 100%,  reduce = 94%, Cumulative CPU 7791.2 sec
+2015-09-01 13:48:38,399 Stage-2 map = 100%,  reduce = 95%, Cumulative CPU 7831.96 sec
+2015-09-01 13:48:52,252 Stage-2 map = 100%,  reduce = 96%, Cumulative CPU 7860.94 sec
+2015-09-01 13:49:17,629 Stage-2 map = 100%,  reduce = 97%, Cumulative CPU 7910.17 sec
+2015-09-01 13:49:31,235 Stage-2 map = 100%,  reduce = 98%, Cumulative CPU 7939.77 sec
+2015-09-01 13:49:44,782 Stage-2 map = 100%,  reduce = 99%, Cumulative CPU 7981.09 sec
+2015-09-01 13:50:13,260 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 8031.04 sec
+MapReduce Total cumulative CPU time: 0 days 2 hours 13 minutes 51 seconds 40 msec
+Ended Job = job_1441059882143_0196
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150901125258_8bc7975b-1cd5-4c19-943e-140131812ca3.log
+2015-09-01 13:50:19	Starting to launch local task to process map join;	maximum memory = 1046478848
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2015-09-01 13:50:23	Processing rows:	200000	Hashtable size:	199999	Memory usage:	70612736	percentage:	0.067
+2015-09-01 13:50:23	Processing rows:	300000	Hashtable size:	299999	Memory usage:	95456320	percentage:	0.091
+2015-09-01 13:50:24	Processing rows:	400000	Hashtable size:	399999	Memory usage:	119538128	percentage:	0.114
+2015-09-01 13:50:24	Processing rows:	500000	Hashtable size:	499999	Memory usage:	142475248	percentage:	0.136
+2015-09-01 13:50:25	Processing rows:	600000	Hashtable size:	599999	Memory usage:	162284736	percentage:	0.155
+2015-09-01 13:50:25	Processing rows:	700000	Hashtable size:	699999	Memory usage:	184149008	percentage:	0.176
+2015-09-01 13:50:25	Processing rows:	800000	Hashtable size:	799999	Memory usage:	216948160	percentage:	0.207
+2015-09-01 13:50:26	Processing rows:	900000	Hashtable size:	899999	Memory usage:	234576744	percentage:	0.224
+2015-09-01 13:50:26	Processing rows:	1000000	Hashtable size:	999999	Memory usage:	256097552	percentage:	0.245
+2015-09-01 13:50:26	Processing rows:	1100000	Hashtable size:	1099999	Memory usage:	280599888	percentage:	0.268
+2015-09-01 13:50:27	Processing rows:	1200000	Hashtable size:	1199999	Memory usage:	303715776	percentage:	0.29
+2015-09-01 13:50:27	Processing rows:	1300000	Hashtable size:	1299999	Memory usage:	325519832	percentage:	0.311
+2015-09-01 13:50:28	Processing rows:	1400000	Hashtable size:	1399999	Memory usage:	337657472	percentage:	0.323
+2015-09-01 13:50:29	Processing rows:	1500000	Hashtable size:	1499999	Memory usage:	359261000	percentage:	0.343
+2015-09-01 13:50:29	Processing rows:	1600000	Hashtable size:	1599999	Memory usage:	397359424	percentage:	0.38
+2015-09-01 13:50:29	Processing rows:	1700000	Hashtable size:	1699999	Memory usage:	459130536	percentage:	0.439
+2015-09-01 13:50:29	Processing rows:	1800000	Hashtable size:	1799999	Memory usage:	511599080	percentage:	0.489
+2015-09-01 13:50:32	Processing rows:	1900000	Hashtable size:	1899999	Memory usage:	466801440	percentage:	0.446
+2015-09-01 13:50:32	Processing rows:	2000000	Hashtable size:	1999999	Memory usage:	494019824	percentage:	0.472
+2015-09-01 13:50:32	Processing rows:	2100000	Hashtable size:	2099999	Memory usage:	512838632	percentage:	0.49
+2015-09-01 13:50:32	Processing rows:	2200000	Hashtable size:	2199999	Memory usage:	540481528	percentage:	0.516
+2015-09-01 13:50:32	Processing rows:	2300000	Hashtable size:	2299999	Memory usage:	560297072	percentage:	0.535
+2015-09-01 13:50:32	Processing rows:	2400000	Hashtable size:	2399999	Memory usage:	584877792	percentage:	0.559
+01-Sep-2015 13:50:21 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: not(eq(n_nationkey, null))
+01-Sep-2015 13:50:21 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: noteq(n_nationkey, null)
+01-Sep-2015 13:50:21 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 25 records.
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 40 ms. row count = 25
+01-Sep-2015 13:50:22 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: not(eq(n_nationkey, null))
+01-Sep-2015 13:50:22 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: noteq(n_nationkey, null)
+01-Sep-2015 13:50:22 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 25 records.
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 1 ms. row count = 25
+01-Sep-2015 13:50:22 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(c_custkey, null)), not(eq(c_nationkey, null)))
+01-Sep-2015 13:50:22 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(c_custkey, null), noteq(c_nationkey, null))
+01-Sep-2015 13:50:22 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 1643794 records.
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 13:50:22 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 120 ms. row count = 1560100
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: Assembled and processed 1560100 records from 2 columns in 6439 ms: 242.28917 rec/ms, 484.57834 cell/ms
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: time spent so far 1% reading (120 ms) and 98% processing (6439 ms)
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: at row 1560100. reading next block
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 29 ms. row count = 83694
+01-Sep-2015 13:50:29 INFO: parquet.filter2.compat.FilterCompat: Filtering using predicate: and(not(eq(c_custkey, null)), not(eq(c_nationkey, null)))
+01-Sep-2015 13:50:29 INFO: parquet.filter2.compat.FilterCompat: Predicate has been collapsed to: and(noteq(c_custkey, null), noteq(c_nationkey, null))
+01-Sep-2015 13:50:29 WARNING: parquet.hadoop.ParquetRecordReader: Can not initialize counter due to context is not a instance of TaskInputOutputContext, but is org.apache.hadoop.mapreduce.task.TaskAttemptContextImpl
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: RecordReader initialized will read a total of 1637062 records.
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: at row 0. reading next block
+01-Sep-2015 13:50:29 INFO: parquet.hadoop.InternalParquetRecordReader: block read in memory in 54 ms. row count = 1560100
+Execution failed with exit status: 3
+Obtaining error information
+
+Task failed!
+Task ID:
+  Stage-21
+
+Logs:
+
+/tmp/leonidas/hive.log
+FAILED: Execution Error, return code 3 from org.apache.hadoop.hive.ql.exec.mr.MapredLocalTask
+MapReduce Jobs Launched: 
+Stage-Stage-20: Map: 85   Cumulative CPU: 6153.34 sec   HDFS Read: 8204299218 HDFS Write: 10648420434 SUCCESS
+Stage-Stage-2: Map: 49  Reduce: 255   Cumulative CPU: 8031.04 sec   HDFS Read: 11850184403 HDFS Write: 12482865910 SUCCESS
+Total MapReduce CPU Time Spent: 0 days 3 hours 56 minutes 24 seconds 380 msec

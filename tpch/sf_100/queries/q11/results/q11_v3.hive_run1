@@ -1,0 +1,156 @@
+set hive.execution.engine=mr; -- the query
+insert into table q11_important_stock
+select ps_partkey, part_value as value
+from ( 
+        select ps_partkey, sum(ps_supplycost * ps_availqty) as part_value, sum(sum(ps_supplycost * ps_availqty)) over() as total_value
+        from nation n
+        join supplier s on s.s_nationkey = n.n_nationkey and n.n_name = 'RUSSIA'
+        join partsupp ps on ps.ps_suppkey = s.s_suppkey
+        group by ps_partkey
+) sum_tmp
+where part_value > total_value * 0.000001
+order by value desc;
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+
+Logging initialized using configuration in file:/etc/hive/2.3.0.0-2557/0/hive-log4j.properties
+Query ID = leonidas_20150831230416_5ff2b11d-dc9f-4d33-a142-a818ca428e21
+Total jobs = 7
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150831230416_5ff2b11d-dc9f-4d33-a142-a818ca428e21.log
+2015-08-31 23:04:27	Starting to launch local task to process map join;	maximum memory = 1046478848
+2015-08-31 23:04:29	Dump the side-table for tag: 0 with group count: 1 into file: file:/tmp/leonidas/b9b057ce-57ca-40d3-9df7-169f87256be4/hive_2015-08-31_23-04-16_055_3462541066799078919-1/-local-10010/HashTable-Stage-12/MapJoin-mapfile20--.hashtable
+2015-08-31 23:04:29	Uploaded 1 File to: file:/tmp/leonidas/b9b057ce-57ca-40d3-9df7-169f87256be4/hive_2015-08-31_23-04-16_055_3462541066799078919-1/-local-10010/HashTable-Stage-12/MapJoin-mapfile20--.hashtable (278 bytes)
+2015-08-31 23:04:29	End of local task; Time Taken: 1.988 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 1 out of 7
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1441059882143_0038, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0038/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0038
+Hadoop job information for Stage-12: number of mappers: 1; number of reducers: 0
+2015-08-31 23:04:38,328 Stage-12 map = 0%,  reduce = 0%
+2015-08-31 23:04:46,855 Stage-12 map = 100%,  reduce = 0%, Cumulative CPU 7.43 sec
+MapReduce Total cumulative CPU time: 7 seconds 430 msec
+Ended Job = job_1441059882143_0038
+Stage-13 is filtered out by condition resolver.
+Stage-14 is selected by condition resolver.
+Stage-2 is filtered out by condition resolver.
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/hadoop/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/2.3.0.0-2557/spark/lib/spark-assembly-1.3.1.2.3.0.0-2557-hadoop2.7.1.2.3.0.0-2557.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+Execution log at: /tmp/leonidas/leonidas_20150831230416_5ff2b11d-dc9f-4d33-a142-a818ca428e21.log
+2015-08-31 23:04:52	Starting to launch local task to process map join;	maximum memory = 1046478848
+2015-08-31 23:04:53	Dump the side-table for tag: 0 with group count: 39955 into file: file:/tmp/leonidas/b9b057ce-57ca-40d3-9df7-169f87256be4/hive_2015-08-31_23-04-16_055_3462541066799078919-1/-local-10008/HashTable-Stage-10/MapJoin-mapfile10--.hashtable
+2015-08-31 23:04:53	Uploaded 1 File to: file:/tmp/leonidas/b9b057ce-57ca-40d3-9df7-169f87256be4/hive_2015-08-31_23-04-16_055_3462541066799078919-1/-local-10008/HashTable-Stage-10/MapJoin-mapfile10--.hashtable (840743 bytes)
+2015-08-31 23:04:53	End of local task; Time Taken: 1.574 sec.
+Execution completed successfully
+MapredLocal task succeeded
+Launching Job 3 out of 7
+Number of reduce tasks is set to 0 since there's no reduce operator
+Starting Job = job_1441059882143_0039, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0039/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0039
+Hadoop job information for Stage-10: number of mappers: 14; number of reducers: 0
+2015-08-31 23:05:03,853 Stage-10 map = 0%,  reduce = 0%
+2015-08-31 23:05:15,782 Stage-10 map = 2%,  reduce = 0%, Cumulative CPU 23.64 sec
+2015-08-31 23:05:18,969 Stage-10 map = 29%,  reduce = 0%, Cumulative CPU 58.49 sec
+2015-08-31 23:05:29,578 Stage-10 map = 32%,  reduce = 0%, Cumulative CPU 95.33 sec
+2015-08-31 23:05:30,633 Stage-10 map = 33%,  reduce = 0%, Cumulative CPU 107.74 sec
+2015-08-31 23:05:31,694 Stage-10 map = 51%,  reduce = 0%, Cumulative CPU 114.69 sec
+2015-08-31 23:05:32,755 Stage-10 map = 57%,  reduce = 0%, Cumulative CPU 117.35 sec
+2015-08-31 23:05:41,263 Stage-10 map = 59%,  reduce = 0%, Cumulative CPU 141.03 sec
+2015-08-31 23:05:42,310 Stage-10 map = 64%,  reduce = 0%, Cumulative CPU 153.81 sec
+2015-08-31 23:05:43,384 Stage-10 map = 76%,  reduce = 0%, Cumulative CPU 158.08 sec
+2015-08-31 23:05:44,461 Stage-10 map = 83%,  reduce = 0%, Cumulative CPU 172.32 sec
+2015-08-31 23:05:46,567 Stage-10 map = 86%,  reduce = 0%, Cumulative CPU 174.17 sec
+2015-08-31 23:05:50,790 Stage-10 map = 93%,  reduce = 0%, Cumulative CPU 181.71 sec
+2015-08-31 23:05:52,873 Stage-10 map = 96%,  reduce = 0%, Cumulative CPU 194.37 sec
+2015-08-31 23:05:53,924 Stage-10 map = 100%,  reduce = 0%, Cumulative CPU 195.48 sec
+MapReduce Total cumulative CPU time: 3 minutes 15 seconds 480 msec
+Ended Job = job_1441059882143_0039
+Launching Job 4 out of 7
+Number of reduce tasks not specified. Estimated from input data size: 2
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0040, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0040/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0040
+Hadoop job information for Stage-3: number of mappers: 1; number of reducers: 2
+2015-08-31 23:06:08,279 Stage-3 map = 0%,  reduce = 0%
+2015-08-31 23:06:20,053 Stage-3 map = 5%,  reduce = 0%, Cumulative CPU 16.83 sec
+2015-08-31 23:06:23,210 Stage-3 map = 26%,  reduce = 0%, Cumulative CPU 20.46 sec
+2015-08-31 23:06:26,352 Stage-3 map = 41%,  reduce = 0%, Cumulative CPU 33.04 sec
+2015-08-31 23:06:29,689 Stage-3 map = 67%,  reduce = 0%, Cumulative CPU 36.5 sec
+2015-08-31 23:06:35,957 Stage-3 map = 100%,  reduce = 0%, Cumulative CPU 43.93 sec
+2015-08-31 23:06:48,576 Stage-3 map = 100%,  reduce = 50%, Cumulative CPU 56.88 sec
+2015-08-31 23:06:49,626 Stage-3 map = 100%,  reduce = 96%, Cumulative CPU 68.85 sec
+2015-08-31 23:06:50,676 Stage-3 map = 100%,  reduce = 100%, Cumulative CPU 69.84 sec
+MapReduce Total cumulative CPU time: 1 minutes 9 seconds 840 msec
+Ended Job = job_1441059882143_0040
+Launching Job 5 out of 7
+Number of reduce tasks not specified. Estimated from input data size: 2
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0041, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0041/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0041
+Hadoop job information for Stage-4: number of mappers: 1; number of reducers: 2
+2015-08-31 23:07:03,576 Stage-4 map = 0%,  reduce = 0%
+2015-08-31 23:07:22,538 Stage-4 map = 33%,  reduce = 0%, Cumulative CPU 32.81 sec
+2015-08-31 23:07:27,793 Stage-4 map = 67%,  reduce = 0%, Cumulative CPU 39.56 sec
+2015-08-31 23:07:28,840 Stage-4 map = 100%,  reduce = 0%, Cumulative CPU 40.53 sec
+2015-08-31 23:07:38,266 Stage-4 map = 100%,  reduce = 50%, Cumulative CPU 46.18 sec
+2015-08-31 23:07:40,358 Stage-4 map = 100%,  reduce = 83%, Cumulative CPU 59.53 sec
+2015-08-31 23:07:46,660 Stage-4 map = 100%,  reduce = 100%, Cumulative CPU 67.32 sec
+MapReduce Total cumulative CPU time: 1 minutes 7 seconds 320 msec
+Ended Job = job_1441059882143_0041
+Launching Job 6 out of 7
+Number of reduce tasks determined at compile time: 1
+In order to change the average load for a reducer (in bytes):
+  set hive.exec.reducers.bytes.per.reducer=<number>
+In order to limit the maximum number of reducers:
+  set hive.exec.reducers.max=<number>
+In order to set a constant number of reducers:
+  set mapreduce.job.reduces=<number>
+Starting Job = job_1441059882143_0042, Tracking URL = http://sandbox.hortonworks.com:8088/proxy/application_1441059882143_0042/
+Kill Command = /usr/hdp/2.3.0.0-2557/hadoop/bin/hadoop job  -kill job_1441059882143_0042
+Hadoop job information for Stage-5: number of mappers: 1; number of reducers: 1
+2015-08-31 23:08:02,732 Stage-5 map = 0%,  reduce = 0%
+2015-08-31 23:08:14,281 Stage-5 map = 100%,  reduce = 0%, Cumulative CPU 16.15 sec
+2015-08-31 23:08:21,645 Stage-5 map = 100%,  reduce = 100%, Cumulative CPU 22.78 sec
+MapReduce Total cumulative CPU time: 22 seconds 780 msec
+Ended Job = job_1441059882143_0042
+Loading data to table default.q11_important_stock
+Table default.q11_important_stock stats: [numFiles=1, numRows=94348, totalSize=915212, rawDataSize=1132176]
+MapReduce Jobs Launched: 
+Stage-Stage-12: Map: 1   Cumulative CPU: 7.43 sec   HDFS Read: 1156561 HDFS Write: 844796 SUCCESS
+Stage-Stage-10: Map: 14   Cumulative CPU: 195.48 sec   HDFS Read: 868714904 HDFS Write: 88630111 SUCCESS
+Stage-Stage-3: Map: 1  Reduce: 2   Cumulative CPU: 69.84 sec   HDFS Read: 88640504 HDFS Write: 88629081 SUCCESS
+Stage-Stage-4: Map: 1  Reduce: 2   Cumulative CPU: 71.26 sec   HDFS Read: 88641460 HDFS Write: 2778740 SUCCESS
+Stage-Stage-5: Map: 1  Reduce: 1   Cumulative CPU: 22.78 sec   HDFS Read: 2783799 HDFS Write: 915303 SUCCESS
+Total MapReduce CPU Time Spent: 6 minutes 6 seconds 790 msec
+OK
+Time taken: 247.464 seconds
